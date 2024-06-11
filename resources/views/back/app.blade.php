@@ -2168,9 +2168,13 @@
     <!--end::Javascript-->
 
     
-    
-
     @yield('scripts')
+    <script>
+        
+        if (window.location.href.includes('admin')) {
+            document.getElementById('menu_admin').click();
+        }
+    </script>
 </body>
 <!--end::Body-->
 
