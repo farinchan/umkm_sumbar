@@ -29,14 +29,16 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::post('/store', [UserController::class, 'userStore'])->name('store');
             Route::put('/{id}/update', [UserController::class, 'userUpdate'])->name('update');
             Route::delete('/{id}/destroy', [UserController::class, 'userDestroy'])->name('destroy');
+
+            Route::prefix('/super-admin')->name('superadmin.')->group(function () {
+                Route::get('/', [UserController::class, 'superadmin'])->name('index');
+                Route::post('/store', [UserController::class, 'superadminStore'])->name('store');
+                Route::put('/{id}/update', [UserController::class, 'superadminUpdate'])->name('update');
+                Route::delete('/{id}/destroy', [UserController::class, 'superadminDestroy'])->name('destroy');
+            });
         });
 
-        Route::prefix('/superadmin')->name('superadmin.')->group(function () {
-            Route::get('/', [UserController::class, 'superadmin'])->name('index');
-            Route::post('/store', [UserController::class, 'superadminStore'])->name('store');
-            Route::put('/{id}/update', [UserController::class, 'superadminUpdate'])->name('update');
-            Route::delete('/{id}/destroy', [UserController::class, 'superadminDestroy'])->name('destroy');
-        });
+       
 
         Route::prefix('/product/category')->name('product.category.')->group(function () {
             Route::get('/', [ProductCategoryController::class, 'index'])->name('index');

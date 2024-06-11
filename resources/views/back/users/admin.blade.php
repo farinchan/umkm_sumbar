@@ -15,7 +15,7 @@
                 data-kt-swapper="true" data-kt-swapper-mode="prepend"
                 data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
                 <!--begin::Heading-->
-                <h1 class="text-dark fw-bolder my-0 fs-2">Pengguna Biasa List</h1>
+                <h1 class="text-dark fw-bolder my-0 fs-2">Admin List</h1>
                 <!--end::Heading-->
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb fw-bold fs-base my-1">
@@ -23,7 +23,7 @@
                         <a href="#" class="text-muted">Admin</a>
                     </li>
                     <li class="breadcrumb-item text-muted">Manajemen pengguna</li>
-                    <li class="breadcrumb-item text-muted">pengguna Biasa</li>
+                    <li class="breadcrumb-item text-muted">Admin</li>
                 </ul>
                 <!--end::Breadcrumb-->
             </div>
@@ -133,8 +133,8 @@
                     <!--begin::Card title-->
                     <div class="card-title">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bold fs-3 mb-1">Pengguna</span>
-                            <span class="text-muted fw-semibold fs-7">Data Pengguna</span>
+                            <span class="card-label fw-bold fs-3 mb-1">admin</span>
+                            <span class="text-muted fw-semibold fs-7">Data admin</span>
                         </h3>
                     </div>
                     <!--begin::Card title-->
@@ -144,7 +144,7 @@
                             <input type="hidden" name="page" value="{{ request('page', 1) }}">
                             <div class="input-group d-flex align-items-center position-relative my-1">
                                 <input type="text" class="form-control form-control-solid  ps-5 rounded-0"
-                                    name="q" value="{{ request('q') }}" placeholder="Cari Pengguna" />
+                                    name="q" value="{{ request('q') }}" placeholder="Cari admin" />
                                 <button class="btn btn-primary btn-icon" type="submit" id="button-addon2">
                                     <span class="svg-icon svg-icon-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -170,7 +170,7 @@
                                     <!--begin::Modal header-->
                                     <div class="modal-header" id="kt_modal_add_user_header">
                                         <!--begin::Modal title-->
-                                        <h2 class="fw-bolder">Tambah Pengguna</h2>
+                                        <h2 class="fw-bolder">Tambah admin</h2>
                                         <!--end::Modal title-->
                                         <!--begin::Close-->
                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -191,7 +191,7 @@
                                         <!--end::Close-->
                                     </div>
                                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                        <form method="POST" action="{{ route('admin.pengguna.store') }}" class="form"
+                                        <form method="POST" action="{{ route('admin.pengguna.admin.store') }}" class="form"
                                             action="#">
                                             @csrf
                                             <div class="d-flex flex-column scroll-y me-n7 pe-7"
@@ -206,7 +206,7 @@
                                                     <label class="required fw-bold fs-6 mb-2">Nama</label>
                                                     <input type="text" name="name"
                                                         class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="Nama Pengguna" value="{{ old('name') }}" />
+                                                        placeholder="Nama admin" value="{{ old('name') }}" />
                                                     @error('name')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -263,7 +263,7 @@
                                                     <label class="required fw-bold fs-6 mb-2">Email</label>
                                                     <input type="email" name="email"
                                                         class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="emailpengguna@email.com"
+                                                        placeholder="emailadmin@email.com"
                                                         value="{{ old('email') }}" />
                                                     @error('email')
                                                         <div class="invalid-feedback mb-3">
@@ -275,7 +275,7 @@
                                                     <label class="required fw-bold fs-6 mb-2">Password</label>
                                                     <input type="password" name="password"
                                                         class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="Password Pengguna" value="{{ old('password') }}" />
+                                                        placeholder="Password admin" value="{{ old('password') }}" />
                                                     @error('password')
                                                         <div class="invalid-feedback mb-3">
                                                             {{ $message }}
@@ -462,7 +462,7 @@
                     <!--begin::Modal header-->
                     <div class="modal-header" id="kt_modal_add_user_header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Edit Pengguna</h2>
+                        <h2 class="fw-bolder">Edit admin</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
                         <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -481,7 +481,7 @@
                         <!--end::Close-->
                     </div>
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <form method="POST" action="{{ route('admin.pengguna.update', $item->id) }}" class="form">
+                        <form method="POST" action="{{ route('admin.pengguna.admin.update', $item->id) }}" class="form">
                             @csrf
                             @method('PUT')
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll"
@@ -492,7 +492,7 @@
                                 <div class="fv-row mb-7">
                                     <label class="required fw-bold fs-6 mb-2">Nama</label>
                                     <input type="text" name="name"
-                                        class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nama Pengguna"
+                                        class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Nama admin"
                                         value="{{ $item->name }}" />
                                     @error('name')
                                         <div class="invalid-feedback">
@@ -548,7 +548,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Email</label>
                                     <input type="email" name="email"
                                         class="form-control form-control-solid mb-3 mb-lg-0"
-                                        placeholder="emailpengguna@email.com" value="{{ $item->email }}" />
+                                        placeholder="emailadmin@email.com" value="{{ $item->email }}" />
                                     @error('email')
                                         <div class="invalid-feedback mb-3">
                                             {{ $message }}
@@ -559,7 +559,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Password</label>
                                     <input type="password" name="password"
                                         class="form-control form-control-solid mb-3 mb-lg-0"
-                                        placeholder="Password Pengguna" value="" />
+                                        placeholder="Password admin" value="" />
                                     @error('password')
                                         <div class="invalid-feedback mb-3">
                                             {{ $message }}
@@ -593,7 +593,7 @@
                     <!--begin::Modal header-->
                     <div class="modal-header" id="kt_modal_add_user_header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Hapus Pengguna</h2>
+                        <h2 class="fw-bolder">Hapus admin</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
                         <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -612,7 +612,7 @@
                         <!--end::Close-->
                     </div>
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <form method="POST" action="{{ route('admin.pengguna.destroy', $item->id) }}" class="form">
+                        <form method="POST" action="{{ route('admin.pengguna.admin.destroy', $item->id) }}" class="form">
                             @csrf
                             @method('delete')
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll"
@@ -621,7 +621,7 @@
                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
                                     <label class="fw-bold fs-6 mb-2">
-                                        Anda Yakinkah Ingin Menghapus Pengguna <b>{{ $item->name }}</b>  ?
+                                        Anda Yakinkah Ingin Menghapus admin <b>{{ $item->name }}</b>  ?
                                     </label>
 
                             </div>

@@ -16,11 +16,11 @@ class UserController extends Controller
     public function user(Request $request)
     {
         $search = $request->input('q');
-        $data = User::where(function ($query) use ($search) {
+        $data = User::Role("user")->where(function ($query) use ($search) {
             $query->where('name', 'LIKE', '%' . $search . '%');
         })
-        
-        ->paginate(10);        
+
+            ->paginate(10);
         $data->appends(['q' => $search]);
         $data = [
             'title' => 'Pengguna',
@@ -32,7 +32,8 @@ class UserController extends Controller
         // dd($data);
         return view('back.users.user', $data);
     }
-    public function userStore(Request $request){
+    public function userStore(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone' => 'required',
@@ -44,7 +45,7 @@ class UserController extends Controller
             return redirect()->route('admin.pengguna.index')->with('error', 'Gagal menambahkan pengguna baru')->withInput()->withErrors($validator);
         }
 
-        $user = New User();
+        $user = new User();
         $user->name = $request->input('name');
         $user->phone = $request->input('phone');
         $user->gender = $request->input('gender');
@@ -52,15 +53,16 @@ class UserController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
         $user->assignRole('user');
-        return redirect()->route('admin.pengguna.index')->with('success','Berhasil menambahkan pengguna baru');
+        return redirect()->route('admin.pengguna.index')->with('success', 'Berhasil menambahkan pengguna baru');
     }
 
-    public function userUpdate($id, Request $request){
+    public function userUpdate($id, Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone' => 'required',
             'gender' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
         ]);
         if ($validator->fails()) {
             dd($validator->errors());
@@ -72,26 +74,28 @@ class UserController extends Controller
         $user->phone = $request->input('phone');
         $user->gender = $request->input('gender');
         $user->email = $request->input('email');
-        if($request->input('password')){
+        if ($request->input('password')) {
             $user->password = Hash::make($request->input('password'));
         }
         $user->save();
-        return redirect()->route('admin.pengguna.index')->with('success','Berhasil mengubah data pengguna');
+        return redirect()->route('admin.pengguna.index')->with('success', 'Berhasil mengubah data pengguna');
     }
 
-    public function userDestroy($id){
+    public function userDestroy($id)
+    {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('admin.pengguna.index')->with('success','Berhasil menghapus data pengguna');
+        return redirect()->route('admin.pengguna.index')->with('success', 'Berhasil menghapus data pengguna');
     }
 
+    //TODO: Implement Super Admin
     public function superadmin(Request $request)
     {
         $search = $request->input('q');
-        $data = User::where(function ($query) use ($search) {
+        $data = User::Role("superadmin")->where(function ($query) use ($search) {
             $query->where('name', 'LIKE', '%' . $search . '%');
-        })->hasRole('superadmin')
-        ->paginate(10);        
+        })
+            ->paginate(10);
         $data->appends(['q' => $search]);
         $data = [
             'title' => 'Pengguna',
@@ -103,7 +107,9 @@ class UserController extends Controller
         // dd($data);
         return view('back.users.superadmin', $data);
     }
-    public function superadminStore(Request $request){
+
+    public function superadminStore(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone' => 'required',
@@ -112,30 +118,31 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('admin.pengguna.index')->with('error', 'Gagal menambahkan pengguna baru')->withInput()->withErrors($validator);
+            return redirect()->route('admin.pengguna.superadmin.index')->with('error', 'Gagal menambahkan pengguna baru')->withInput()->withErrors($validator);
         }
 
-        $user = New User();
+        $user = new User();
         $user->name = $request->input('name');
         $user->phone = $request->input('phone');
         $user->gender = $request->input('gender');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();
-        $user->assignRole('user');
-        return redirect()->route('admin.pengguna.index')->with('success','Berhasil menambahkan pengguna baru');
+        $user->assignRole('superadmin');
+        return redirect()->route('admin.pengguna.superadmin.index')->with('success', 'Berhasil menambahkan pengguna baru');
     }
 
-    public function superadminrUpdate($id, Request $request){
+    public function superadminUpdate($id, Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone' => 'required',
             'gender' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
         ]);
         if ($validator->fails()) {
             dd($validator->errors());
-            return redirect()->route('admin.pengguna.index')->with('error', 'Gagal mengubah data pengguna')->withInput()->withErrors($validator);
+            return redirect()->route('admin.pengguna.superadmin.index')->with('error', 'Gagal mengubah data pengguna')->withInput()->withErrors($validator);
         }
 
         $user = User::findOrFail($id);
@@ -143,16 +150,91 @@ class UserController extends Controller
         $user->phone = $request->input('phone');
         $user->gender = $request->input('gender');
         $user->email = $request->input('email');
-        if($request->input('password')){
+        if ($request->input('password')) {
             $user->password = Hash::make($request->input('password'));
         }
         $user->save();
-        return redirect()->route('admin.pengguna.index')->with('success','Berhasil mengubah data pengguna');
+        return redirect()->route('admin.pengguna.superadmin.index')->with('success', 'Berhasil mengubah data pengguna');
     }
 
-    public function superadminDestroy($id){
+    public function superadminDestroy($id)
+    {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('admin.pengguna.index')->with('success','Berhasil menghapus data pengguna');
+        return redirect()->route('admin.pengguna.superadmin.index')->with('success', 'Berhasil menghapus data pengguna');
+    }
+
+    //TODO: Implement Admin
+    public function admin(Request $request)
+    {
+        $search = $request->input('q');
+        $data = User::Role("admin")->where(function ($query) use ($search) {
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        })
+            ->paginate(10);
+        $data->appends(['q' => $search]);
+        $data = [
+            'title' => 'Pengguna',
+            'subTitle' => null,
+            'page_id' => 10,
+            'user' => $data,
+        ];
+        return view('back.users.admin', $data);
+    }
+
+    public function adminStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'phone' => 'required',
+            'gender' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('admin.pengguna.admin.index')->with('error', 'Gagal menambahkan pengguna baru')->withInput()->withErrors($validator);
+        }
+
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->gender = $request->input('gender');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+        $user->assignRole('admin');
+        return redirect()->route('admin.pengguna.admin.index')->with('success', 'Berhasil menambahkan pengguna baru');
+    }
+
+    public function adminUpdate($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'phone' => 'required',
+            'gender' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ]);
+        if ($validator->fails()) {
+            dd($validator->errors());
+            return redirect()->route('admin.pengguna.admin.index')->with('error', 'Gagal mengubah data pengguna')->withInput()->withErrors($validator);
+        }
+
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->gender = $request->input('gender');
+        $user->email = $request->input('email');
+        if ($request->input('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+        $user->save();
+        return redirect()->route('admin.pengguna.admin.index')->with('success', 'Berhasil mengubah data pengguna');
+    }
+
+    public function adminDestroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('admin.pengguna.admin.index')->with('success', 'Berhasil menghapus data pengguna');
     }
 }

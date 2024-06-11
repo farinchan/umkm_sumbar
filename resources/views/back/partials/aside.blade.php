@@ -504,7 +504,7 @@
                                             <span class="menu-arrow"></span>
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg hover">
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*')) show hover @endif">
                                                 <span class="menu-link ">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
@@ -514,8 +514,9 @@
                                                 </span>
                                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                                     <div class="menu-item">
-                                                        <a class="menu-link"
-                                                            href="../../demo7/dist/authentication/flows/basic/sign-in.html">
+                                                        <a class="menu-link @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*')) active @endif"
+                                                           
+                                                            href="{{ route("admin.pengguna.superadmin.index") }}">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
@@ -534,7 +535,7 @@
                                                 </div>
                                             </div>
                                             <div class="menu-item ">
-                                                <a class="menu-link @if (request()->is('back/admin/pengguna/*') || request()->is('back/admin/pengguna')) active @endif"
+                                                <a class="menu-link @if ( request()->is('back/admin/pengguna')) active @endif"
                                                     href="{{ route('admin.pengguna.index') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
