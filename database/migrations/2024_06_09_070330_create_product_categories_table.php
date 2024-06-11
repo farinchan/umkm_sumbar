@@ -18,6 +18,9 @@ return new class extends Migration
             $table->text('description');
             $table->string('image');
             $table->boolean('status')->default(1);
+            $table->string('meta_title');
+            $table->string('meta_description');
+            $table->string('meta_keywords');
             $table->integer('parent_id')->unsigned()->nullable();
             $table->timestamps();
         });

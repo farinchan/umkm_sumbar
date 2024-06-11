@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
-    <title>Allaia | {{ $title ?? "" }}</title>
+    <title>Allaia | {{ $title ?? '' }}</title>
 
-	@yield('seo')
+    @yield('seo')
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -32,8 +32,15 @@
     <!-- SPECIFIC CSS -->
     <link href="{{ asset('front/css/home_1.css') }}" rel="stylesheet">
 
+    <!-- COMMON SCRIPTS -->
+    <link href="{{ asset('front/css/account.css') }}" rel="stylesheet">
+
+
     <!-- YOUR CUSTOM CSS -->
     <link href="{{ asset('front/css/custom.css') }}" rel="stylesheet">
+
+    <!-- Include stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 
 </head>
 
@@ -49,7 +56,7 @@
         </main>
         <!-- /main -->
 
-      @include('front.partials.footer')
+        @include('front.partials.footer')
         <!--/footer-->
     </div>
     <!-- page -->
@@ -62,6 +69,10 @@
 
     <!-- SPECIFIC SCRIPTS -->
     <script src="{{ asset('front/js/carousel-home.min.js') }}"></script>
+
+
+
+    @yield('scripts')
 
 </body>
 
