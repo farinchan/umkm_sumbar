@@ -15,7 +15,7 @@
                 data-kt-swapper="true" data-kt-swapper-mode="prepend"
                 data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
                 <!--begin::Heading-->
-                <h1 class="text-dark fw-bolder my-0 fs-2">Admin List</h1>
+                <h1 class="text-dark fw-bolder my-0 fs-2">Daftar Admin Kota/Kabupaten</h1>
                 <!--end::Heading-->
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb fw-bold fs-base my-1">
@@ -23,7 +23,7 @@
                         <a href="#" class="text-muted">Admin</a>
                     </li>
                     <li class="breadcrumb-item text-muted">Manajemen pengguna</li>
-                    <li class="breadcrumb-item text-muted">Admin</li>
+                    <li class="breadcrumb-item text-muted">Admin kota/kabupaten</li>
                 </ul>
                 <!--end::Breadcrumb-->
             </div>
@@ -53,71 +53,6 @@
                 <!--end::Logo-->
             </div>
             <!--end::Wrapper-->
-            <!--begin::Toolbar wrapper-->
-            <div class="d-flex flex-shrink-0">
-                <!--begin::Invite user-->
-                <div class="d-flex ms-3">
-                    <a href="#"
-                        class="btn btn-flex flex-center bg-body btn-color-gray-700 btn-active-color-primary w-40px w-md-auto h-40px px-0 px-md-6"
-                        tooltip="New Member" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                        <span class="svg-icon svg-icon-2 svg-icon-primary me-0 me-md-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
-                                    transform="rotate(-90 11.364 20.364)" fill="black" />
-                                <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <span class="d-none d-md-inline">New Member</span>
-                    </a>
-                </div>
-                <!--end::Invite user-->
-                <!--begin::Create app-->
-                <div class="d-flex ms-3">
-                    <a href="#"
-                        class="btn btn-flex flex-center bg-body btn-color-gray-700 btn-active-color-primary w-40px w-md-auto h-40px px-0 px-md-6"
-                        tooltip="New App" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app"
-                        id="kt_toolbar_primary_button">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
-                        <span class="svg-icon svg-icon-2 svg-icon-primary me-0 me-md-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <path opacity="0.3"
-                                    d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM15 17C15 16.4 14.6 16 14 16H8C7.4 16 7 16.4 7 17C7 17.6 7.4 18 8 18H14C14.6 18 15 17.6 15 17ZM17 12C17 11.4 16.6 11 16 11H8C7.4 11 7 11.4 7 12C7 12.6 7.4 13 8 13H16C16.6 13 17 12.6 17 12ZM17 7C17 6.4 16.6 6 16 6H8C7.4 6 7 6.4 7 7C7 7.6 7.4 8 8 8H16C16.6 8 17 7.6 17 7Z"
-                                    fill="black" />
-                                <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <span class="d-none d-md-inline">New App</span>
-                    </a>
-                </div>
-                <!--end::Create app-->
-                <!--begin::Chat-->
-                <div class="d-flex align-items-center ms-3">
-                    <!--begin::Menu wrapper-->
-                    <div class="btn btn-icon btn-primary w-40px h-40px pulse pulse-white" id="kt_drawer_chat_toggle">
-                        <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
-                        <span class="svg-icon svg-icon-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none">
-                                <path opacity="0.3"
-                                    d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z"
-                                    fill="black" />
-                                <rect x="6" y="12" width="7" height="2" rx="1" fill="black" />
-                                <rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <span class="pulse-ring"></span>
-                    </div>
-                    <!--end::Menu wrapper-->
-                </div>
-                <!--end::Chat-->
-            </div>
-            <!--end::Toolbar wrapper-->
         </div>
         <!--end::Container-->
     </div>
@@ -191,8 +126,8 @@
                                         <!--end::Close-->
                                     </div>
                                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                        <form method="POST" action="{{ route('admin.pengguna.admin.store') }}" class="form"
-                                            action="#">
+                                        <form method="POST" action="{{ route('admin.pengguna.admin.store') }}"
+                                            class="form" action="#">
                                             @csrf
                                             <div class="d-flex flex-column scroll-y me-n7 pe-7"
                                                 id="kt_modal_add_user_scroll" data-kt-scroll="true"
@@ -263,8 +198,7 @@
                                                     <label class="required fw-bold fs-6 mb-2">Email</label>
                                                     <input type="email" name="email"
                                                         class="form-control form-control-solid mb-3 mb-lg-0"
-                                                        placeholder="emailadmin@email.com"
-                                                        value="{{ old('email') }}" />
+                                                        placeholder="emailadmin@email.com" value="{{ old('email') }}" />
                                                     @error('email')
                                                         <div class="invalid-feedback mb-3">
                                                             {{ $message }}
@@ -282,6 +216,23 @@
                                                         </div>
                                                     @enderror
                                                 </div>
+                                                <div class="fv-row mb-7">
+                                                    <label class="required fw-bold fs-6 mb-2">Admin Kota/kabupaten</label>
+                                                    <select name="city_id"
+                                                        class="form-select form-select-solid mb-3 mb-lg-0">
+                                                        <option value="">Pilih Kota/Kabupaten</option>
+                                                        @foreach ($city as $item)
+                                                            <option @if (old('city_id') == $item->id) selected @endif
+                                                                value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('city_id')
+                                                        <div class="invalid-feedback mb-3">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+
                                             </div>
                                             <div class="text-center pt-15">
                                                 <button type="reset" class="btn btn-light me-3"
@@ -315,7 +266,8 @@
                                 <th class="min-w-125px">User</th>
                                 <th class="min-w-125px">Gender</th>
                                 <th class="min-w-125px">Phone</th>
-                                <th class="min-w-125px">Role</th>
+                                <th class="min-w-125px">Admin</th>
+                                <th class="min-w-125px">Status</th>
                                 <th class="min-w-125px">Tanggal Mendaftar</th>
                                 <th class="text-end min-w-100px">Actions</th>
                             </tr>
@@ -355,8 +307,22 @@
                                             <div class="badge badge-light fw-bolder">{{ $item->phone }}</div>
                                         </td>
                                         <td>
-                                            <div class="badge badge-light-success fw-bolder">
-                                                {{ $item->getRoleNames()[0] }}</div>
+                                            <div class="badge badge-light-primary fw-bolder">
+                                                {{ $item->city_name }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if ($item->is_active == 1)
+                                                <div class="badge badge-light-success fw-bolder">
+                                                    Aktif
+                                                </div>
+                                            @else
+                                                <div class="badge badge-light-danger fw-bolder">
+                                                    Tidak Aktif
+                                                </div>
+                                                
+                                            @endif
+                                            
                                         </td>
                                         <td>{{ $item->created_at->diffForHumans() }}</td>
                                         <td class="text-end">
@@ -464,24 +430,10 @@
                         <!--begin::Modal title-->
                         <h2 class="fw-bolder">Edit admin</h2>
                         <!--end::Modal title-->
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                        transform="rotate(-45 6 17.3137)" fill="black" />
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </div>
-                        <!--end::Close-->
                     </div>
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <form method="POST" action="{{ route('admin.pengguna.admin.update', $item->id) }}" class="form">
+                        <form method="POST" action="{{ route('admin.pengguna.admin.update', $item->id) }}"
+                            class="form">
                             @csrf
                             @method('PUT')
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll"
@@ -558,14 +510,30 @@
                                 <div class="fv-row mb-7">
                                     <label class="required fw-bold fs-6 mb-2">Password</label>
                                     <input type="password" name="password"
-                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                        placeholder="Password admin" value="" />
+                                        class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Password admin"
+                                        value="" />
                                     @error('password')
                                         <div class="invalid-feedback mb-3">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
+                                <div class="fv-row mb-7">
+                                    <label class="required fw-bold fs-6 mb-2">Admin Kota/kabupaten</label>
+                                    <select name="city_id" class="form-select form-select-solid mb-3 mb-lg-0">
+                                        <option value="">Pilih Kota/Kabupaten</option>
+                                        @foreach ($city as $item)
+                                            <option @if ($item->id == $item->city_id) selected @endif
+                                                value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('city_id')
+                                        <div class="invalid-feedback mb-3">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
                             </div>
                             <div class="text-center pt-15">
                                 <button type="reset" class="btn btn-light me-3"
@@ -595,24 +563,10 @@
                         <!--begin::Modal title-->
                         <h2 class="fw-bolder">Hapus admin</h2>
                         <!--end::Modal title-->
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                        transform="rotate(-45 6 17.3137)" fill="black" />
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </div>
-                        <!--end::Close-->
                     </div>
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <form method="POST" action="{{ route('admin.pengguna.admin.destroy', $item->id) }}" class="form">
+                        <form method="POST" action="{{ route('admin.pengguna.admin.destroy', $item->id) }}"
+                            class="form">
                             @csrf
                             @method('delete')
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll"
@@ -620,9 +574,9 @@
                                 data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header"
                                 data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
 
-                                    <label class="fw-bold fs-6 mb-2">
-                                        Anda Yakinkah Ingin Menghapus admin <b>{{ $item->name }}</b>  ?
-                                    </label>
+                                <label class="fw-bold fs-6 mb-2">
+                                    Anda Yakinkah Ingin Menghapus admin <b>{{ $item->name }}</b> ?
+                                </label>
 
                             </div>
                             <div class="text-center pt-15">

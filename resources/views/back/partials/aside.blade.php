@@ -411,10 +411,9 @@
                                         </div>
                                     </div>
 
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) hover show @endif">
                                         <span class="menu-link">
                                             <span class="menu-icon">
-
                                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/ecommerce/ecm004.svg-->
                                                 <span class="svg-icon svg-icon-2"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="24"
@@ -446,7 +445,7 @@
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                                             <div class="menu-item">
-                                                <a class="menu-link" href="../../demo7/dist/account/overview.html">
+                                                <a class="menu-link @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) active @endif" href="{{ route('admin.toko.create') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
@@ -479,6 +478,50 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+
+                                                <span class="menu-icon">
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                                    <span class="svg-icon svg-icon-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path
+                                                                d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
+                                                                fill="black" />
+                                                            <path opacity="0.3"
+                                                                d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
+                                                                fill="black" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                            </span>
+                                            <span class="menu-title">Kategori Produk</span>
+                                            <span class="menu-arrow"></span>
+                                        </span>
+                                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="../../demo7/dist/account/overview.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Tambah Kategori</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                            <div class="menu-item">
+                                                <a class="menu-link" href="../../demo7/dist/account/overview.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Daftar Kategori</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div data-kt-menu-trigger="click"
                                         class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/*') || request()->is('back/admin/pengguna')) hover show @endif">
                                         <span class="menu-link @if (request()->is('back/admin/pengguna/*') || request()->is('back/admin/pengguna')) active @endif">
@@ -504,7 +547,7 @@
                                             <span class="menu-arrow"></span>
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg hover">
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*')) show hover @endif">
+                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*') ||  request()->is('back/admin/pengguna/admin') || request()->is('back/admin/pengguna/admin/*')) show hover @endif">
                                                 <span class="menu-link ">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
@@ -514,7 +557,7 @@
                                                 </span>
                                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                                     <div class="menu-item">
-                                                        <a class="menu-link @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*')) active @endif"
+                                                        <a class="menu-link @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*'))  active @endif"
                                                            
                                                             href="{{ route("admin.pengguna.superadmin.index") }}">
                                                             <span class="menu-bullet">
@@ -524,8 +567,9 @@
                                                         </a>
                                                     </div>
                                                     <div class="menu-item">
-                                                        <a class="menu-link"
-                                                            href="../../demo7/dist/authentication/flows/basic/sign-up.html">
+                                                        <a class="menu-link @if (request()->is('back/admin/pengguna/admin') || request()->is('back/admin/pengguna/admin/*')) active @endif"
+                                                         
+                                                            href="{{ route("admin.pengguna.admin.index") }}">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
@@ -553,31 +597,9 @@
                                         </div>
                                     </div>
                                     <div class="menu-item">
-                                        <a class="menu-link"
-                                            href="https://preview.keenthemes.com/metronic8/demo7/layout-builder.html"
-                                            data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
-                                            data-bs-placement="right">
-                                            <span class="menu-icon">
-                                                <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-                                                <span class="svg-icon svg-icon-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
-                                                            fill="black" />
-                                                        <path opacity="0.3"
-                                                            d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </span>
-                                            <span class="menu-title">Kategori Produk</span>
-                                        </a>
-                                    </div>
-                                    <div class="menu-item">
-                                        <a class="menu-link"
-                                            href="https://preview.keenthemes.com/metronic8/demo7/layout-builder.html"
+                                        <a class="menu-link @if (request()->is('back/admin/kota') || request()->is('back/admin/kota/*')) active @endif"
+                                           
+                                            href="{{ route('admin.kota.index') }}"
                                             data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
                                             data-bs-placement="right">
                                             <span class="menu-icon">

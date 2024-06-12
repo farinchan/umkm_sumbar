@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web\Back\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\CityAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -168,17 +170,25 @@ class UserController extends Controller
     public function admin(Request $request)
     {
         $search = $request->input('q');
-        $data = User::Role("admin")->where(function ($query) use ($search) {
-            $query->where('name', 'LIKE', '%' . $search . '%');
+        $data = User::Role("admin")
+        ->select('users.*', 'cities.name as city_name', 'cities.id as city_id')
+        ->join('city_admin', 'city_admin.user_id', '=', 'users.id')
+        ->join('cities', 'cities.id', '=', 'city_admin.city_id')
+        ->where(function ($query) use ($search) {
+            $query->where('users.name', 'LIKE', '%' . $search . '%');
         })
             ->paginate(10);
         $data->appends(['q' => $search]);
+        $city = City::all();
         $data = [
             'title' => 'Pengguna',
             'subTitle' => null,
             'page_id' => 10,
             'user' => $data,
+            'city' => $city
         ];
+        
+        // return response()->json($data); 
         return view('back.users.admin', $data);
     }
 
@@ -190,6 +200,7 @@ class UserController extends Controller
             'gender' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
+            'city_id' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect()->route('admin.pengguna.admin.index')->with('error', 'Gagal menambahkan pengguna baru')->withInput()->withErrors($validator);
@@ -203,6 +214,10 @@ class UserController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
         $user->assignRole('admin');
+        CityAdmin::create([
+            'city_id' => $request->input('city_id'),
+            'user_id' => $user->id
+        ]);
         return redirect()->route('admin.pengguna.admin.index')->with('success', 'Berhasil menambahkan pengguna baru');
     }
 
@@ -213,6 +228,7 @@ class UserController extends Controller
             'phone' => 'required',
             'gender' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
+            'city_id' => 'required',
         ]);
         if ($validator->fails()) {
             dd($validator->errors());
@@ -228,12 +244,17 @@ class UserController extends Controller
             $user->password = Hash::make($request->input('password'));
         }
         $user->save();
+        CityAdmin::where('user_id', $id)->update([
+            'city_id' => $request->input('city_id')
+        ]);
         return redirect()->route('admin.pengguna.admin.index')->with('success', 'Berhasil mengubah data pengguna');
     }
 
     public function adminDestroy($id)
     {
         $user = User::findOrFail($id);
+        $cityAdmin = CityAdmin::where('user_id', $id)->first();
+        $cityAdmin->delete();
         $user->delete();
         return redirect()->route('admin.pengguna.admin.index')->with('success', 'Berhasil menghapus data pengguna');
     }
