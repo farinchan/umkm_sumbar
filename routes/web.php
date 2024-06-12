@@ -65,6 +65,7 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
     });
 
     Route::middleware(['role:admin|superadmin'])->prefix("/admin")->name("admin.")->group(function () {
+        
         Route::prefix('toko')->name('toko.')->group(function () {
             Route::get('/', [ShopController::class, 'index'])->name('index');
             Route::get('/create', [ShopController::class, 'create'])->name('create');
@@ -74,6 +75,15 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::put('/{id}/update', [ShopController::class, 'update'])->name('update');
             Route::delete('/{id}/destroy', [ShopController::class, 'destroy'])->name('destroy');
         });
+
+        // Route::prefix('product')->name('product.')->group(function () {
+        //     Route::get('/', [ProductController::class, 'index'])->name('index');
+        //     Route::get('/create', [ProductController::class, 'create'])->name('create');
+        //     Route::post('/store', [ProductController::class, 'store'])->name('store');
+        //     Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
+        //     Route::put('/{id}/update', [ProductController::class, 'update'])->name('update');
+        //     Route::delete('/{id}/destroy', [ProductController::class, 'destroy'])->name('destroy');
+        // });
     });
 
 });

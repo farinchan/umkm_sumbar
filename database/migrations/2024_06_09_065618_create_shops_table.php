@@ -18,17 +18,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('address');
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('logo');
-            $table->string('banner');
             $table->text('description');
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();
-            $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
             $table->string('linkedin')->nullable();
             $table->boolean('verified')->default(0);
