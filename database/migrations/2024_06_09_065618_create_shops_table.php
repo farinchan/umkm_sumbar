@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('address');
+            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('logo');

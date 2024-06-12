@@ -48,4 +48,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function CityAdmin()
+    {
+        return $this->hasMany(CityAdmin::class);
+    }
 }
