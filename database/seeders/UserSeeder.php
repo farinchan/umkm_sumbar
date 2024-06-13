@@ -18,14 +18,18 @@ class UserSeeder extends Seeder
         $admin =  Role::create(['name' => 'admin']);
         $user =  Role::create(['name' => 'user']);
 
-        $user = User::create([
+        $userSuperAdmin = User::create([
             'name' => 'Fajri Rinaldi Chan',
             'email' => 'fajri@gariskode.com',
             'gender' => 'laki-laki',
             'password' => bcrypt('password'),
         ]);
 
-        $user->assignRole($superadmin);
+        $userSuperAdmin->assignRole($superadmin);
 
+        User::factory(10)->create()
+            ->each(function ($user) {
+                $user->assignRole('user');
+            });;
     }
 }

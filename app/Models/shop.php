@@ -11,6 +11,7 @@ class shop extends Model
 
     protected $table = 'shops';
     protected $fillable = [
+        'id',
         'name',
         'logo',
         'email',
