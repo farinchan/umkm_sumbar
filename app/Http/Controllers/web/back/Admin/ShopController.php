@@ -16,14 +16,21 @@ class ShopController extends Controller
 {
     public function index()
     {
+        $data = [
+            'menu_title' => 'Manajemen Toko',
+            'submenu_title' => 'Toko',
+            'title' => 'Daftar Toko',
+            'shop' => shop::all()
+        ];
         return view('back.shop.index');
     }
 
     public function create()
     {
         $data = [
+            'menu_title' => 'Manajemen Toko',
+            'submenu_title' => 'Toko',
             'title' => 'Tambah Toko',
-            'subTitle' => null,
             'city' => City::all(),
             'user' => User::Role('user')->get(),
         ];

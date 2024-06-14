@@ -33,7 +33,6 @@
             </div>
         </div>
     </div>
-    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class=" container-xxl " id="kt_content_container">
             <form id="kt_ecommerce_add_category_form"
                 class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
@@ -345,7 +344,6 @@
                 </div>
             </form>
         </div>
-    </div>
 @endsection
 
 @section('scripts')
