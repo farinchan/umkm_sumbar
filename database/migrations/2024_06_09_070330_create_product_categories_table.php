@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('image');
             $table->boolean('status')->default(1);
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->timestamps();
         });

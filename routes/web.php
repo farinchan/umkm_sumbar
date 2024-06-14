@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\Auth\AuthController;
 use App\Http\Controllers\Web\Back\Admin\CityController;
 use App\Http\Controllers\Web\Back\Admin\DashboardController;
 use App\Http\Controllers\Web\Back\Admin\ProductCategoryController;
+use App\Http\Controllers\Web\Back\Admin\ProductController;
 use App\Http\Controllers\Web\Back\Admin\ShopController;
 use App\Http\Controllers\Web\Back\Admin\UserController;
 use App\Http\Controllers\web\front\HomeController;
@@ -76,14 +77,14 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::delete('/{id}/destroy', [ShopController::class, 'destroy'])->name('destroy');
         });
 
-        // Route::prefix('product')->name('product.')->group(function () {
-        //     Route::get('/', [ProductController::class, 'index'])->name('index');
-        //     Route::get('/create', [ProductController::class, 'create'])->name('create');
-        //     Route::post('/store', [ProductController::class, 'store'])->name('store');
-        //     Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
-        //     Route::put('/{id}/update', [ProductController::class, 'update'])->name('update');
-        //     Route::delete('/{id}/destroy', [ProductController::class, 'destroy'])->name('destroy');
-        // });
+        Route::prefix('product')->name('product.')->group(function () {
+            Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/create', [ProductController::class, 'create'])->name('create');
+            Route::post('/store', [ProductController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
+            Route::put('/{id}/update', [ProductController::class, 'update'])->name('update');
+            Route::delete('/{id}/destroy', [ProductController::class, 'destroy'])->name('destroy');
+        });
     });
 
 });

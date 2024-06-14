@@ -15,14 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('sku')->unique();
             $table->text('description');
             $table->text('short_description');
-            $table->string('image');
-            $table->string('gallery');
             $table->decimal('price', 10, 2);
-            $table->decimal('discount_price', 10, 2)->nullable();
-            $table->integer('quantity');
+            $table->integer('discount')->nullable();
+            $table->integer('stock');
             $table->boolean('status')->default(1);
             $table->foreignId('product_categories_id')->constrained('product_categories')->onDelete('cascade');
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
@@ -30,6 +27,9 @@ return new class extends Migration
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->string('brand')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keyword')->nullable();
             $table->timestamps();
         });
     }

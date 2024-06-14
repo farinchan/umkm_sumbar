@@ -46,11 +46,11 @@
                     <!--end::Nav item-->
                     <!--begin::Nav item-->
                     <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
-                        data-bs-dismiss="click"  title="Admin menu">
+                        data-bs-dismiss="click" title="Admin menu">
                         <!--begin::Nav link-->
 
                         <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
-                            data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_menu" >
+                            data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_menu">
                             <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
                             <span class="svg-icon svg-icon-2x">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -76,13 +76,13 @@
         <!--end::Nav-->
         <!--begin::Footer-->
         <div class="aside-footer d-flex flex-column align-items-center flex-column-auto" id="kt_aside_footer">
-           
+
             <!--begin::User-->
             <div class="d-flex align-items-center mb-10" id="kt_header_user_menu_toggle">
                 <!--begin::Menu wrapper-->
-                <div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click"
-                    data-kt-menu-overflow="true" data-kt-menu-placement="top-start" data-bs-toggle="tooltip"
-                    data-bs-placement="right" data-bs-dismiss="click" title="User profile">
+                <div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click" data-kt-menu-overflow="true"
+                    data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right"
+                    data-bs-dismiss="click" title="User profile">
                     <img src="assets/media/avatars/150-26.jpg" alt="image" />
                 </div>
                 <!--begin::Menu-->
@@ -411,7 +411,8 @@
                                         </div>
                                     </div>
 
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) hover show @endif">
+                                    <div data-kt-menu-trigger="click"
+                                        class="menu-item menu-accordion @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) hover show @endif">
                                         <span class="menu-link">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/ecommerce/ecm004.svg-->
@@ -445,7 +446,8 @@
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                                             <div class="menu-item">
-                                                <a class="menu-link @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) active @endif" href="{{ route('admin.toko.create') }}">
+                                                <a class="menu-link @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) active @endif"
+                                                    href="{{ route('admin.toko.create') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
@@ -478,23 +480,40 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/product/category/*') || request()->is('back/admin/product/category')) hover show @endif">
+                                    <div data-kt-menu-trigger="click"
+                                        class="menu-item menu-accordion @if (request()->is('back/admin/product/category/*') || request()->is('back/admin/product/category')) hover show @endif">
                                         <span class="menu-link">
                                             <span class="menu-icon">
 
                                                 <span class="menu-icon">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-                                                    <span class="svg-icon svg-icon-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    <!--begin::Svg Icon | path: assets/media/icons/duotune/ecommerce/ecm009.svg-->
+                                                    <span class="svg-icon svg-icon-2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path opacity="0.3"
+                                                                d="M3 13H10C10.6 13 11 13.4 11 14V21C11 21.6 10.6 22 10 22H3C2.4 22 2 21.6 2 21V14C2 13.4 2.4 13 3 13Z"
+                                                                fill="black" />
                                                             <path
-                                                                d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
+                                                                d="M7 16H6C5.4 16 5 15.6 5 15V13H8V15C8 15.6 7.6 16 7 16Z"
                                                                 fill="black" />
                                                             <path opacity="0.3"
-                                                                d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
+                                                                d="M14 13H21C21.6 13 22 13.4 22 14V21C22 21.6 21.6 22 21 22H14C13.4 22 13 21.6 13 21V14C13 13.4 13.4 13 14 13Z"
                                                                 fill="black" />
-                                                        </svg>
-                                                    </span>
+                                                            <path
+                                                                d="M18 16H17C16.4 16 16 15.6 16 15V13H19V15C19 15.6 18.6 16 18 16Z"
+                                                                fill="black" />
+                                                            <path opacity="0.3"
+                                                                d="M3 2H10C10.6 2 11 2.4 11 3V10C11 10.6 10.6 11 10 11H3C2.4 11 2 10.6 2 10V3C2 2.4 2.4 2 3 2Z"
+                                                                fill="black" />
+                                                            <path d="M7 5H6C5.4 5 5 4.6 5 4V2H8V4C8 4.6 7.6 5 7 5Z"
+                                                                fill="black" />
+                                                            <path opacity="0.3"
+                                                                d="M14 2H21C21.6 2 22 2.4 22 3V10C22 10.6 21.6 11 21 11H14C13.4 11 13 10.6 13 10V3C13 2.4 13.4 2 14 2Z"
+                                                                fill="black" />
+                                                            <path
+                                                                d="M18 5H17C16.4 5 16 4.6 16 4V2H19V4C19 4.6 18.6 5 18 5Z"
+                                                                fill="black" />
+                                                        </svg></span>
                                                     <!--end::Svg Icon-->
                                                 </span>
                                             </span>
@@ -503,7 +522,8 @@
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                                             <div class="menu-item">
-                                                <a class="menu-link @if (request()->is('back/admin/product/category/create')) active @endif" href="{{ route("admin.product.category.create") }}">
+                                                <a class="menu-link @if (request()->is('back/admin/product/category/create')) active @endif"
+                                                    href="{{ route('admin.product.category.create') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
@@ -522,23 +542,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/product/*') || request()->is('back/admin/product/')) hover show @endif">
+                                    <div data-kt-menu-trigger="click"
+                                        class="menu-item menu-accordion @if (request()->is('back/admin/product/*') && !request()->is('back/admin/product/category/*') || request()->is('back/admin/product/')) hover show @endif">
                                         <span class="menu-link">
                                             <span class="menu-icon">
 
                                                 <span class="menu-icon">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-                                                    <span class="svg-icon svg-icon-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    <!--begin::Svg Icon | path: assets/media/icons/duotune/ecommerce/ecm005.svg-->
+                                                    <span class="svg-icon svg-icon-2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="24"
                                                             height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
-                                                                fill="black" />
                                                             <path opacity="0.3"
-                                                                d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
+                                                                d="M20 22H4C3.4 22 3 21.6 3 21V2H21V21C21 21.6 20.6 22 20 22Z"
                                                                 fill="black" />
-                                                        </svg>
-                                                    </span>
+                                                            <path
+                                                                d="M12 14C9.2 14 7 11.8 7 9V5C7 4.4 7.4 4 8 4C8.6 4 9 4.4 9 5V9C9 10.7 10.3 12 12 12C13.7 12 15 10.7 15 9V5C15 4.4 15.4 4 16 4C16.6 4 17 4.4 17 5V9C17 11.8 14.8 14 12 14Z"
+                                                                fill="black" />
+                                                        </svg></span>
                                                     <!--end::Svg Icon-->
                                                 </span>
                                             </span>
@@ -547,11 +567,12 @@
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                                             <div class="menu-item">
-                                                <a class="menu-link @if (request()->is('back/admin/product/create')) active @endif" href="{{ route("admin.product.create") }}">
+                                                <a class="menu-link @if (request()->is('back/admin/product/create')) active @endif"
+                                                    href="{{ route('admin.product.create') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
-                                                    <span class="menu-title">Tambah Kategori</span>
+                                                    <span class="menu-title">Tambah Produk</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -561,7 +582,7 @@
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
-                                                    <span class="menu-title">Daftar Kategori</span>
+                                                    <span class="menu-title">Daftar Produk</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -591,7 +612,11 @@
                                             <span class="menu-arrow"></span>
                                         </span>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg hover">
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*') ||  request()->is('back/admin/pengguna/admin') || request()->is('back/admin/pengguna/admin/*')) show hover @endif">
+                                            <div data-kt-menu-trigger="click"
+                                                class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/super-admin') ||
+                                                        request()->is('back/admin/pengguna/super-admin/*') ||
+                                                        request()->is('back/admin/pengguna/admin') ||
+                                                        request()->is('back/admin/pengguna/admin/*')) show hover @endif">
                                                 <span class="menu-link ">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
@@ -601,9 +626,8 @@
                                                 </span>
                                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                                                     <div class="menu-item">
-                                                        <a class="menu-link @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*'))  active @endif"
-                                                           
-                                                            href="{{ route("admin.pengguna.superadmin.index") }}">
+                                                        <a class="menu-link @if (request()->is('back/admin/pengguna/super-admin') || request()->is('back/admin/pengguna/super-admin/*')) active @endif"
+                                                            href="{{ route('admin.pengguna.superadmin.index') }}">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
@@ -612,8 +636,7 @@
                                                     </div>
                                                     <div class="menu-item">
                                                         <a class="menu-link @if (request()->is('back/admin/pengguna/admin') || request()->is('back/admin/pengguna/admin/*')) active @endif"
-                                                         
-                                                            href="{{ route("admin.pengguna.admin.index") }}">
+                                                            href="{{ route('admin.pengguna.admin.index') }}">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
@@ -623,7 +646,7 @@
                                                 </div>
                                             </div>
                                             <div class="menu-item ">
-                                                <a class="menu-link @if ( request()->is('back/admin/pengguna')) active @endif"
+                                                <a class="menu-link @if (request()->is('back/admin/pengguna')) active @endif"
                                                     href="{{ route('admin.pengguna.index') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
@@ -642,9 +665,8 @@
                                     </div>
                                     <div class="menu-item">
                                         <a class="menu-link @if (request()->is('back/admin/kota') || request()->is('back/admin/kota/*')) active @endif"
-                                           
-                                            href="{{ route('admin.kota.index') }}"
-                                            data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click"
+                                            href="{{ route('admin.kota.index') }}" data-bs-toggle="tooltip"
+                                            data-bs-trigger="hover" data-bs-dismiss="click"
                                             data-bs-placement="right">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
