@@ -1,24 +1,6 @@
 @extends('back.app')
 @section('content')
-    <div id="kt_header" class="header" data-kt-sticky="true" data-kt-sticky-name="header"
-        data-kt-sticky-offset="{default: '200px', lg: '300px'}">
-        <div class="container-xxl d-flex align-items-center justify-content-between" id="kt_header_container">
-            <div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-2 pb-lg-0"
-                data-kt-swapper="true" data-kt-swapper-mode="prepend"
-                data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
-                <h1 class="text-dark fw-bolder my-0 fs-2">Tambah Kategori</h1>
-                <ul class="breadcrumb fw-bold fs-base my-1">
-                    <li class="breadcrumb-item text-muted">
-                        <a href="../../demo7/dist/index.html" class="text-muted">Produk</a>
-                    </li>
-                    <li class="breadcrumb-item text-muted">Kategori</li>
-                    <li class="breadcrumb-item text-dark">tambah kategori</li>
-                </ul>
-            </div>
-            
-        </div>
-    </div>
-    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
         <div class=" container-xxl " id="kt_content_container">
             <form action="{{ route("admin.product.category.store") }}" method="POST" enctype="multipart/form-data" id="kt_ecommerce_add_category_form"
                 class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework">
@@ -179,7 +161,6 @@
                 </div>
             </form>
         </div>
-    </div>
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>

@@ -22,9 +22,8 @@ class ProductCategoryController extends Controller
             ->paginate(10);
         $data->appends(['q' => $search]);
         $data = [
-            'title' => 'Product Category',
-            'subTitle' => null,
-            'page_id' => 10,
+            'menu_title' => 'Kategori Produk',
+            'title' => 'Daftar Kategori Produk',
             'productCategories' => $data
         ];
         // return response()->json($data);
@@ -34,6 +33,8 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $data = [
+            'menu_title' => 'Kategori Produk',
+            'title' => 'Tambah Kategori Produk',
             'productCategories' => ProductCategory::all()
         ];
 

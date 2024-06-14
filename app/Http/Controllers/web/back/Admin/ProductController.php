@@ -15,14 +15,21 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $data = [
+            'menu_title' => 'Manajemen Produk',
+            'submenu_title' => 'Produk',
+            'title' => 'Daftar Produk',
+            'product' => Product::all()
+        ];
         return view('back.product.index');
     }
 
     public function create()
     {
         $data = [
+            'menu_title' => 'Manajemen Produk',
+            'submenu_title' => 'Produk',
             'title' => 'Tambah Produk',
-            'subTitle' => null,
             'product_categories' => ProductCategory::where('parent_id', null)->get(),
             'shop' => shop::all(),
         ];

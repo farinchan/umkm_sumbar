@@ -22,9 +22,8 @@ class CityController extends Controller
             ->paginate(10);
         $city->appends(['q' => $search]);
         $data = [
-            'title' => 'Kota',
-            'subTitle' => null,
-            'page_id' => 10,
+            'menu_title' => 'Kota',
+            'title' => 'Daftar Kota',
             'city' => $city
         ];
         return view('back.city.index', $data);

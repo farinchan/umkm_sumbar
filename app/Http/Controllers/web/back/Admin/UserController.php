@@ -25,9 +25,9 @@ class UserController extends Controller
             ->paginate(10);
         $data->appends(['q' => $search]);
         $data = [
-            'title' => 'Pengguna',
-            'subTitle' => null,
-            'page_id' => 10,
+            'menu_title' => 'Manajemen User',
+            'submenu_title' => 'Pengguna',
+            'title' => 'Daftar Pengguna',
             'user' => $data
         ];
 
@@ -100,9 +100,9 @@ class UserController extends Controller
             ->paginate(10);
         $data->appends(['q' => $search]);
         $data = [
-            'title' => 'Pengguna',
-            'subTitle' => null,
-            'page_id' => 10,
+            'menu_title' => 'Manajemen User',
+            'submenu_title' => 'Super Admin',
+            'title' => 'Daftar Super Admin',
             'user' => $data
         ];
 
@@ -181,9 +181,9 @@ class UserController extends Controller
         $data->appends(['q' => $search]);
         $city = City::all();
         $data = [
-            'title' => 'Pengguna',
-            'subTitle' => null,
-            'page_id' => 10,
+            'menu_title' => 'Manajemen User',
+            'submenu_title' => 'Admin',
+            'title' => 'Daftar Admin Pengelola',
             'user' => $data,
             'city' => $city
         ];
