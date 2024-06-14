@@ -533,7 +533,7 @@
                                         </div>
                                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                                             <div class="menu-item">
-                                                <a class="menu-link" href="../../demo7/dist/account/overview.html">
+                                                <a class="menu-link @if (request()->is('back/admin/product/category')) active @endif" href="{{ route("admin.product.category.index") }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
@@ -543,7 +543,7 @@
                                         </div>
                                     </div>
                                     <div data-kt-menu-trigger="click"
-                                        class="menu-item menu-accordion @if (request()->is('back/admin/product/*') && !request()->is('back/admin/product/category/*') || request()->is('back/admin/product/')) hover show @endif">
+                                        class="menu-item menu-accordion @if (request()->is('back/admin/product/*') && !request()->is('back/admin/product/category/*') && !request()->is('back/admin/product/category') || request()->is('back/admin/product/')) hover show @endif">
                                         <span class="menu-link">
                                             <span class="menu-icon">
 

@@ -10,9 +10,25 @@ use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('back.product.category.index');
+        $search = $request->input('q');
+        $data = ProductCategory::leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
+            ->select('product_categories.*', 'parent.name as parent_name')
+            ->where(function ($query) use ($search) {
+                $query->where('product_categories.name', 'LIKE', '%' . $search . '%');
+            })
+
+            ->paginate(10);
+        $data->appends(['q' => $search]);
+        $data = [
+            'title' => 'Product Category',
+            'subTitle' => null,
+            'page_id' => 10,
+            'productCategories' => $data
+        ];
+        // return response()->json($data);
+        return view('back.product_category.index', $data);
     }
 
     public function create()
