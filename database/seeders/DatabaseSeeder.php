@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\City;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\shop;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -71,7 +72,7 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create([
             'name' => 'Elektronik',
             'slug' => 'elektronik',
-            'description' => 'Elektronik',
+            'description' => 'Elektronik adalah barang elektronik yang digunakan untuk kebutuhan sehari-hari',
             'image' => 'elektronik.jpg',
             'meta_title' => 'Elektronik',
             'meta_description' => 'Elektronik adalah barang elektronik yang digunakan untuk kebutuhan sehari-hari',
@@ -82,7 +83,7 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create([
             'name' => 'Handphone',
             'slug' => 'handphone',
-            'description' => 'Handphone',
+            'description' => 'Handphone adalah barang elektronik yang digunakan untuk berkomunikasi',
             'image' => 'handphone.jpg',
             'meta_title' => 'Handphone',
             'meta_description' => 'Handphone adalah barang elektronik yang digunakan untuk berkomunikasi',
@@ -93,7 +94,7 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create([
             'name' => 'Laptop',
             'slug' => 'laptop',
-            'description' => 'Laptop',
+            'description' => 'Laptop adalah barang elektronik yang digunakan untuk bekerja',
             'image' => 'laptop.jpg',
             'meta_title' => 'Laptop',
             'meta_description' => 'Laptop adalah barang elektronik yang digunakan untuk bekerja',
@@ -104,13 +105,15 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create([
             'name' => 'Aksesoris',
             'slug' => 'aksesoris',
-            'description' => 'Aksesoris',
+            'description' => 'Aksesoris adalah barang elektronik yang digunakan untuk melengkapi barang elektronik',
             'image' => 'aksesoris.jpg',
             'meta_title' => 'Aksesoris',
             'meta_description' => 'Aksesoris adalah barang elektronik yang digunakan untuk melengkapi barang elektronik',
             'meta_keywords' => 'Aksesoris',
             'parent_id' => 1,
         ]);
+
+
 
     }
 }
