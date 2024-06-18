@@ -75,6 +75,10 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::get('/{id}/edit', [ShopController::class, 'edit'])->name('edit');
             Route::put('/{id}/update', [ShopController::class, 'update'])->name('update');
             Route::delete('/{id}/destroy', [ShopController::class, 'destroy'])->name('destroy');
+            
+            Route::get('/{id}/detail', [ShopController::class, 'detail'])->name('detail');
+            Route::get('/{id}/detail/product', [ShopController::class, 'detailProduct'])->name('detail-product');
+            Route::get('/{id}/detail/follower', [ShopController::class, 'detailFollower'])->name('detail-follower');
         });
 
         Route::prefix('product')->name('product.')->group(function () {

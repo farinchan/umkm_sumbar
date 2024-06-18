@@ -76,14 +76,14 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <!--begin::Thumbnail-->
-                                            <a href="apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
+                                            <a href="{{ route("admin.toko.detail", $item->id) }}" class="symbol symbol-50px">
                                                 <span class="symbol-label"
                                                     style="background-image:url(assets/media//stock/ecommerce/1.png);"></span>
                                             </a>
                                             <!--end::Thumbnail-->
                                             <div class="ms-5">
                                                 <!--begin::Title-->
-                                                <a href="apps/ecommerce/catalog/edit-product.html"
+                                                <a href="{{ route("admin.toko.detail", $item->id) }}"
                                                     class="text-gray-800 text-hover-primary fs-5 fw-bold"
                                                     data-kt-ecommerce-product-filter="product_name">{{ $item->name }}</a>
                                                 <div class="text-muted fs-7 fw-bold">
