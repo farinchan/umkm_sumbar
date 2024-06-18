@@ -16,13 +16,17 @@ class ShopController extends Controller
 {
     public function index()
     {
+        $shop = shop::leftJoin('users', 'shops.user_id', '=', 'users.id')
+            ->leftJoin('cities', 'shops.city_id', '=', 'cities.id')
+            ->select('shops.*', 'users.name as user_name', 'cities.name as city_name')
+            ->get();
         $data = [
             'menu_title' => 'Manajemen Toko',
             'submenu_title' => 'Toko',
             'title' => 'Daftar Toko',
-            'shop' => shop::all()
+            'shop' => $shop,
         ];
-        return view('back.shop.index');
+        return view('back.shop.index', $data);
     }
 
     public function create()

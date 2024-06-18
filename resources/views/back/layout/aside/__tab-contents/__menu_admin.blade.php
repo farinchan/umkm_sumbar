@@ -75,7 +75,7 @@
             </span>
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
-                    <a class="menu-link @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) active @endif"
+                    <a class="menu-link @if ( request()->is('back/admin/toko/create')) active @endif"
                         href="{{ route('admin.toko.create') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -84,7 +84,9 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/settings.html">
+                    <a class="menu-link @if (request()->is('back/admin/toko')))
+                        active
+                    @endif" href="{{ route("admin.toko.index") }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
