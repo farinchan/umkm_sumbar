@@ -68,50 +68,10 @@ class DatabaseSeeder extends Seeder
             'slug' => 'painan',
             'postal_code' => '32111',
         ]);
+
+        $this->call(ShopSeeder::class);
         
-        ProductCategory::create([
-            'name' => 'Elektronik',
-            'slug' => 'elektronik',
-            'description' => 'Elektronik adalah barang elektronik yang digunakan untuk kebutuhan sehari-hari',
-            'image' => 'elektronik.jpg',
-            'meta_title' => 'Elektronik',
-            'meta_description' => 'Elektronik adalah barang elektronik yang digunakan untuk kebutuhan sehari-hari',
-            'meta_keywords' => 'Elektronik',
-            'parent_id' => null,
-        ]);
-
-        ProductCategory::create([
-            'name' => 'Handphone',
-            'slug' => 'handphone',
-            'description' => 'Handphone adalah barang elektronik yang digunakan untuk berkomunikasi',
-            'image' => 'handphone.jpg',
-            'meta_title' => 'Handphone',
-            'meta_description' => 'Handphone adalah barang elektronik yang digunakan untuk berkomunikasi',
-            'meta_keywords' => 'Handphone',
-            'parent_id' => 1,
-        ]);
-
-        ProductCategory::create([
-            'name' => 'Laptop',
-            'slug' => 'laptop',
-            'description' => 'Laptop adalah barang elektronik yang digunakan untuk bekerja',
-            'image' => 'laptop.jpg',
-            'meta_title' => 'Laptop',
-            'meta_description' => 'Laptop adalah barang elektronik yang digunakan untuk bekerja',
-            'meta_keywords' => 'Laptop',
-            'parent_id' => 1,
-        ]);
-
-        ProductCategory::create([
-            'name' => 'Aksesoris',
-            'slug' => 'aksesoris',
-            'description' => 'Aksesoris adalah barang elektronik yang digunakan untuk melengkapi barang elektronik',
-            'image' => 'aksesoris.jpg',
-            'meta_title' => 'Aksesoris',
-            'meta_description' => 'Aksesoris adalah barang elektronik yang digunakan untuk melengkapi barang elektronik',
-            'meta_keywords' => 'Aksesoris',
-            'parent_id' => 1,
-        ]);
+        $this->call(ProductSeeder::class);
 
 
 

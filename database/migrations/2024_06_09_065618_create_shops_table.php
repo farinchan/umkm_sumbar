@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('logo');
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('address');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->string('logo');
             $table->text('description');
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->boolean('verified')->default(0);
             $table->boolean('status')->default(1);
             $table->string('meta_description')->nullable();
-            $table->string('meta_keywords')->nullable();
+            $table->string('meta_keyword')->nullable();
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

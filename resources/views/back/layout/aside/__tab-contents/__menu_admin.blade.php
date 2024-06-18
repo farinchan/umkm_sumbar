@@ -56,7 +56,7 @@
                 <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
             </div>
         </div>
-        
+
 
         <div data-kt-menu-trigger="click"
             class="menu-item menu-accordion @if (request()->is('back/admin/toko/*') || request()->is('back/admin/toko')) hover show @endif">
@@ -89,22 +89,6 @@
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">Data Toko</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/security.html">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Review</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/security.html">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Pengunjung</span>
                     </a>
                 </div>
             </div>
@@ -140,8 +124,6 @@
                         <span class="menu-title">Tambah Kategori</span>
                     </a>
                 </div>
-            </div>
-            <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
                     <a class="menu-link @if (request()->is('back/admin/product/category')) active @endif"
                         href="{{ route('admin.product.category.index') }}">
@@ -158,7 +140,7 @@
                 (request()->is('back/admin/product/*') &&
                     !request()->is('back/admin/product/category/*') &&
                     !request()->is('back/admin/product/category')) ||
-                    request()->is('back/admin/product/')) hover show @endif">
+                    request()->is('back/admin/product')) hover show @endif">
             <span class="menu-link">
                 <span class="menu-icon">
 
@@ -184,14 +166,30 @@
                         <span class="menu-title">Tambah Produk</span>
                     </a>
                 </div>
-            </div>
-            <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/overview.html">
+                    <a class="menu-link @if (request()->is('back/admin/product')) active @endif"
+                        href="{{ route('admin.product.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">Daftar Produk</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
+                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Review</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Pengunjung</span>
                     </a>
                 </div>
             </div>

@@ -77,7 +77,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                            <div class="text-muted fs-7 pt-3">File yang diizinkan: *.png, *.jpg, *.jpeg <br>Maksimal 2mb
+                            <div class="text-muted fs-7 pt-3">File yang diizinkan: *.png, *.jpg, *.jpeg <br>Maksimal 2mb <br>Dengan rasio 1:1 - 400x400
                             </div>
                         </div>
                     </div>
