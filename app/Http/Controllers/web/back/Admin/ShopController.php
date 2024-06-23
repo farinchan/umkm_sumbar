@@ -210,15 +210,23 @@ class ShopController extends Controller
         return view('back.shop.detail', $data);
     }
 
-    public function detailProduct($id)
+    public function detailProduct(Request $request ,$id)
     {
+        $search = $request->input('q');
         $shop = shop::find($id);
         $data = [
             'menu_title' => 'Manajemen Toko',
             'submenu_title' => 'Toko',
             'title' => 'Detail Produk Toko',
             'shop' => $shop,
-            'product' => $shop->product()->paginate(10),
+            'product' => $shop->product()
+            ->where(function ($query) use ($search) {
+                $query->where('products.name', 'LIKE', '%' . $search . '%');
+            })
+            ->leftJoin('product_categories', 'products.product_categories_id', '=', 'product_categories.id')
+            ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
+            ->select('products.*', 'product_categories.name as category_name', 'parent.name as category_parent_name',)
+            ->paginate(10),
         ];
         // return response()->json($data);
         return view('back.shop.detail_product', $data);

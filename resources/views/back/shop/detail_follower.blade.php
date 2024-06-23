@@ -120,6 +120,7 @@
                             <thead class="fs-7 text-gray-500 text-uppercase">
                                 <tr>
                                     <th class="min-w-250px">Pengikut</th>
+                                    <th class="min-w-250px">Informasi</th>
                                     <th class="min-w-150px">Waktu Join</th>
                                     <th class="min-w-50px text-end">Details</th>
                                 </tr>
@@ -137,10 +138,12 @@
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <a href=""
                                                         class="fs-6 text-gray-800 text-hover-primary">{{ $user->user->name }}</a>
-                                                    <div class="fw-semibold text-gray-500">{{ $user->user->name }}</div>
-                                                    <div class="fw-semibold text-gray-500">{{ $user->user->phone }}</div>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-gray-500">{{ $user->user->email }}</div>
+                                            <div class="fw-semibold text-gray-500">{{ $user->user->phone }}</div>
                                         </td>
                                         <td>{{ $user->created_at != null ? $user->created_at->diffForHumans() : 'null' }}
                                         </td>
