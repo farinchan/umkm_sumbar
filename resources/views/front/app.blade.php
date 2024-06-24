@@ -29,12 +29,10 @@
     <link href="{{ asset('front/css/bootstrap.custom.min.css') }}" rel="stylesheet">
     <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
 
-    <!-- SPECIFIC CSS -->
-    <link href="{{ asset('front/css/home_1.css') }}" rel="stylesheet">
-
+    @yield('styles')
+  
     <!-- COMMON SCRIPTS -->
     <link href="{{ asset('front/css/account.css') }}" rel="stylesheet">
-
 
     <!-- YOUR CUSTOM CSS -->
     <link href="{{ asset('front/css/custom.css') }}" rel="stylesheet">
@@ -67,12 +65,8 @@
     <script src="{{ asset('front/js/common_scripts.min.js') }}"></script>
     <script src="{{ asset('front/js/main.js') }}"></script>
 
-    <!-- SPECIFIC SCRIPTS -->
-    <script src="{{ asset('front/js/carousel-home.min.js') }}"></script>
-
-
-
     @yield('scripts')
+
 
 </body>
 

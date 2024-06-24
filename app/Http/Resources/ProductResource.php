@@ -32,7 +32,6 @@ class ProductResource extends JsonResource
             'meta_keywords' => $this->meta_keywords,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            "kontol" => "kontol",
             'image' => $this->productImage->map(function ($image) {
                 return [
                     'id' => $image->id,

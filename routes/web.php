@@ -8,12 +8,12 @@ use App\Http\Controllers\Web\Back\Admin\ProductController;
 use App\Http\Controllers\Web\Back\Admin\ShopController;
 use App\Http\Controllers\Web\Back\Admin\UserController;
 use App\Http\Controllers\web\front\HomeController;
+use App\Http\Controllers\Web\front\ProductController as frontProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/', [HomeController::class, "index"])->name('home');
+Route::get('/product/{slug}', [frontProductController::class, "product"])->name('product');
+Route::get('/product/category/{slug}', [frontProductController::class, "category"])->name('product-category');
 
 Route::prefix('auth')->group(function () {
     Route::get('/', [AuthController::class, "index"])->name('login');
@@ -61,6 +61,18 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::post('/store', [ProductCategoryController::class, 'store'])->name('store');
             Route::put('/{id}/update', [ProductCategoryController::class, 'update'])->name('update');
             Route::delete('/{id}/destroy', [ProductCategoryController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('/news')->name('news.')->group(function () {
+
+            Route::get('/category', [NewsCategoryController::class, 'index'])->name('category.index');
+
+            Route::get('/', [NewsCategoryController::class, 'index'])->name('index');
+            Route::get('/create', [NewsCategoryController::class, 'create'])->name('create');
+            Route::post('/store', [NewsCategoryController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [NewsCategoryController::class, 'edit'])->name('edit');
+            Route::put('/{id}/update', [NewsCategoryController::class, 'update'])->name('update');
+            Route::delete('/{id}/destroy', [NewsCategoryController::class, 'destroy'])->name('destroy');
         });
 
     });

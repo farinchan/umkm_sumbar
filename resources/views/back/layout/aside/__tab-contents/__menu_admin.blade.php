@@ -75,7 +75,7 @@
             </span>
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
-                    <a class="menu-link @if ( request()->is('back/admin/toko/create')) active @endif"
+                    <a class="menu-link @if (request()->is('back/admin/toko/create')) active @endif"
                         href="{{ route('admin.toko.create') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -84,9 +84,9 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link @if (request()->is('back/admin/toko')))
-                        active
-                    @endif" href="{{ route("admin.toko.index") }}">
+                    <a class="menu-link @if (request()->is('back/admin/toko')) )
+                        active @endif"
+                        href="{{ route('admin.toko.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -177,7 +177,7 @@
                         <span class="menu-title">Daftar Produk</span>
                     </a>
                 </div>
-                
+
                 <div class="menu-item">
                     <a class="menu-link" href="../../demo7/dist/account/security.html">
                         <span class="menu-bullet">
@@ -197,6 +197,54 @@
             </div>
         </div>
         <div data-kt-menu-trigger="click"
+            class="menu-item menu-accordion @if (request()->is('back/admin/news/*') || request()->is('back/admin/news')) hover show @endif">
+            <span class="menu-link @if (request()->is('back/admin/news/*') || request()->is('back/admin/news')) active @endif">
+                <span class="menu-icon">
+                    
+                    <i class="ki-duotone ki-subtitle fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                        <span class="path4"></span>
+                        <span class="path5"></span>
+                    </i>
+                </span>
+                <span class="menu-title">Berita</span>
+                <span class="menu-arrow"></span>
+            </span>
+            <div class="menu-sub menu-sub-accordion menu-active-bg hover">
+
+                <div class="menu-item ">
+                    <a class="menu-link @if (request()->is('back/admin/news/category')) active @endif"
+                        href="{{ route('admin.pengguna.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Kategori</span>
+                    </a>
+                </div>
+                <div class="menu-item ">
+                    <a class="menu-link @if (request()->is('back/admin/news/add')) active @endif"
+                        href="{{ route('admin.pengguna.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Tambah Berita</span>
+                    </a>
+                </div>
+                <div class="menu-item ">
+                    <a class="menu-link @if (request()->is('back/admin/news')) active @endif"
+                        href="{{ route('admin.pengguna.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Daftar Berita</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div data-kt-menu-trigger="click"
             class="menu-item menu-accordion @if (request()->is('back/admin/pengguna/*') || request()->is('back/admin/pengguna')) hover show @endif">
             <span class="menu-link @if (request()->is('back/admin/pengguna/*') || request()->is('back/admin/pengguna')) active @endif">
                 <span class="menu-icon">
@@ -206,6 +254,7 @@
                         <span class="path3"></span>
                         <span class="path4"></span>
                     </i>
+
                 </span>
                 <span class="menu-title">Pengguna</span>
                 <span class="menu-arrow"></span>

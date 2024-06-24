@@ -80,18 +80,14 @@
                     <li>
                         <div class="styled-select lang-selector">
                             <select>
-                                <option value="English" selected>English</option>
-                                <option value="French">French</option>
-                                <option value="Spanish">Spanish</option>
-                                <option value="Russian">Russian</option>
+                                <option value="Indonesia" selected>Indonesia</option>
                             </select>
                         </div>
                     </li>
                     <li>
                         <div class="styled-select currency-selector">
                             <select>
-                                <option value="US Dollars" selected>US Dollars</option>
-                                <option value="Euro">Euro</option>
+                                <option value="US Dollars" selected>(Rp) Rupiah </option>
                             </select>
                         </div>
                     </li>
@@ -104,7 +100,7 @@
                 <ul class="additional_links">
                     <li><a href="#0">Terms and conditions</a></li>
                     <li><a href="#0">Privacy</a></li>
-                    <li><span>© 2021 Allaia</span></li>
+                    <li><span>© 2024 UMKM Sumatera Barat</span></li>
                 </ul>
             </div>
         </div>

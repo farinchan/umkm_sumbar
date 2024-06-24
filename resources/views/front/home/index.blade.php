@@ -3,6 +3,11 @@
 @section('seo')
 @endsection
 
+@section('styles')
+ <!-- SPECIFIC CSS -->
+ <link href="{{ asset('front/css/home_1.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div id="carousel-home">
         <div class="owl-carousel owl-theme">
@@ -390,29 +395,28 @@
             <p>Memperkenalkan Produk Terbaru dari UMKM Sumatera Barat</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
-            {{-- {{ $products}} --}}
-            {!! json_encode($products[0])  !!}
+
             @foreach ($products as $product)
-            {{ "tttttttttttttttttttttttt" . $product->kontol }}
                 <div class="item">
                     <div class="grid_item">
                         <span class="ribbon new">New</span>
                         <figure>
-                            <a href="product-detail-1.html">
+                            <a href="{{ route("product", $product->slug) }}">
                                 <img class="owl-lazy" 
-                                src="@if ($product->image) {{ Storage::url('images/product/' . $product->image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
-                                    data-src="@if ($product->image) {{ Storage::url('images/product/' . $product->image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" alt="">
+                                src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
+                                    data-src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" alt="">
                             </a>
                         </figure>
                         <div class="rating">
-                            @for ($i = 0; $i < $product->rating; $i++)
+
+                            @for ($i = 0; $i < round($product->productReview->average('rating')); $i++)
                                 <i class="icon-star voted"></i>
                             @endfor
-                            @for ($i = 0; $i < 5 - $product->rating; $i++)
+                            @for ($i = 0; $i < 5 - round($product->productReview->average('rating')); $i++)
                                 <i class="icon-star"></i>
                             @endfor
                         </div>
-                        <a href="product-detail-1.html">
+                        <a href="{{ route("product", $product->slug) }}">
                             <h3>{{ $product->name }}</h3>
                         </a>
                         <div class="price_box">
@@ -422,10 +426,10 @@
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
                             </li>
-                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                            {{-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to
                                         compare</span></a>
-                            </li>
+                            </li> --}}
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         </ul>
@@ -561,4 +565,10 @@
         <!-- /row -->
     </div>
     <!-- /container -->
+@endsection
+
+
+@section('scripts')
+        <!-- SPECIFIC SCRIPTS -->
+        <script src="{{ asset('front/js/carousel-home.min.js') }}"></script>
 @endsection

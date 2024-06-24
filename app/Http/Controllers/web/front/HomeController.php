@@ -12,15 +12,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $category = ProductCategory::where('status', 1)->get();
         $products = Product::where('products.status', 1)->orderBy('products.created_at', 'desc')
             ->with(['productCategory', 'productImage', 'productReview', 'productViewer', 'shop']);
         $data = [
             'title' => 'Home',
             'description' => 'Home page description',
             'keywords' => 'Home page keywords',
-            'category' => $category,
-            'products' => ProductResource::collection($products->take(10)->get()),
+            'products' => $products->take(10)->get()
         ];
         // return response()->json($data);
         return view('front.home.index', $data);
