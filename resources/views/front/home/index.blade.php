@@ -390,24 +390,26 @@
             <p>Memperkenalkan Produk Terbaru dari UMKM Sumatera Barat</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
-            {{ $products[0] }}
+            {{-- {{ $products}} --}}
+            {!! json_encode($products[0])  !!}
             @foreach ($products as $product)
+            {{ "tttttttttttttttttttttttt" . $product->kontol }}
                 <div class="item">
                     <div class="grid_item">
                         <span class="ribbon new">New</span>
                         <figure>
                             <a href="product-detail-1.html">
-                                <img class="owl-lazy"
-                                    {{-- src="@if ($product->product_image->isNotEmpty()) {{ Storage::url('images/product/' . $product->product_image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" --}}
-                                    data-src="{{ asset('front/img/products/shoes/4.jpg') }}" alt="">
+                                <img class="owl-lazy" 
+                                src="@if ($product->image) {{ Storage::url('images/product/' . $product->image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
+                                    data-src="@if ($product->image) {{ Storage::url('images/product/' . $product->image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" alt="">
                             </a>
                         </figure>
                         <div class="rating">
                             @for ($i = 0; $i < $product->rating; $i++)
-                            <i class="icon-star voted"></i>
+                                <i class="icon-star voted"></i>
                             @endfor
                             @for ($i = 0; $i < 5 - $product->rating; $i++)
-                            <i class="icon-star"></i>
+                                <i class="icon-star"></i>
                             @endfor
                         </div>
                         <a href="product-detail-1.html">
@@ -441,7 +443,8 @@
             <div id="brands" class="owl-carousel owl-theme">
                 <div class="item mx-3">
                     <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
-                            data-src="{{ asset('logo/logo-kota-bukittinggi.png') }}" alt="" class="owl-lazy"></a>
+                            data-src="{{ asset('logo/logo-kota-bukittinggi.png') }}" alt=""
+                            class="owl-lazy"></a>
                 </div><!-- /item -->
                 <div class="item mx-3">
                     <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
@@ -453,11 +456,13 @@
                 </div><!-- /item -->
                 <div class="item mx-3">
                     <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
-                            data-src="{{ asset('logo/logo-kota-payakumbuh.webp') }}" alt="" class="owl-lazy"></a>
+                            data-src="{{ asset('logo/logo-kota-payakumbuh.webp') }}" alt=""
+                            class="owl-lazy"></a>
                 </div><!-- /item -->
                 <div class="item mx-3">
                     <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
-                            data-src="{{ asset('logo/logo-kota-sawahlunto.webp') }}" alt="" class="owl-lazy"></a>
+                            data-src="{{ asset('logo/logo-kota-sawahlunto.webp') }}" alt=""
+                            class="owl-lazy"></a>
                 </div><!-- /item -->
                 <div class="item mx-3">
                     <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
@@ -465,7 +470,8 @@
                 </div><!-- /item -->
                 <div class="item mx-3">
                     <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
-                            data-src="{{ asset('logo/logo-koto-padangpanjang.webp') }}" alt="" class="owl-lazy"></a>
+                            data-src="{{ asset('logo/logo-koto-padangpanjang.webp') }}" alt=""
+                            class="owl-lazy"></a>
                 </div><!-- /item -->
             </div><!-- /carousel -->
         </div><!-- /container -->

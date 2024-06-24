@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web\front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
@@ -13,16 +14,15 @@ class HomeController extends Controller
     {
         $category = ProductCategory::where('status', 1)->get();
         $products = Product::where('products.status', 1)->orderBy('products.created_at', 'desc')
-            ->leftJoin('product_reviews', 'products.id', '=', 'product_reviews.product_id')
-            ->select('products.*', 'product_reviews.rating')->get();
+            ->with(['productCategory', 'productImage', 'productReview', 'productViewer', 'shop']);
         $data = [
             'title' => 'Home',
             'description' => 'Home page description',
             'keywords' => 'Home page keywords',
             'category' => $category,
-            'products' => $products,
+            'products' => ProductResource::collection($products->take(10)->get()),
         ];
-        return response()->json($data);
+        // return response()->json($data);
         return view('front.home.index', $data);
     }
 }
