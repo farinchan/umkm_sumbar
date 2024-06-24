@@ -76,14 +76,14 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <!--begin::Thumbnail-->
-                                            <a href="apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
+                                            <a href="#" class="symbol symbol-50px">
                                                 <span class="symbol-label"
-                                                    style="background-image:url(assets/media//stock/ecommerce/1.png);"></span>
+                                                    style="background-image:url(@if ($product_image->isNotEmpty()) {{ Storage::url('images/product/' . $product_image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif);"></span>
                                             </a>
                                             <!--end::Thumbnail-->
                                             <div class="ms-5">
                                                 <!--begin::Title-->
-                                                <a href="apps/ecommerce/catalog/edit-product.html"
+                                                <a href="#"
                                                     class="text-gray-800 text-hover-primary fs-5 fw-bold"
                                                     data-kt-ecommerce-product-filter="product_name">{{ $item->name }}</a>
                                                 <a class="text-muted text-hover-primary fs-7 fw-bold" href="#">
@@ -143,7 +143,19 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="apps/ecommerce/catalog/edit-product.html"
+                                                <a href="{{ route("admin.product.detail", $item->id) }}"
+                                                    class="menu-link px-3">Detail</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="{{ route("admin.product.detail-review", $item->id) }}"
+                                                    class="menu-link px-3">penilaian</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="{{ route("admin.product.detail-viewer", $item->id) }}"
+                                                    class="menu-link px-3">Pengunjung</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="#"
                                                     class="menu-link px-3">Edit</a>
                                             </div>
                                             <!--end::Menu item-->

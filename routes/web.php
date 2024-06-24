@@ -88,6 +88,13 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
             Route::put('/{id}/update', [ProductController::class, 'update'])->name('update');
             Route::delete('/{id}/destroy', [ProductController::class, 'destroy'])->name('destroy');
+
+            Route::get('/{id}/detail', [ProductController::class, 'detail'])->name('detail');
+            Route::get('/{id}/detail/review', [ProductController::class, 'detailReview'])->name('detail-review');
+            Route::get('/{id}/detail/viewer', [ProductController::class, 'detailViewer'])->name('detail-viewer');
+            Route::get('/{id}/detail/image', [ProductController::class, 'detailImage'])->name('detail-image');
+            Route::post('/{id}/detail/image/store', [ProductController::class, 'detailImageStore'])->name('detail-image-store');
+            Route::delete('/{id}/detail/image/destroy', [ProductController::class, 'detailImageDestroy'])->name('detail-image-destroy');
         });
     });
 

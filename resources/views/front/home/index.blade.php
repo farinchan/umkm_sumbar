@@ -71,36 +71,6 @@
     </div>
     <!--/carousel-->
 
-    <ul id="banners_grid" class="clearfix">
-        <li>
-            <a href="#0" class="img_container">
-                <img src="{{ asset('front/img/banners_cat_placeholder.jpg') }}" data-src="{{ asset('front/img/banner_1.jpg') }}" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3>Men's Collection</h3>
-                    <div><span class="btn_1">Shop Now</span></div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#0" class="img_container">
-                <img src="{{ asset('front/img/banners_cat_placeholder.jpg') }}" data-src="{{ asset('front/img/banner_2.jpg') }}" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3>Womens's Collection</h3>
-                    <div><span class="btn_1">Shop Now</span></div>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#0" class="img_container">
-                <img src="{{ asset('front/img/banners_cat_placeholder.jpg') }}" data-src="{{ asset('front/img/banner_3.jpg') }}" alt="" class="lazy">
-                <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <h3>Kids's Collection</h3>
-                    <div><span class="btn_1">Shop Now</span></div>
-                </div>
-            </a>
-        </li>
-    </ul>
-    <!--/banners_grid -->
 
     <div class="container margin_60_35">
         <div class="main_title">
@@ -114,9 +84,11 @@
                     <figure>
                         <span class="ribbon off">-30%</span>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/1.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/1_b.jpg') }}" alt="">
                         </a>
                         <div data-countdown="2019/05/15" class="countdown"></div>
@@ -148,9 +120,11 @@
                     <span class="ribbon off">-30%</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/2.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/2_b.jpg') }}" alt="">
                         </a>
                         <div data-countdown="2019/05/10" class="countdown"></div>
@@ -182,9 +156,11 @@
                     <span class="ribbon off">-50%</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/3.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/3_b.jpg') }}" alt="">
                         </a>
                         <div data-countdown="2019/05/21" class="countdown"></div>
@@ -216,9 +192,11 @@
                     <span class="ribbon new">New</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/4.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/4_b.jpg') }}" alt="">
                         </a>
                     </figure>
@@ -248,9 +226,11 @@
                     <span class="ribbon new">New</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/5.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/5_b.jpg') }}" alt="">
                         </a>
                     </figure>
@@ -280,9 +260,11 @@
                     <span class="ribbon new">New</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/6.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/6_b.jpg') }}" alt="">
                         </a>
                     </figure>
@@ -312,9 +294,11 @@
                     <span class="ribbon hot">Hot</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/7.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/7_b.jpg') }}" alt="">
                         </a>
                     </figure>
@@ -344,9 +328,11 @@
                     <span class="ribbon hot">Hot</span>
                     <figure>
                         <a href="product-detail-1.html">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/8.jpg') }}" alt="">
-                            <img class="img-fluid lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                            <img class="img-fluid lazy"
+                                src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
                                 data-src="{{ asset('front/img/products/shoes/8_b.jpg') }}" alt="">
                         </a>
                     </figure>
@@ -399,163 +385,52 @@
 
     <div class="container margin_60_35">
         <div class="main_title">
-            <h2>Featured</h2>
+            <h2>Produk Terbaru</h2>
             <span>Products</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+            <p>Memperkenalkan Produk Terbaru dari UMKM Sumatera Barat</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
-            <div class="item">
-                <div class="grid_item">
-                    <span class="ribbon new">New</span>
-                    <figure>
+            {{ $products[0] }}
+            @foreach ($products as $product)
+                <div class="item">
+                    <div class="grid_item">
+                        <span class="ribbon new">New</span>
+                        <figure>
+                            <a href="product-detail-1.html">
+                                <img class="owl-lazy"
+                                    {{-- src="@if ($product->product_image->isNotEmpty()) {{ Storage::url('images/product/' . $product->product_image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" --}}
+                                    data-src="{{ asset('front/img/products/shoes/4.jpg') }}" alt="">
+                            </a>
+                        </figure>
+                        <div class="rating">
+                            @for ($i = 0; $i < $product->rating; $i++)
+                            <i class="icon-star voted"></i>
+                            @endfor
+                            @for ($i = 0; $i < 5 - $product->rating; $i++)
+                            <i class="icon-star"></i>
+                            @endfor
+                        </div>
                         <a href="product-detail-1.html">
-                            <img class="owl-lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                data-src="{{ asset('front/img/products/shoes/4.jpg') }}" alt="">
+                            <h3>{{ $product->name }}</h3>
                         </a>
-                    </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                            class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
-                        <h3>ACG React Terra</h3>
-                    </a>
-                    <div class="price_box">
-                        <span class="new_price">$110.00</span>
+                        <div class="price_box">
+                            <span class="new_price">@money($product->price)</span>
+                        </div>
+                        <ul>
+                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                    title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
+                            </li>
+                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                    title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to
+                                        compare</span></a>
+                            </li>
+                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                    title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
-                        </li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                    </ul>
+                    <!-- /grid_item -->
                 </div>
-                <!-- /grid_item -->
-            </div>
-            <!-- /item -->
-            <div class="item">
-                <div class="grid_item">
-                    <span class="ribbon new">New</span>
-                    <figure>
-                        <a href="product-detail-1.html">
-                            <img class="owl-lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                data-src="{{ asset('front/img/products/shoes/5.jpg') }}" alt="">
-                        </a>
-                    </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                            class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
-                        <h3>Air Zoom Alpha</h3>
-                    </a>
-                    <div class="price_box">
-                        <span class="new_price">$140.00</span>
-                    </div>
-                    <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
-                        </li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                    </ul>
-                </div>
-                <!-- /grid_item -->
-            </div>
-            <!-- /item -->
-            <div class="item">
-                <div class="grid_item">
-                    <span class="ribbon hot">Hot</span>
-                    <figure>
-                        <a href="product-detail-1.html">
-                            <img class="owl-lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                data-src="{{ asset('front/img/products/shoes/8.jpg') }}" alt="">
-                        </a>
-                    </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                            class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
-                        <h3>Air Color 720</h3>
-                    </a>
-                    <div class="price_box">
-                        <span class="new_price">$120.00</span>
-                    </div>
-                    <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
-                        </li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                    </ul>
-                </div>
-                <!-- /grid_item -->
-            </div>
-            <!-- /item -->
-            <div class="item">
-                <div class="grid_item">
-                    <span class="ribbon off">-30%</span>
-                    <figure>
-                        <a href="product-detail-1.html">
-                            <img class="owl-lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                data-src="{{ asset('front/img/products/shoes/2.jpg') }}" alt="">
-                        </a>
-                    </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                            class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
-                        <h3>Okwahn II</h3>
-                    </a>
-                    <div class="price_box">
-                        <span class="new_price">$90.00</span>
-                        <span class="old_price">$170.00</span>
-                    </div>
-                    <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
-                        </li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                    </ul>
-                </div>
-                <!-- /grid_item -->
-            </div>
-            <!-- /item -->
-            <div class="item">
-                <div class="grid_item">
-                    <span class="ribbon off">-50%</span>
-                    <figure>
-                        <a href="product-detail-1.html">
-                            <img class="owl-lazy" src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                data-src="{{ asset('front/img/products/shoes/3.jpg') }}" alt="">
-                        </a>
-                    </figure>
-                    <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                            class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                    <a href="product-detail-1.html">
-                        <h3>Air Wildwood ACG</h3>
-                    </a>
-                    <div class="price_box">
-                        <span class="new_price">$75.00</span>
-                        <span class="old_price">$155.00</span>
-                    </div>
-                    <ul>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a>
-                        </li>
-                        <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                    </ul>
-                </div>
-                <!-- /grid_item -->
-            </div>
-            <!-- /item -->
+            @endforeach
         </div>
         <!-- /products_carousel -->
     </div>
@@ -564,29 +439,33 @@
     <div class="bg_gray">
         <div class="container margin_30">
             <div id="brands" class="owl-carousel owl-theme">
-                <div class="item">
-                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}" data-src="{{ asset('front/img/brands/logo_1.png') }}"
-                            alt="" class="owl-lazy"></a>
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-kota-bukittinggi.png') }}" alt="" class="owl-lazy"></a>
                 </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}" data-src="{{ asset('front/img/brands/logo_2.png') }}"
-                            alt="" class="owl-lazy"></a>
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-kota-padang.webp') }}" alt="" class="owl-lazy"></a>
                 </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}" data-src="{{ asset('front/img/brands/logo_3.png') }}"
-                            alt="" class="owl-lazy"></a>
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-kota-pariaman.webp') }}" alt="" class="owl-lazy"></a>
                 </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}" data-src="{{ asset('front/img/brands/logo_4.png') }}"
-                            alt="" class="owl-lazy"></a>
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-kota-payakumbuh.webp') }}" alt="" class="owl-lazy"></a>
                 </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}" data-src="{{ asset('front/img/brands/logo_5.png') }}"
-                            alt="" class="owl-lazy"></a>
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-kota-sawahlunto.webp') }}" alt="" class="owl-lazy"></a>
                 </div><!-- /item -->
-                <div class="item">
-                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}" data-src="{{ asset('front/img/brands/logo_6.png') }}"
-                            alt="" class="owl-lazy"></a>
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-kota-solok.webp') }}" alt="" class="owl-lazy"></a>
+                </div><!-- /item -->
+                <div class="item mx-3">
+                    <a href="#0"><img src="{{ asset('front/img/brands/placeholder_brands.png') }}"
+                            data-src="{{ asset('logo/logo-koto-padangpanjang.webp') }}" alt="" class="owl-lazy"></a>
                 </div><!-- /item -->
             </div><!-- /carousel -->
         </div><!-- /container -->
@@ -603,8 +482,9 @@
             <div class="col-lg-6">
                 <a class="box_news" href="blog.html">
                     <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}" data-src="{{ asset('front/img/blog-thumb-1.jpg') }}" alt=""
-                            width="400" height="266" class="lazy">
+                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
+                            data-src="{{ asset('front/img/blog-thumb-1.jpg') }}" alt="" width="400"
+                            height="266" class="lazy">
                         <figcaption><strong>28</strong>Dec</figcaption>
                     </figure>
                     <ul>
@@ -620,8 +500,9 @@
             <div class="col-lg-6">
                 <a class="box_news" href="blog.html">
                     <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}" data-src="{{ asset('front/img/blog-thumb-2.jpg') }}" alt=""
-                            width="400" height="266" class="lazy">
+                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
+                            data-src="{{ asset('front/img/blog-thumb-2.jpg') }}" alt="" width="400"
+                            height="266" class="lazy">
                         <figcaption><strong>28</strong>Dec</figcaption>
                     </figure>
                     <ul>
@@ -637,8 +518,9 @@
             <div class="col-lg-6">
                 <a class="box_news" href="blog.html">
                     <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}" data-src="{{ asset('front/img/blog-thumb-3.jpg') }}" alt=""
-                            width="400" height="266" class="lazy">
+                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
+                            data-src="{{ asset('front/img/blog-thumb-3.jpg') }}" alt="" width="400"
+                            height="266" class="lazy">
                         <figcaption><strong>28</strong>Dec</figcaption>
                     </figure>
                     <ul>
@@ -654,8 +536,9 @@
             <div class="col-lg-6">
                 <a class="box_news" href="blog.html">
                     <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}" data-src="{{ asset('front/img/blog-thumb-4.jpg') }}" alt=""
-                            width="400" height="266" class="lazy">
+                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
+                            data-src="{{ asset('front/img/blog-thumb-4.jpg') }}" alt="" width="400"
+                            height="266" class="lazy">
                         <figcaption><strong>28</strong>Dec</figcaption>
                     </figure>
                     <ul>

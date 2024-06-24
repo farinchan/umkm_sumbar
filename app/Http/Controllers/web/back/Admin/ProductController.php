@@ -9,6 +9,7 @@ use App\Models\ProductImage;
 use App\Models\shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\str;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -16,14 +17,16 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $product = Product::leftJoin('product_categories', 'products.product_categories_id', '=', 'product_categories.id')
-        ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
+            ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
             ->leftJoin('shops', 'products.shop_id', '=', 'shops.id')
             ->select('products.*', 'product_categories.name as category_name', 'parent.name as category_parent_name', 'shops.name as shop_name');
+        $productImage = ProductImage::select('product_id', 'image')->get();
         $data = [
             'menu_title' => 'Manajemen Produk',
             'submenu_title' => 'Produk',
             'title' => 'Daftar Produk',
-            'product' => $product->get()
+            'product' => $product->get(),
+            'product_image' => $productImage
         ];
         // return response()->json($data);
         return view('back.product.index', $data);
@@ -69,7 +72,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->input('name');
-        $product->slug = $product->id . '-' . str_replace(' ', '-', $product->name);
+        $product->slug = Str::slug($request->input('name') . '-' . Str::random(5));
         $product->short_description = $request->input('short_description');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
@@ -103,7 +106,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $data = [ 
+        $data = [
             'menu_title' => 'Manajemen Produk',
             'submenu_title' => 'Produk',
             'title' => 'Edit Produk',
@@ -112,7 +115,6 @@ class ProductController extends Controller
             'product' => Product::find($id)
         ];
         return view('back.product.edit', $data);
-
     }
 
     public function update(Request $request, $id)
@@ -178,5 +180,93 @@ class ProductController extends Controller
     }
 
 
+    public function detail($id)
+    {
+        $product = Product::find($id);
+        $data = [
+            'menu_title' => 'Manajemen Produk',
+            'submenu_title' => 'Produk',
+            'title' => 'Detail Produk',
+            'product' => $product,
+            'product_image' => $product->productImage()->get(),
+            'product_category' => $product->productCategory()
+                ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
+                ->select('product_categories.name as category_name', 'parent.name as category_parent_name')
+                ->first(),
+            'shop' => $product->shop()->first(),
+        ];
+        // return response()->json($data);
+        return view('back.product.detail', $data);
+    }
 
+    public function detailReview($id)
+    {
+        $product = Product::find($id);
+        $data = [
+            'menu_title' => 'Manajemen Produk',
+            'submenu_title' => 'Produk',
+            'title' => 'Detail Review Produk',
+            'product' => $product,
+            'product_image' => $product->productImage()->get(),
+            'product_review' => $product->productReview()->get()->load('user'),
+        ];
+        // return response()->json($data);
+        return view('back.product.detail_review', $data);
+    }
+
+    public function detailViewer($id)
+    {
+        $product = Product::with(['shop', 'productViewer'])->find($id);
+        $data = [
+            'menu_title' => 'Manajemen Produk',
+            'submenu_title' => 'Produk',
+            'title' => 'Detail Viewer Produk',
+            'product' => $product
+        ];
+        return response()->json($data);
+        return view('back.product.detail_viewer', $data);
+    }
+
+    public function detailImage($id)
+    {
+        $product = Product::find($id);
+        $data = [
+            'menu_title' => 'Manajemen Produk',
+            'submenu_title' => 'Produk',
+            'title' => 'Detail Image Produk',
+            'product' => $product,
+            'product_image' => $product->productImage()->get(),
+        ];
+        // return response()->json($data);
+        return view('back.product.detail_image', $data);
+    }
+
+    public function detailImageStore(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|mimes:jpg,jpeg,png|max:2048', // 'required|mimes:jpg,jpeg,png|max:2048
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('admin.product.detail-image', $id)->with('error', 'Gagal menambahkan gambar produk')->withInput()->withErrors($validator);
+        }
+
+        $productImage = new ProductImage();
+        $productImage->product_id = $id;
+
+        $imageProduct = $request->file('image');
+        $fileName = time() . '_' . $imageProduct->getClientOriginalName();
+        $filePath = $imageProduct->storeAs('images/product/', $fileName, 'public');
+
+        $productImage->image = $fileName;
+        $productImage->save();
+
+        return redirect()->route('admin.product.detail-image', $id)->with('success', 'Berhasil menambahkan gambar produk');
+    }
+
+    public function detailImageDestroy($id)
+    {
+        $productImage = ProductImage::find($id);
+        $productImage->delete();
+        return redirect()->route('admin.product.detail-image', $productImage->product_id)->with('success', 'Berhasil menghapus gambar produk');
+    }
 }

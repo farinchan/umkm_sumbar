@@ -32,7 +32,7 @@ class ShopSeeder extends Seeder
             'meta_description' => 'Toko A adalah toko yang menjual berbagai macam produk',
             'meta_keyword' => 'toko, produk, jual, beli',
             'city_id' => 1,
-            'user_id' => 1,
+            'user_id' => 2,
         ]);
 
         shop::create([
@@ -54,33 +54,8 @@ class ShopSeeder extends Seeder
             'meta_description' => 'Toko B adalah toko yang menjual berbagai macam produk',
             'meta_keyword' => 'toko, produk, jual, beli',
             'city_id' => 2,
-            'user_id' => 2,
-        ]);
-
-                
-        shop::create([
-            'name' => 'Toko C',
-            'slug' => 'toko-c',
-            'logo' => 'logo.png',
-            'email' => 'tokoc@example.com',
-            'phone' => '08123456789',
-            'address' => 'Jl. Raya No. 3',
-            'latitude' => '-6.123456',
-            'longitude' => '106.123456',
-            'description' => 'Toko C adalah toko yang menjual berbagai macam produk',
-            'facebook' => 'https://facebook.com/toko-c',
-            'instagram' => 'https://instagram.com/toko-c',
-            'twitter' => 'https://twitter.com/toko-c',
-            'youtube' => 'https://youtube.com/toko-c',
-            'telegram' => 'https://t.me/toko-c',
-            'linkedin' => 'https://linkedin.com/toko-c',
-            'meta_description' => 'Toko C adalah toko yang menjual berbagai macam produk',
-            'meta_keyword' => 'toko, produk, jual, beli',
-            'city_id' => 3,
             'user_id' => 3,
         ]);
-
-        
 
     }
 }

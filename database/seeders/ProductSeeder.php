@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductImage;
+use App\Models\ProductReview;
+use App\Models\ProductViewer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -95,40 +98,63 @@ class ProductSeeder extends Seeder
             'meta_keyword' => 'Macbook Pro 2021',
         ]);
 
-        Product::create([
-            'name' => 'Charger Samsung',
-            'slug' => 'charger-samsung',
-            'description' => 'Charger Samsung adalah aksesoris handphone dari Samsung',
-            'short_description' => 'Charger Samsung',
-            'price' => 50000,
-            'discount' => 0,
-            'stock' => 10,
-            'product_categories_id' => 4,
-            'shop_id' => 1,
-            'weight' => 100,
-            'size' => '5x5x1',
-            'brand' => 'Samsung',
-            'meta_title' => 'Charger Samsung',
-            'meta_description' => 'Charger Samsung adalah aksesoris handphone dari Samsung',
-            'meta_keyword' => 'Charger Samsung',
+
+        ProductImage::create([
+            'product_id' => 1,
+            'image' => 'samsung1.jpg',
         ]);
 
-        Product::create([
-            'name' => 'Case Macbook Pro 2021',
-            'slug' => 'case-macbook-pro-2021',
-            'description' => 'Case Macbook Pro 2021 adalah aksesoris laptop dari Apple',
-            'short_description' => 'Case Macbook Pro 2021',
-            'price' => 500000,
-            'discount' => 0,
-            'stock' => 10,
-            'product_categories_id' => 4,
-            'shop_id' => 1,
-            'weight' => 200,
-            'size' => '10x10x1',
-            'brand' => 'Apple',
-            'meta_title' => 'Case Macbook Pro 2021',
-            'meta_description' => 'Case Macbook Pro 2021 adalah aksesoris laptop dari Apple',
-            'meta_keyword' => 'Case Macbook Pro 2021',
+        ProductImage::create([
+            'product_id' => 1,
+            'image' => 'samsung2.jpg',
+        ]);
+
+        ProductImage::create([
+            'product_id' => 2,
+            'image' => 'laptop.jpg',
+        ]);
+
+        ProductImage::create([
+            'product_id' => 2,
+            'image' => 'laptop2.jpg',
+        ]);
+
+        ProductReview::create([
+            'product_id' => 1,
+            'user_id' => 3,
+            'rating' => 5,
+            'review' => 'Bagus sekali handphone ini',
+        ]);
+
+        ProductReview::create([
+            'product_id' => 2,
+            'user_id' => 3,
+            'rating' => 5,
+            'review' => 'Bagus sekali laptop ini',
+        ]);
+
+        ProductViewer::create([
+            'product_id' => 1,
+            'ip_address' => '10.10.10.1',
+            'device' => 'Desktop',
+            'browser' => 'Chrome',
+            'platform' => 'Windows',
+            'country' => 'Indonesia',
+            'city' => 'Jakarta',
+            'state' => 'DKI Jakarta',
+            'postal_code' => '12345',
+        ]);
+
+        ProductViewer::create([
+            'product_id' => 2,
+            'ip_address' => '192.168.1.1',
+            'device' => 'Mobile',
+            'browser' => 'Safari',
+            'platform' => 'iOS',
+            'country' => 'Indonesia',
+            'city' => 'Jakarta',
+            'state' => 'DKI Jakarta',
+            'postal_code' => '12345',
         ]);
 
 

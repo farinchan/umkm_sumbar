@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('rating');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->boolean('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
