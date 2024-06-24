@@ -106,12 +106,12 @@ class ProductSeeder extends Seeder
 
         ProductImage::create([
             'product_id' => 1,
-            'image' => 'samsung2.jpg',
+            'image' => 'samsunag2.jpg',
         ]);
 
         ProductImage::create([
             'product_id' => 2,
-            'image' => 'laptop.jpg',
+            'image' => 'laptop.png',
         ]);
 
         ProductImage::create([

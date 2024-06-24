@@ -216,7 +216,7 @@
 
                 <div class="menu-item ">
                     <a class="menu-link @if (request()->is('back/admin/news/category')) active @endif"
-                        href="{{ route('admin.pengguna.index') }}">
+                        href="{{ route('admin.news.category.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="menu-item ">
                     <a class="menu-link @if (request()->is('back/admin/news/add')) active @endif"
-                        href="{{ route('admin.pengguna.index') }}">
+                        href="{{ route('admin.news.create') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -234,7 +234,7 @@
                 </div>
                 <div class="menu-item ">
                     <a class="menu-link @if (request()->is('back/admin/news')) active @endif"
-                        href="{{ route('admin.pengguna.index') }}">
+                        href="{{ route('admin.news.index') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>

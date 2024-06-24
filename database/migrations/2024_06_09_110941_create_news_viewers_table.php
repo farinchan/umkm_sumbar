@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blog_viewers', function (Blueprint $table) {
+        Schema::create('news_viewers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('blog_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('news_id')->constrained('news')->cascadeOnDelete();
             $table->string('ip');
             $table->string('country');
             $table->string('city');

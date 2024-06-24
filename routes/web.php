@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Auth\AuthController;
 use App\Http\Controllers\Web\Back\Admin\CityController;
 use App\Http\Controllers\Web\Back\Admin\DashboardController;
+use App\Http\Controllers\web\back\admin\newsController;
 use App\Http\Controllers\Web\Back\Admin\ProductCategoryController;
 use App\Http\Controllers\Web\Back\Admin\ProductController;
 use App\Http\Controllers\Web\Back\Admin\ShopController;
@@ -63,17 +64,7 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::delete('/{id}/destroy', [ProductCategoryController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('/news')->name('news.')->group(function () {
-
-            Route::get('/category', [NewsCategoryController::class, 'index'])->name('category.index');
-
-            Route::get('/', [NewsCategoryController::class, 'index'])->name('index');
-            Route::get('/create', [NewsCategoryController::class, 'create'])->name('create');
-            Route::post('/store', [NewsCategoryController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [NewsCategoryController::class, 'edit'])->name('edit');
-            Route::put('/{id}/update', [NewsCategoryController::class, 'update'])->name('update');
-            Route::delete('/{id}/destroy', [NewsCategoryController::class, 'destroy'])->name('destroy');
-        });
+        
 
     });
 
@@ -107,6 +98,21 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::get('/{id}/detail/image', [ProductController::class, 'detailImage'])->name('detail-image');
             Route::post('/{id}/detail/image/store', [ProductController::class, 'detailImageStore'])->name('detail-image-store');
             Route::delete('/{id}/detail/image/destroy', [ProductController::class, 'detailImageDestroy'])->name('detail-image-destroy');
+        });
+
+        Route::prefix('/news')->name('news.')->group(function () {
+
+            Route::get('/category', [newsController::class, 'category'])->name('category.index');
+            Route::post('/category/store', [newsController::class, 'categoryStore'])->name('category.store');
+            Route::put('/category/{id}/update', [newsController::class, 'categoryUpdate'])->name('category.update');
+            Route::delete('/category/{id}/destroy', [newsController::class, 'categoryDestroy'])->name('category.destroy');
+
+            Route::get('/', [newsController::class, 'index'])->name('index');
+            Route::get('/create', [newsController::class, 'create'])->name('create');
+            Route::post('/store', [newsController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [newsController::class, 'edit'])->name('edit');
+            Route::put('/{id}/update', [newsController::class, 'update'])->name('update');
+            Route::delete('/{id}/destroy', [newsController::class, 'destroy'])->name('destroy');
         });
     });
 
