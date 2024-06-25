@@ -4,8 +4,8 @@
 @endsection
 
 @section('styles')
- <!-- SPECIFIC CSS -->
- <link href="{{ asset('front/css/home_1.css') }}" rel="stylesheet">
+    <!-- SPECIFIC CSS -->
+    <link href="{{ asset('front/css/home_1.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -401,10 +401,11 @@
                     <div class="grid_item">
                         <span class="ribbon new">New</span>
                         <figure>
-                            <a href="{{ route("product", $product->slug) }}">
-                                <img class="owl-lazy" 
-                                src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
-                                    data-src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" alt="">
+                            <a href="{{ route('product', $product->slug) }}">
+                                <img class="owl-lazy"
+                                    src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
+                                    data-src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
+                                    alt="">
                             </a>
                         </figure>
                         <div class="rating">
@@ -416,7 +417,7 @@
                                 <i class="icon-star"></i>
                             @endfor
                         </div>
-                        <a href="{{ route("product", $product->slug) }}">
+                        <a href="{{ route('product', $product->slug) }}">
                             <h3>{{ $product->name }}</h3>
                         </a>
                         <div class="price_box">
@@ -484,83 +485,29 @@
 
     <div class="container margin_60_35">
         <div class="main_title">
-            <h2>Latest News</h2>
+            <h2>Berita Terbaru</h2>
             <span>Blog</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+            <p>Berita dan Blog Mengenai UMKM Sumatera barat</p>
         </div>
         <div class="row">
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
-                            data-src="{{ asset('front/img/blog-thumb-1.jpg') }}" alt="" width="400"
-                            height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>by Mark Twain</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Pri oportere scribentur eu</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse
-                        ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
-                            data-src="{{ asset('front/img/blog-thumb-2.jpg') }}" alt="" width="400"
-                            height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>By Jhon Doe</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Duo eius postea suscipit ad</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse
-                        ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
-                            data-src="{{ asset('front/img/blog-thumb-3.jpg') }}" alt="" width="400"
-                            height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>By Luca Robinson</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Elitr mandamus cu has</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse
-                        ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
-            <div class="col-lg-6">
-                <a class="box_news" href="blog.html">
-                    <figure>
-                        <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
-                            data-src="{{ asset('front/img/blog-thumb-4.jpg') }}" alt="" width="400"
-                            height="266" class="lazy">
-                        <figcaption><strong>28</strong>Dec</figcaption>
-                    </figure>
-                    <ul>
-                        <li>By Paula Rodrigez</li>
-                        <li>20.11.2017</li>
-                    </ul>
-                    <h4>Id est adhuc ignota delenit</h4>
-                    <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse
-                        ullum vidisse....</p>
-                </a>
-            </div>
-            <!-- /box_news -->
+            @foreach ($latest_news as $news)
+                <div class="col-lg-6">
+                    <a class="box_news" href="{{ route("news-show", $news->slug) }}">
+                        <figure>
+                            <img src="{{ asset('front/img/blog-thumb-placeholder.jpg') }}"
+                                data-src="{{ Storage::url("images/news/". $news->image); }}" alt="" width="400"
+                                height="266" class="lazy">
+                            <figcaption><strong>{{ $news->created_at->format('d') }}</strong>{{ $news->created_at->format('M') }}</figcaption>
+                        </figure>
+                        <ul>
+                            <li>by {{ $news->user->name }}</li>
+                            <li>{{ $news->created_at->diffForHumans() }}</li>
+                        </ul>
+                        <h4>{{ Str::limit($news->title, 40, '...') }}</h4>
+                        <p>{{ Str::limit(strip_tags($news->content), 150, '...') }}</p>
+                    </a>
+                </div>
+            @endforeach
         </div>
         <!-- /row -->
     </div>
@@ -569,6 +516,6 @@
 
 
 @section('scripts')
-        <!-- SPECIFIC SCRIPTS -->
-        <script src="{{ asset('front/js/carousel-home.min.js') }}"></script>
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="{{ asset('front/js/carousel-home.min.js') }}"></script>
 @endsection

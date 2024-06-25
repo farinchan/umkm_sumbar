@@ -19,6 +19,7 @@ Route::get('/product/{slug}', [frontProductController::class, "product"])->name(
 Route::get('/product/category/{slug}', [frontProductController::class, "category"])->name('product-category');
 Route::get('/news', [frontNewsController::class, "index"])->name('news');
 Route::get('/news/{slug}', [frontNewsController::class, "show"])->name('news-show');
+Route::get('/about', [HomeController::class, "about"])->name('about');
 
 Route::prefix('auth')->group(function () {
     Route::get('/', [AuthController::class, "index"])->name('login');

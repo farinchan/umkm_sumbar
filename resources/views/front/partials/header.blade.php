@@ -31,7 +31,7 @@
                                 <a href="{{ route("news") }}">Berita</a>
                             </li>
                             <li>
-                                <a href="#">tentang Kami</a>
+                                <a href="{{ route("about") }}">tentang Kami</a>
                             </li>
                             <li>
                                 <a href="#">Bantuan</a>
