@@ -330,7 +330,7 @@
             </div>
         </div>
         <div class="menu-item">
-            <a class="menu-link" href="https://preview.keenthemes.com/metronic8/demo7/layout-builder.html"
+            <a class="menu-link @if (request()->is('back/admin/setting/banner')) active @endif" href="{{ route('admin.setting.banner') }}"
                 data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-row-horizontal fs-2">
@@ -342,7 +342,7 @@
             </a>
         </div>
         <div class="menu-item">
-            <a class="menu-link" href="https://preview.keenthemes.com/metronic8/demo7/layout-builder.html"
+            <a class="menu-link @if (request()->is('back/admin/setting/website')) active @endif" href="{{ route('admin.setting.website') }}" data-bs-toggle="tooltip"
                 data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-star fs-2">

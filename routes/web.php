@@ -6,15 +6,19 @@ use App\Http\Controllers\Web\Back\Admin\DashboardController;
 use App\Http\Controllers\web\back\admin\newsController;
 use App\Http\Controllers\Web\Back\Admin\ProductCategoryController;
 use App\Http\Controllers\Web\Back\Admin\ProductController;
+use App\Http\Controllers\web\back\admin\SettingController;
 use App\Http\Controllers\Web\Back\Admin\ShopController;
 use App\Http\Controllers\Web\Back\Admin\UserController;
 use App\Http\Controllers\web\front\HomeController;
 use App\Http\Controllers\Web\front\ProductController as frontProductController;
+use App\Http\Controllers\Web\front\NewsController as frontNewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "index"])->name('home');
 Route::get('/product/{slug}', [frontProductController::class, "product"])->name('product');
 Route::get('/product/category/{slug}', [frontProductController::class, "category"])->name('product-category');
+Route::get('/news', [frontNewsController::class, "index"])->name('news');
+Route::get('/news/{slug}', [frontNewsController::class, "show"])->name('news-show');
 
 Route::prefix('auth')->group(function () {
     Route::get('/', [AuthController::class, "index"])->name('login');
@@ -62,6 +66,16 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::post('/store', [ProductCategoryController::class, 'store'])->name('store');
             Route::put('/{id}/update', [ProductCategoryController::class, 'update'])->name('update');
             Route::delete('/{id}/destroy', [ProductCategoryController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('setting')->name('setting.')->group(function () {
+            Route::get('/banner', [SettingController::class, 'banner'])->name('banner');
+            Route::post('/banner/store', [SettingController::class, 'bannerStore'])->name('banner.store');
+            Route::delete('/banner/destroy', [SettingController::class, 'bannerDestroy'])->name('banner.destroy');
+
+            Route::get('/website', [SettingController::class, 'website'])->name('website');
+
+
         });
 
         

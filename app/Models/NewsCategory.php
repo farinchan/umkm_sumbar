@@ -11,5 +11,10 @@ class NewsCategory extends Model
 
     protected $table = 'news_categories';
     protected $guarded = [];
+
+    public function news()
+    {
+        return $this->hasMany(News::class, 'news_categories_id', 'id');
+    }
     
 }
