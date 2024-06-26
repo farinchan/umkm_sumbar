@@ -98,6 +98,25 @@ class ProductSeeder extends Seeder
             'meta_keyword' => 'Macbook Pro 2021',
         ]);
 
+        Product::factory(10)->create();
+
+
+        foreach (range(3, 12) as $index) {
+            ProductImage::create([
+                'product_id' => $index,
+                'image' => 'product_placeholder.jpg',
+            ]);
+            ProductImage::create([
+                'product_id' => $index,
+                'image' => 'product_placeholder.jpg',
+            ]);
+            ProductReview::create([
+                'product_id' => $index,
+                'user_id' => 6,
+                'rating' => 4,
+                'review' => 'Bagus sekali produk ini, saya suka sekali dengan produk ini dan akan merekomendasikan produk ini kepada teman-teman saya yang lain untuk membeli produk ini juga karena produk ini sangat bagus dan berkualitas tinggi dan harga yang terjangkau dan terbaik. Terima kasih.',
+            ]);
+        }
 
         ProductImage::create([
             'product_id' => 1,

@@ -13,14 +13,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::where('products.status', 1)->orderBy('products.created_at', 'desc')
-            ->with(['productCategory', 'productImage', 'productReview', 'productViewer', 'shop']);
+        $latest_products = Product::where('products.status', 1)->orderBy('products.created_at', 'desc')
+            ->with(['productCategory', 'productImage', 'productReview', 'productViewer', 'shop'])
+            ->latest();
         $latest_news = News::where('status', 1)->orderBy('created_at', 'desc');
         $data = [
             'title' => 'Home',
             'description' => 'Home page description',
             'keywords' => 'Home page keywords',
-            'products' => $products->take(10)->get(),
+            'latest_products' => $latest_products->take(10)->get(),
             'latest_news' => $latest_news->take(4)->get(),
         ];
         // return response()->json($data);
@@ -35,5 +36,15 @@ class HomeController extends Controller
             'keywords' => 'About page keywords',
         ];
         return view('front.home.about', $data);
+    }
+
+    public function help()
+    {
+        $data = [
+            'title' => 'Help',
+            'description' => 'Help page description',
+            'keywords' => 'Help page keywords',
+        ];
+        return view('front.home.help', $data);
     }
 }

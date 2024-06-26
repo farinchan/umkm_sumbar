@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('news_viewers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('news_id')->constrained('news')->cascadeOnDelete();
-            $table->string('ip');
-            $table->string('country');
-            $table->string('city');
-            $table->string('region');
-            $table->string('postal_code');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->string('timezone');
-            $table->string('user_agent');
-            $table->string('platform');
-            $table->string('browser');
-            $table->string('device');
+            $table->string('ip')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('region')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('timezone')->nullable();
+            $table->string('user_agent')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('device')->nullable();
             $table->timestamps();
         });
     }

@@ -236,7 +236,7 @@
         <div class="main_title">
             <h2>Related</h2>
             <span>Products</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+            <p>Produk yang relate dengan ini.</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
             @foreach ($releatedProduct as $releated)
@@ -246,7 +246,7 @@
                         <span class="ribbon off">-{{ $releated->discount }}%</span>
                         @endif
                         <figure>
-                            <a href="product-detail-1.html">
+                            <a href="{{ route("product", $releated->slug) }}">
                                 <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg"
                                     data-src="@if ($releated->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $releated->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $releated->name }} @endif" alt="">
                             </a>
@@ -260,23 +260,20 @@
                                 <i class="icon-star"></i>
                             @endfor
                         </div>
-                        <a href="{{ route('product', $product->slug) }}">
-                            <h3>{{ $product->name }}</h3>
+                        <a href="{{ route("product", $releated->slug) }}">
+                            <h3>{{ $releated->name }}</h3>
                         </a>
                         <div class="price_box">
-                            <span class="new_price">@money($product->price - ($product->price * $product->discount) / 100)</span>
-                            @if ($product->discount > 0)
-                                <span class="old_price">@money($product->price)</span>
+                            <span class="new_price">@money($releated->price - ($releated->price * $releated->discount) / 100)</span>
+                            @if ($releated->discount > 0)
+                                <span class="old_price">@money($releated->price)</span>
                             @endif
                         </div>
                         <ul>
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
                             </li>
-                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to
-                                        compare</span></a>
-                            </li>
+                            
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         </ul>

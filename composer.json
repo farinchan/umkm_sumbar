@@ -7,9 +7,11 @@
     "require": {
         "php": "^8.2",
         "itsgoingd/clockwork": "^5.2",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "spatie/laravel-permission": "^6.7"
+        "spatie/laravel-permission": "^6.7",
+        "stevebauman/location": "^7.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

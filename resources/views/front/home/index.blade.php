@@ -79,9 +79,9 @@
 
     <div class="container margin_60_35">
         <div class="main_title">
-            <h2>Top Selling</h2>
+            <h2>Direkomendasikan untuk anda</h2>
             <span>Products</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+            <p>Kami Persembahkan Produk UMKM Sumatera Barat Yang Kami Rekomendasikan Untuk Anda</p>
         </div>
         <div class="row small-gutters">
             <div class="col-6 col-md-4 col-xl-3">
@@ -396,7 +396,7 @@
         </div>
         <div class="owl-carousel owl-theme products_carousel">
 
-            @foreach ($products as $product)
+            @foreach ($latest_products as $product)
                 <div class="item">
                     <div class="grid_item">
                         <span class="ribbon new">New</span>
@@ -421,16 +421,15 @@
                             <h3>{{ $product->name }}</h3>
                         </a>
                         <div class="price_box">
-                            <span class="new_price">@money($product->price)</span>
+                            <span class="new_price">@money($product->price - ($product->price * $product->discount) / 100)</span>
+                            @if ($product->discount > 0)
+                                <span class="old_price">@money($product->price)</span>
+                            @endif
                         </div>
                         <ul>
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
                             </li>
-                            {{-- <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to
-                                        compare</span></a>
-                            </li> --}}
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         </ul>

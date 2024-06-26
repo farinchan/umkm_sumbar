@@ -12,14 +12,19 @@ use App\Http\Controllers\Web\Back\Admin\UserController;
 use App\Http\Controllers\web\front\HomeController;
 use App\Http\Controllers\Web\front\ProductController as frontProductController;
 use App\Http\Controllers\Web\front\NewsController as frontNewsController;
+use App\Http\Controllers\Web\front\ShopController as frontShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "index"])->name('home');
+Route::get('/product', [frontProductController::class, "index"])->name('product-all');
 Route::get('/product/{slug}', [frontProductController::class, "product"])->name('product');
 Route::get('/product/category/{slug}', [frontProductController::class, "category"])->name('product-category');
 Route::get('/news', [frontNewsController::class, "index"])->name('news');
 Route::get('/news/{slug}', [frontNewsController::class, "show"])->name('news-show');
 Route::get('/about', [HomeController::class, "about"])->name('about');
+Route::get('/help', [HomeController::class, "help"])->name('help');
+Route::get('/shop', [frontShopController::class, "index"])->name('shop');
+Route::get('/shop/{slug}', [frontShopController::class, "shop"])->name('shop-detail');
 
 Route::prefix('auth')->group(function () {
     Route::get('/', [AuthController::class, "index"])->name('login');

@@ -11,5 +11,10 @@ class City extends Model
 
     protected $table = 'cities';
     protected $fillable = ['name', 'slug', 'postal_code', 'status', 'status'];
+
+    public function shop()
+    {
+        return $this->hasMany(shop::class);
+    }
     
 }

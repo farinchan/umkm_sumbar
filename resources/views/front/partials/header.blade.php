@@ -5,7 +5,8 @@
             <div class="row small-gutters">
                 <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                     <div id="logo">
-                        <a href="index.html"><img src="img/logo.svg" alt="" width="100" height="35"></a>
+                        <a href="{{ route('home') }}"><img src="{{ Storage::url('images/setting/logo.png') }}"
+                                alt="" width="200"></a>
                     </div>
                 </div>
                 <nav class="col-xl-6 col-lg-7">
@@ -28,17 +29,79 @@
                                 <a href="{{ route('home') }}">Home</a>
                             </li>
                             <li>
-                                <a href="{{ route("news") }}">Berita</a>
+                                <a href="{{ route('product-all') }}">Semua Produk</a>
                             </li>
                             <li>
-                                <a href="{{ route("about") }}">tentang Kami</a>
+                                <a href="{{ route('news') }}">Berita</a>
                             </li>
-                            <li>
-                                <a href="#">Bantuan</a>
+                            <li class="megamenu submenu">
+                                <a href="{{ route("shop") }}" class="show-submenu-mega">UMKM</a>
+                                <div class="menu-wrapper">
+                                    <div class="row small-gutters">
+                                        @php
+                                            $kota = App\Models\City::all();
+                                            // Hitung jumlah data
+                                            $totalData = $kota->count();
+                                            // Tentukan ukuran setiap bagian
+                                            $chunkSize = ceil($totalData / 3);
+                                            // Bagi data menjadi 3 bagian
+                                            $chunks = $kota->chunk($chunkSize);
+                                        @endphp
+                                        <div class="col-lg-3">
+                                            <h3>List UMKM Sumatera barat</h3>
+                                            <ul>
+                                                @foreach ($chunks[0] as $kota1)
+                                                    <li><a href="{{ route("shop", ["city" => $kota1->slug]) }}">{{ $kota1->name }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <h3>.</h3>
+                                            <ul>
+                                                @foreach ($chunks[1] as $kota2)
+                                                    <li><a href="{{ route("shop", ["city" => $kota2->slug]) }}">{{ $kota2->name }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <h3>.</h3>
+                                            <ul>
+                                                @foreach ($chunks[2] as $kota3)
+                                                    <li><a href="{{ route("shop", ["city" => $kota3->slug]) }}">{{ $kota3->name }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 d-xl-block d-lg-block d-md-none d-sm-none d-none">
+                                            <div class="banner_menu">
+                                                <a href="#0">
+                                                    <img src="{{ asset('front/img/logo_') }}"
+                                                        data-src="{{ asset('front/img/logo_sumbar.png') }}"
+                                                        width="400" height="550" alt=""
+                                                        class="img-fluid lazy">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /row -->
+                                </div>
+                                <!-- /menu-wrapper -->
                             </li>
-                            <li>
-                                <a href="#">Dashboard</a>
+                            <li class="submenu">
+                                <a href="javascript:void(0);" class="show-submenu">Informasi</a>
+                                <ul>
+                                    <li><a href="{{ route('about') }}">tentang Kami</a></li>
+                                    <li><a href="{{ route('help') }}">Bantuan</a></li>
+                                </ul>
                             </li>
+                            {{-- @if (Auth::check())
+                                <li>
+                                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('login') }}">Login</a>
+                                </li>
+                            @endif --}}
                         </ul>
                     </div>
                     <!--/main-menu -->
@@ -101,9 +164,14 @@
                 </div>
                 <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
                     <div class="custom-search-input">
-                        <input type="text" placeholder="Search over 10.000 products">
-                        <button type="submit"><i class="header-icon_search_custom"></i></button>
+                        <form action="{{ route('product-all') }}" method="GET">
+
+                            <input type="text" name="search" placeholder="Cari Produk Yang Kamu Inginkan Disini"
+                                value="{{ request('search') }}">
+                            <button type="submit"><i class="header-icon_search_custom"></i></button>
+                        </form>
                     </div>
+
                 </div>
                 <div class="col-xl-3 col-lg-2 col-md-3">
                     <ul class="top_tools">
@@ -133,8 +201,8 @@
                                     </ul>
                                     <div class="total_drop">
                                         <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
-                                        <a href="cart.html" class="btn_1 outline">View Cart</a><a href="checkout.html"
-                                            class="btn_1">Checkout</a>
+                                        <a href="cart.html" class="btn_1 outline">View Cart</a><a
+                                            href="checkout.html" class="btn_1">Checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +223,7 @@
                                         @if (Auth::check())
                                             <li>
                                                 <a href="account.html"><i class="ti-user"></i>
-                                                    {{ Auth::user()->name }} <br> 
+                                                    {{ Auth::user()->name }} <br>
                                                     <small>
                                                         {{ Auth::user()->email }}
                                                     </small>
@@ -175,7 +243,8 @@
                                         </li>
                                         @if (Auth::check())
                                             <li>
-                                                <a href="{{ route('logout') }}"><i class="ti-power-off"></i>Logout</a>
+                                                <a href="{{ route('logout') }}"><i
+                                                        class="ti-power-off"></i>Logout</a>
                                             </li>
                                         @endif
                                     </ul>
@@ -202,8 +271,12 @@
             <!-- /row -->
         </div>
         <div class="search_mob_wp">
-            <input type="text" class="form-control" placeholder="Search over 10.000 products">
-            <input type="submit" class="btn_1 full-width" value="Search">
+            <form action="{{ route('product-all') }}" method="GET">
+                @csrf
+                <input type="text" name="search" class="form-control"
+                    placeholder="Cari Produk Yang Kamu Inginkan Disini">
+                <input type="submit" class="btn_1 full-width" value="Search">
+            </form>
         </div>
         <!-- /search_mobile -->
     </div>
