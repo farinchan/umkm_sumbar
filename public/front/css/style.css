@@ -5656,6 +5656,48 @@ input.qty2:focus {
   background-color: #004dda;
 }
 
+/* Chat bot button */
+#chatBot {
+  position: fixed;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 25px;
+  margin: 0 25px 0 0;
+  z-index: 999;
+  transition: 0.35s;
+  transform: scale(0.7);
+  width: 66px;
+  height: 66px;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+  transition: all 0.3s;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 24px;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+#chatBot.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+#chatBot:after {
+  font-family: 'themify';
+  content: "🙋🏽";
+  position: relative;
+  display: block;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+#chatBot:hover {
+  background-color: #004dda;
+}
+
+
 .modal-content {
   border: none !important;
   border-radius: 0 !important;
@@ -7262,3 +7304,8 @@ img.mfp-img {
 .mfp-bg {
   opacity: 0.8 !important;
 }
+
+
+/*-------- 3.9 chatbot --------*/
+
+

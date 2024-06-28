@@ -158,7 +158,7 @@
     </div>
 @endsection
 
-@section('script')
+@section('scripts')
     <!-- SPECIFIC SCRIPTS -->
     <script src="{{ asset('front/js/sticky_sidebar.min.js') }}"></script>
     <script src="{{ asset('front/js/specific_listing.js') }}"></script>
