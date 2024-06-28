@@ -39,7 +39,7 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
 
         Route::middleware(['role:superadmin'])->group(function () {
 
-            Route::get('/dashboard', DashboardController::class)->name('dashboard');
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
             Route::prefix('/kota')->name('kota.')->group(function () {
                 Route::get('/', [CityController::class, 'index'])->name('index');
