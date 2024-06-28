@@ -32,7 +32,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->is_active) {
-                if($user->role == 'user'){
+                if($user->hasRole('user')){
                     if($request->route){
                         return redirect($request->route);
                     }else{

@@ -1,3 +1,4 @@
+{{-- @dd(Auth()->user()->shop) --}}
 <header class="version_1">
     <div class="layer"></div><!-- Mobile menu overlay mask -->
     <div class="main_header">
@@ -226,6 +227,20 @@
                                                     {{ Auth::user()->name }} <br>
                                                     <small>
                                                         {{ Auth::user()->email }}
+                                                    </small>
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href=""><i class="ti-layout"></i>
+                                                    UMKM KU <br>
+                                                    <small>
+
+                                                        @if (Auth::user()->shop)
+                                                            {{ Auth::user()->shop->name }}
+                                                        @else
+                                                            Buat UMKM Anda Sekarang
+                                                        @endif
                                                     </small>
 
                                                 </a>

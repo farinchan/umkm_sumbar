@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(CityAdmin::class);
     }
+
+    public function Shop()
+    {
+        return $this->hasOne(Shop::class);
+    }
 }

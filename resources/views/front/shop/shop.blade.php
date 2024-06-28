@@ -321,7 +321,7 @@
                             <a>...</a>
                         </li>
                     @endif
-    
+                        
                     @if ($products->hasMorePages())
                         <li><a href="{{ $product->nextPageUrl() }}" class="next" title="next page">&#10095;</a>
                         </li>
