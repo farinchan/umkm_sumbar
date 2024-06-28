@@ -14,7 +14,7 @@ class ShopFollows extends Model
 
     public function shop()
     {
-        return $this->belongsTo(Shop::class);
+        return $this->belongsTo(shop::class);
     }
 
     public function user()
