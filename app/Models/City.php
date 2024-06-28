@@ -14,7 +14,7 @@ class City extends Model
 
     public function shop()
     {
-        return $this->hasMany(shop::class);
+        return $this->hasMany(Shop::class);
     }
     
 }
