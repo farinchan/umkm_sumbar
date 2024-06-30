@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "alexusmai/laravel-file-manager": "^3.2",
         "itsgoingd/clockwork": "^5.2",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^11.9",

@@ -14,6 +14,13 @@
             <div class="tab-pane fade " id="kt_aside_nav_tab_menu" role="tabpanel">
                 @include('back/layout/aside/__tab-contents/__menu_admin')
             </div>
+            <div class="tab-pane fade " id="kt_aside_nav_tab_shop" role="tabpanel">
+                @if (App\Models\Shop::where('user_id', auth()->user()->id)->count() == 0)
+                    @include('back/layout/aside/__tab-contents/__shop_create')
+                @else
+                    @include('back/layout/aside/__tab-contents/__menu_shop')                    
+                @endif
+            </div>
             <!--end::Tab pane-->
             <!--begin::Tab pane-->
             <div class="tab-pane fade" id="kt_aside_nav_tab_subscription" role="tabpanel">

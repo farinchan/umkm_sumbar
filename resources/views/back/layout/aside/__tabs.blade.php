@@ -17,7 +17,9 @@
             <!--end::Nav link-->
         </li>
         <!--end::Nav item-->
-        <!--begin::Nav item-->
+        <!--begin::Nav menu admin-->
+        @role('admin|superadmin')
+
         <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
             data-bs-dismiss="click" title="Menu">
             <!--begin::Nav link-->
@@ -30,7 +32,25 @@
             </a>
             <!--end::Nav link-->
         </li>
-        <!--end::Nav item-->
+        @endrole
+        <!--end::Nav menu admin-->
+        <!--begin::Nav menu admin-->
+        <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
+            data-bs-dismiss="click" title="UMKM">
+            <!--begin::Nav link-->
+            <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
+                data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_shop">
+                <i class="ki-duotone ki-shop fs-2x">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                </i>
+            </a>
+            <!--end::Nav link-->
+        </li>
+        <!--end::Nav menu admin-->
         <!--begin::Nav item-->
         <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
             data-bs-dismiss="click" title="Subscription">

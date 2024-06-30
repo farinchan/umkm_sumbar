@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Auth\AuthController;
 use App\Http\Controllers\Web\Back\Admin\CityController;
 use App\Http\Controllers\Web\Back\Admin\DashboardController;
+use App\Http\Controllers\Web\Back\Admin\FileManagerController;
 use App\Http\Controllers\web\back\admin\newsController;
 use App\Http\Controllers\Web\Back\Admin\ProductCategoryController;
 use App\Http\Controllers\Web\Back\Admin\ProductController;
@@ -40,6 +41,8 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
         Route::middleware(['role:superadmin'])->group(function () {
 
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+            Route::get('/file-manager', [FileManagerController::class, 'index'])->name('file-manager');
 
             Route::prefix('/kota')->name('kota.')->group(function () {
                 Route::get('/', [CityController::class, 'index'])->name('index');
