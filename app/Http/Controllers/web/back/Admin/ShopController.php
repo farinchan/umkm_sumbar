@@ -91,7 +91,7 @@ class ShopController extends Controller
         $shop->telegram = $request->input('telegram');
         $shop->linkedin = $request->input('linkedin');
         $shop->meta_description = $request->input('meta_description');
-        $shop->meta_keywords = $request->input('meta_keywords');
+        $shop->meta_keyword = $request->input('meta_keyword');
         $shop->city_id = $request->input('city_id');
         $shop->user_id = $request->input('user_id');
         $shop->save();

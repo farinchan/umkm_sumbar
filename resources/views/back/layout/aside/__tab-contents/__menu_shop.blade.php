@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="menu-item">
-            <a class="menu-link" href="">
+            <a class="menu-link active" href="{{ route("shop.detail") }}">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-shop fs-2">
                         <span class="path1"></span>
@@ -49,19 +49,67 @@
                 <span class="menu-title">Toko Ku</span>
             </a>
         </div>
-        <div class="menu-item">
-            <a class="menu-link" href="apps/calendar.html">
+        <div data-kt-menu-trigger="click"
+            class="menu-item menu-accordion @if (
+                (request()->is('back/admin/product/*') &&
+                    !request()->is('back/admin/product/category/*') &&
+                    !request()->is('back/admin/product/category')) ||
+                    request()->is('back/admin/product')) hover show @endif">
+            <span class="menu-link">
                 <span class="menu-icon">
-                    <i class="ki-duotone ki-purchase fs-2">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>
+
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-basket fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                            <span class="path3"></span>
+                            <span class="path4"></span>
+                        </i>
+                    </span>
                 </span>
                 <span class="menu-title">Produk</span>
-            </a>
+                <span class="menu-arrow"></span>
+            </span>
+            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                    <a class="menu-link @if (request()->is('back/admin/product/create')) active @endif"
+                        href="{{ route('admin.product.create') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Tambah Produk</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link @if (request()->is('back/admin/product')) active @endif"
+                        href="{{ route('admin.product.index') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Daftar Produk</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Review</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Pengunjung</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="menu-item">
-            <a class="menu-link" href="apps/calendar.html">
+            <a class="menu-link" href="{{ route("shop.detail-follower")  }}">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-user-tick fs-2">
                         <span class="path1"></span>

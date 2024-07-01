@@ -12,7 +12,7 @@
         </p>
         <!--end::Description-->
         <!--begin::Action-->
-        <a href="#" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan" >Buat Sekarang</a>
+        <a href="{{ route("shop.create") }}" class="btn btn-primary"  >Buat Sekarang</a>
         <!--end::Action-->
     </div>
     <!--end::Container-->

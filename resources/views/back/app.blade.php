@@ -123,6 +123,9 @@ http://?page=index" />
         if (window.location.href.includes('admin')) {
             document.getElementById('menu_admin').click();
         }
+        if (window.location.href.includes('back/shop')) {
+            document.getElementById('menu_shop').click();
+        }
     </script>
     <!--end::Javascript-->
 </body>

@@ -36,7 +36,7 @@
                                 <a href="{{ route('news') }}">Berita</a>
                             </li>
                             <li class="megamenu submenu">
-                                <a href="{{ route("shop") }}" class="show-submenu-mega">UMKM</a>
+                                <a href="{{ route('shop') }}" class="show-submenu-mega">UMKM</a>
                                 <div class="menu-wrapper">
                                     <div class="row small-gutters">
                                         @php
@@ -52,7 +52,9 @@
                                             <h3>List UMKM Sumatera barat</h3>
                                             <ul>
                                                 @foreach ($chunks[0] as $kota1)
-                                                    <li><a href="{{ route("shop", ["city" => $kota1->slug]) }}">{{ $kota1->name }}</a></li>
+                                                    <li><a
+                                                            href="{{ route('shop', ['city' => $kota1->slug]) }}">{{ $kota1->name }}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -60,7 +62,9 @@
                                             <h3>.</h3>
                                             <ul>
                                                 @foreach ($chunks[1] as $kota2)
-                                                    <li><a href="{{ route("shop", ["city" => $kota2->slug]) }}">{{ $kota2->name }}</a></li>
+                                                    <li><a
+                                                            href="{{ route('shop', ['city' => $kota2->slug]) }}">{{ $kota2->name }}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -68,7 +72,9 @@
                                             <h3>.</h3>
                                             <ul>
                                                 @foreach ($chunks[2] as $kota3)
-                                                    <li><a href="{{ route("shop", ["city" => $kota3->slug]) }}">{{ $kota3->name }}</a></li>
+                                                    <li><a
+                                                            href="{{ route('shop', ['city' => $kota3->slug]) }}">{{ $kota3->name }}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -232,18 +238,21 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href=""><i class="ti-layout"></i>
-                                                    UMKM KU <br>
-                                                    <small>
-
-                                                        @if (Auth::user()->shop)
+                                                @if (Auth::user()->shop)
+                                                    <a href="{{ route('shop.detail') }}"><i class="ti-layout"></i>
+                                                        Toko Ku <br>
+                                                        <small>
                                                             {{ Auth::user()->shop->name }}
-                                                        @else
-                                                            Buat UMKM Anda Sekarang
-                                                        @endif
-                                                    </small>
-
-                                                </a>
+                                                        </small>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('shop.create') }}"><i class="ti-layout"></i>
+                                                        Toko Ku <br>
+                                                        <small>
+                                                            Buat Toko UMKM KU Sekarang!
+                                                        </small>
+                                                    </a>
+                                                @endif
                                             </li>
                                             <li>
                                                 <a href="#"><i class="ti-package"></i>My Orders</a>

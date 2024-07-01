@@ -39,7 +39,7 @@
             data-bs-dismiss="click" title="UMKM">
             <!--begin::Nav link-->
             <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
-                data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_shop">
+                data-bs-toggle="tab" id="menu_shop" href="#kt_aside_nav_tab_shop">
                 <i class="ki-duotone ki-shop fs-2x">
                     <span class="path1"></span>
                     <span class="path2"></span>

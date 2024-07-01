@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\Back\Admin\ProductController;
 use App\Http\Controllers\web\back\admin\SettingController;
 use App\Http\Controllers\Web\Back\Admin\ShopController;
 use App\Http\Controllers\Web\Back\Admin\UserController;
+use App\Http\Controllers\Web\Back\shop\ShopController as backShopController;
 use App\Http\Controllers\web\front\HomeController;
 use App\Http\Controllers\Web\front\ProductController as frontProductController;
 use App\Http\Controllers\Web\front\NewsController as frontNewsController;
@@ -139,14 +140,33 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
     });
 
     Route::prefix('shop')->name('shop.')->group(function () {
-        Route::get('/', [ShopController::class, 'index'])->name('index');
-        Route::get('/{id}/show', [ShopController::class, 'show'])->name('show');
-        Route::get('/{id}/detail', [ShopController::class, 'detail'])->name('detail');
-        Route::get('/{id}/detail/product', [ShopController::class, 'detailProduct'])->name('detail-product');
-        Route::get('/{id}/detail/follower', [ShopController::class, 'detailFollower'])->name('detail-follower');
+        Route::get('/create', [backShopController::class, 'create'])->name('create');
+        Route::post('/store', [backShopController::class, 'store'])->name('store');
+        Route::get('/edit', [backShopController::class, 'edit'])->name('edit');
+        Route::put('/update', [backShopController::class, 'update'])->name('update');
+        Route::delete('/destroy', [backShopController::class, 'destroy'])->name('destroy');
 
-        
+        Route::get('/detail', [backShopController::class, 'detail'])->name('detail');
+        Route::get('/detail/product', [backShopController::class, 'detailProduct'])->name('detail-product');
+        Route::get('/detail/follower', [backShopController::class, 'detailFollower'])->name('detail-follower');
+
+
+        Route::prefix('/product')->name('product.')->group(function () {
+            Route::get('/', [backShopController::class, 'detailProduct'])->name('index');
+            Route::get('/create', [backShopController::class, 'ProductCreate'])->name('create');
+            Route::post('/store', [backShopController::class, 'ProductStore'])->name('store');
+            Route::get('/{id}/edit', [backShopController::class, 'ProductEdit'])->name('edit');
+            Route::put('/{id}/update', [backShopController::class, 'ProductUpdate'])->name('update');
+            Route::delete('/{id}/destroy', [backShopController::class, 'ProductDestroy'])->name('destroy');
+
+            Route::get('/{id}/review', [backShopController::class, 'ProductReview'])->name('review');
+            Route::get('/{id}/viewer', [backShopController::class, 'ProductViewer'])->name('viewer');
+            Route::get('/{id}/image', [backShopController::class, 'ProductImage'])->name('image');
+            Route::post('/{id}/image/store', [backShopController::class, 'ProductImageStore'])->name('image.store');
+            Route::delete('/{id}/image/destroy', [backShopController::class, 'ProductImageDestroy'])->name('image.destroy');
+        });
     });
+
 });
 
 

@@ -1,6 +1,11 @@
 @extends('back.app')
 @section('seo')
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+@endsection
+
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="container-xxl" id="kt_content_container">
@@ -9,7 +14,7 @@
                     <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
                         <div
                             class="d-flex flex-center flex-shrink-0 bg-light rounded w-100px h-100px w-lg-150px h-lg-150px me-7 mb-4">
-                            <img class="mw-50px mw-lg-75px" src="assets/media/svg/brand-logos/volicity-9.svg"
+                            <img class="mw-150px mw-lg-175px" src="{{ Storage::url('images/shop/' . $shop->logo) }}"
                                 alt="image" />
                         </div>
                         <div class="flex-grow-1">
@@ -25,7 +30,7 @@
                                         @endif
                                     </div>
                                     <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-500">
-                                        {{ $shop->description }}</div>
+                                        {{ Str::limit($shop->description, 300, '...') }}</div>
                                 </div>
                                 <div class="d-flex mb-4">
                                     <a href="#" class="btn btn-sm btn-primary me-3">Edit Toko</a>
@@ -63,14 +68,16 @@
                     <div class="separator"></div>
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 active" href="{{ route("admin.toko.detail",  $shop->id) }}">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6" href="{{ route("admin.toko.detail-product",  $shop->id) }}">Produk</a>
+                            <a class="nav-link text-active-primary py-5 me-6 active"
+                                href="{{ route('admin.toko.detail', $shop->id) }}">Overview</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route("admin.toko.detail-follower",  $shop->id) }}">Pengikut</a>
+                                href="{{ route('admin.toko.detail-product', $shop->id) }}">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary py-5 me-6"
+                                href="{{ route('admin.toko.detail-follower', $shop->id) }}">Pengikut</a>
                         </li>
                     </ul>
                 </div>
@@ -84,114 +91,123 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Form-->
-                    <!--begin::Card body-->
-                    <div class="card-body p-9">
-                        <!--begin::Row-->
-                        <div class="row mb-5">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">Logo Toko</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8">
-                                <div
+                <!--begin::Card body-->
+                <div class="card-body p-9">
+                    <!--begin::Row-->
+                    <div class="row mb-5">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Logo Toko</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
+                            <div
                                 class="d-flex flex-center flex-shrink-0 bg-light rounded w-100px h-100px w-lg-150px h-lg-150px me-7 mb-4">
-                                <img class="mw-50px mw-lg-75px" src="assets/media/svg/brand-logos/volicity-9.svg"
+                                <img class="mw-150px mw-lg-175px" src="{{ Storage::url('images/shop/' . $shop->logo) }}"
                                     alt="image" />
                             </div>
-                            </div>
-                            <!--end::Col-->
                         </div>
-                        <!--end::Row-->
-                        <!--begin::Row-->
-                        <div class="row mb-8">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">Nama Toko</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-9 fv-row">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->name }}</div>
-
-                            </div>
-                        </div>
-                        <div class="row mb-8">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">Deskripsi Toko</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-9 fv-row">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->description }}</div>
-
-                            </div>
-                        </div>
-                        <!--end::Row-->
-                        <!--begin::Row-->
-                        <div class="row mb-8">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">Informasi</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-9 fv-row">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->email }}</div>
-                                <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->phone }}</div>
-                                <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->address }}</div>
-                            </div>
-                        </div>
-                        <div class="row mb-8">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">kabupaten/Kota</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-9 fv-row">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->city->name }}</div>
-                            </div>
-                        </div>
-                        <div class="row mb-8">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">Lokasi</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-9 fv-row">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d429419.6236116239!2d100.38947527567935!3d-0.5986212427745311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1718706381748!5m2!1sid!2sid" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                        <!--end::Row-->
-                        <!--begin::Row-->
-                        <div class="row mb-8">
-                            <!--begin::Col-->
-                            <div class="col-xl-3">
-                                <div class="fs-6 fw-semibold mt-2 mb-3">social Media</div>
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-xl-9 fv-row">
-                                <div class="">
-                                    <a href="{{ $shop->facebook }}" class="btn btn-icon btn-light-facebook me-5 "><i class="fab fa-facebook-f fs-4"></i></a>
-                                    <a href="{{ $shop->telegram }}" class="btn btn-icon btn-light-twitter me-5 "><i class="fab fa-telegram fs-4"></i></a>
-                                    <a href="{{ $shop->twiter }}" class="btn btn-icon btn-light-twitter me-5 "><i class="fab fa-twitter fs-4"></i></a>
-                                </div>
-                                <div class=" mt-4">
-                                    <a href="{{ $shop->instagram }}" class="btn btn-icon btn-light-instagram me-5 "><i class="fab fa-instagram fs-4"></i></a>
-                                    <a href="{{ $shop->youtube }}" class="btn btn-icon btn-light-youtube me-5 "><i class="fab fa-youtube fs-4"></i></a>
-                                    <a href="{{ $shop->linkedin }}" class="btn btn-icon btn-light-linkedin me-5 "><i class="fab fa-linkedin fs-4"></i></a>
-                                </div>
-                            </div>
-                            <!--begin::Col-->
-                        </div>
-                        <!--end::Row-->
-                        
+                        <!--end::Col-->
                     </div>
+                    <!--end::Row-->
+                    <!--begin::Row-->
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Nama Toko</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->name }}</div>
+
+                        </div>
+                    </div>
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Deskripsi Toko</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->description }}</div>
+
+                        </div>
+                    </div>
+                    <!--end::Row-->
+                    <!--begin::Row-->
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Informasi</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->email }}</div>
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->phone }}</div>
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->address }}</div>
+                        </div>
+                    </div>
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">kabupaten/Kota</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->city->name }}</div>
+                        </div>
+                    </div>
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Lokasi</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div id="map" style=" height: 400px;"></div>
+                            <input id="latitude" type="hidden" value="{{ $shop->latitude }}">
+                            <input id="longitude" type="hidden" value="{{ $shop->longitude }}">
+                            <input id="name" type="hidden" value="{{ $shop->name }}">  
+                        </div>
+                    </div>
+                    <!--end::Row-->
+                    <!--begin::Row-->
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">social Media</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div class="">
+                                <a href="{{ $shop->facebook }}" class="btn btn-icon btn-light-facebook me-5 "><i
+                                        class="fab fa-facebook-f fs-4"></i></a>
+                                <a href="{{ $shop->telegram }}" class="btn btn-icon btn-light-twitter me-5 "><i
+                                        class="fab fa-telegram fs-4"></i></a>
+                                <a href="{{ $shop->twiter }}" class="btn btn-icon btn-light-twitter me-5 "><i
+                                        class="fab fa-twitter fs-4"></i></a>
+                            </div>
+                            <div class=" mt-4">
+                                <a href="{{ $shop->instagram }}" class="btn btn-icon btn-light-instagram me-5 "><i
+                                        class="fab fa-instagram fs-4"></i></a>
+                                <a href="{{ $shop->youtube }}" class="btn btn-icon btn-light-youtube me-5 "><i
+                                        class="fab fa-youtube fs-4"></i></a>
+                                <a href="{{ $shop->linkedin }}" class="btn btn-icon btn-light-linkedin me-5 "><i
+                                        class="fab fa-linkedin fs-4"></i></a>
+                            </div>
+                        </div>
+                        <!--begin::Col-->
+                    </div>
+                    <!--end::Row-->
+
+                </div>
             </div>
         </div>
     </div>
@@ -297,5 +313,26 @@
         KTUtil.onDOMContentLoaded(function() {
             KTProjectOverview.init();
         });
+    </script>
+
+    <script>
+        var longitude = document.getElementById('longitude').value;
+        var latitude = document.getElementById('latitude').value;
+        var name = document.getElementById('name').value;
+
+        // Inisialisasi peta
+        var map = L.map('map').setView([latitude, longitude], 13); // Contoh: Koordinat Jakarta, Indonesia
+
+        // Tambahkan tile layer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; 2024 Smart UMKM Sumatera barat - map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+
+
+        // Tambahkan marker
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup(name)
+            .openPopup();
     </script>
 @endsection
