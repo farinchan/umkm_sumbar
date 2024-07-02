@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="menu-item">
-            <a class="menu-link active" href="{{ route("shop.detail") }}">
+            <a class="menu-link @if (request()->is('back/shop/detail')) active @endif" href="{{ route("shop.detail") }}">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-shop fs-2">
                         <span class="path1"></span>
@@ -50,11 +50,7 @@
             </a>
         </div>
         <div data-kt-menu-trigger="click"
-            class="menu-item menu-accordion @if (
-                (request()->is('back/admin/product/*') &&
-                    !request()->is('back/admin/product/category/*') &&
-                    !request()->is('back/admin/product/category')) ||
-                    request()->is('back/admin/product')) hover show @endif">
+            class="menu-item menu-accordion @if (request()->is('back/shop/detail/product') || request()->is('back/shop/product/*')) hover show @endif">
             <span class="menu-link">
                 <span class="menu-icon">
 
@@ -72,7 +68,7 @@
             </span>
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
-                    <a class="menu-link @if (request()->is('back/admin/product/create')) active @endif"
+                    <a class="menu-link @if (request()->is('back/shop/product/create')) active @endif"
                         href="{{ route('shop.product.create') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -81,7 +77,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link @if (request()->is('back/admin/product')) active @endif"
+                    <a class="menu-link @if (request()->is('back/shop/detail/product')) active @endif"
                         href="{{ route('shop.detail-product') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
@@ -91,7 +87,7 @@
                 </div>
 
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -99,7 +95,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -109,7 +105,7 @@
             </div>
         </div>
         <div class="menu-item">
-            <a class="menu-link" href="{{ route("shop.detail-follower")  }}">
+            <a class="menu-link @if (request()->is('back/shop/detail/follower')) active @endif" href="{{ route("shop.detail-follower")  }}">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-user-tick fs-2">
                         <span class="path1"></span>

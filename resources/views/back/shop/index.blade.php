@@ -78,7 +78,7 @@
                                             <!--begin::Thumbnail-->
                                             <a href="{{ route("admin.toko.detail", $item->id) }}" class="symbol symbol-50px">
                                                 <span class="symbol-label"
-                                                    style="background-image:url(assets/media//stock/ecommerce/1.png);"></span>
+                                                    style="background-image:url({{ Storage::url('images/shop/' . $item->logo) }});"></span>
                                             </a>
                                             <!--end::Thumbnail-->
                                             <div class="ms-5">

@@ -9,7 +9,7 @@
                     <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
                         <div
                             class="d-flex flex-center flex-shrink-0 bg-light rounded w-100px h-100px w-lg-150px h-lg-150px me-7 mb-4">
-                            <img class="mw-50px mw-lg-75px" src="assets/media/svg/brand-logos/volicity-9.svg"
+                            <img class="mw-150px mw-lg-175px" src="{{ Storage::url('images/shop/' . $shop->logo) }}"
                                 alt="image" />
                         </div>
                         <div class="flex-grow-1">
@@ -29,12 +29,10 @@
                                     </div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="@if (request()->segment(3) == 'toko')
-                                        {{ route('admin.toko.edit', $shop->id) }}
+                                    <a href="@if (request()->segment(3) == 'toko') {{ route('admin.toko.edit', $shop->id) }}
                                          @else
-                                        {{ route('shop.edit') }}
-                                        
-                                    @endif" class="btn btn-sm btn-primary me-3">Edit Toko</a>
+                                        {{ route('shop.edit') }} @endif"
+                                        class="btn btn-sm btn-primary me-3">Edit Toko</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -69,31 +67,27 @@
                     <div class="separator"></div>
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6" href="
-                            @if (request()->segment(2) == 'admin')
-                                {{ route('admin.toko.detail', $shop->id) }}
+                            <a class="nav-link text-active-primary py-5 me-6"
+                                href="
+                            @if (request()->segment(2) == 'admin') {{ route('admin.toko.detail', $shop->id) }}
                             @else
-                                {{ route('shop.detail') }}
-                            @endif
+                                {{ route('shop.detail') }} @endif
                             ">Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 active" href="
-                            @if (request()->segment(2) == 'admin')
-                                {{ route('admin.toko.detail-product', $shop->id) }}
+                            <a class="nav-link text-active-primary py-5 me-6 active"
+                                href="
+                            @if (request()->segment(2) == 'admin') {{ route('admin.toko.detail-product', $shop->id) }}
                             @else
-                                {{ route('shop.detail-product') }}
-                            @endif
+                                {{ route('shop.detail-product') }} @endif
                             ">Produk</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary py-5 me-6"
                                 href="
-                            @if (request()->segment(2) == 'admin')
-                                {{ route('admin.toko.detail-follower', $shop->id) }}
+                            @if (request()->segment(2) == 'admin') {{ route('admin.toko.detail-follower', $shop->id) }}
                             @else
-                                {{ route('shop.detail-follower') }}
-                            @endif
+                                {{ route('shop.detail-follower') }} @endif
                                 ">Pengikut</a>
                         </li>
                     </ul>
@@ -112,6 +106,18 @@
                 <div class="d-flex flex-wrap my-1">
                     <!--begin::Actions-->
                     <div class="d-flex my-0">
+                        <div class="card-title my-1">
+
+                            <a href="
+                            @if (request()->segment(2) == 'admin') {{ route('admin.toko.product.create', $shop->id) }} 
+                            @else
+                                {{ route('shop.product.create') }} @endif
+                                 "
+                                class="btn btn-primary d-flex align-items-center me-3"><i
+                                    class="ki-duotone ki-plus fs-2"></i>
+                                Tambah
+                            </a>
+                        </div>
                         <form method="GET" class="card-title">
                             <input type="hidden" name="page" value="{{ request('page', 1) }}">
                             <div class="input-group d-flex align-items-center position-relative my-1">
@@ -129,6 +135,7 @@
                             </div>
                             <!--end::Search-->
                         </form>
+
                     </div>
                     <!--end::Actions-->
                 </div>
@@ -147,7 +154,7 @@
                             <div class="col-12">
                                 <div class="d-flex flex-center flex-column flex-column-fluid">
                                     <div class="text-center">
-                                        <h1 class="fw-bolder fs-2qx text-dark mb-5">Produk tidak ditemukan</h1>
+                                        <h1 class="fw-bolder fs-2x text-dark mb-5">Produk tidak ditemukan </h1>
                                         <img src="{{ asset('assets/media/illustrations/empty.svg') }}"
                                             class="mw-100 mh-300px" alt="" />
                                     </div>
@@ -162,7 +169,8 @@
                                         <div class="card-body d-flex flex-center flex-column pt-12 p-9">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-65px symbol-circle mb-5">
-                                                <img src="assets/media//avatars/300-2.jpg" alt="image" />
+                                                <img src="{{ Storage::url('images/product/' . $item->productImage[0]->image) }}"
+                                                    alt="image" />
                                                 <div
                                                     class="bg-success position-absolute border border-4 border-body h-15px w-15px rounded-circle translate-middle start-100 top-100 ms-n3 mt-n3">
                                                 </div>
