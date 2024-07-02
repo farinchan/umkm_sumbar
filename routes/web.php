@@ -12,7 +12,7 @@ use App\Http\Controllers\Web\Back\Admin\ShopController;
 use App\Http\Controllers\Web\Back\Admin\UserController;
 use App\Http\Controllers\Web\Back\shop\ShopController as backShopController;
 use App\Http\Controllers\Web\Back\shop\ProductController as backProductController;
-use App\Http\Controllers\web\Front\HomeController;
+use App\Http\Controllers\Web\Front\HomeController;
 use App\Http\Controllers\Web\Front\ProductController as frontProductController;
 use App\Http\Controllers\Web\Front\NewsController as frontNewsController;
 use App\Http\Controllers\Web\Front\ShopController as frontShopController;
