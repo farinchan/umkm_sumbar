@@ -87,7 +87,7 @@
                                                     class="text-gray-800 text-hover-primary fs-5 fw-bold"
                                                     data-kt-ecommerce-product-filter="product_name">{{ $item->name }}</a>
                                                 <div class="text-muted fs-7 fw-bold">
-                                                    {!! $item->description !!}
+                                                    {{ strip_tags(Str::limit($item->description, 70, '...')); }}
                                                     {{-- {{! $item->description }} --}}
                                                 </div>
 
@@ -140,7 +140,7 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Edit</a>
+                                                <a href="{{ route("admin.toko.edit", $item->id) }}" class="menu-link px-3">Edit</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->

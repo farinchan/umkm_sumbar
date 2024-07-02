@@ -73,7 +73,7 @@
             <div class="menu-sub menu-sub-accordion menu-active-bg">
                 <div class="menu-item">
                     <a class="menu-link @if (request()->is('back/admin/product/create')) active @endif"
-                        href="{{ route('admin.product.create') }}">
+                        href="{{ route('shop.product.create') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="menu-item">
                     <a class="menu-link @if (request()->is('back/admin/product')) active @endif"
-                        href="{{ route('admin.product.index') }}">
+                        href="{{ route('shop.detail-product') }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>

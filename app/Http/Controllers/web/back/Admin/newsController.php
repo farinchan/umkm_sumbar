@@ -8,7 +8,7 @@ use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class newsController extends Controller
+class NewsController extends Controller
 {
     public function category()
     {

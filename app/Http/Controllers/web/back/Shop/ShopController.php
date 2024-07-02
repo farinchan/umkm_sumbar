@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
@@ -25,7 +24,7 @@ class ShopController extends Controller
             'title' => 'Buat Toko Baru',
             'city' => City::all(),
         ];
-        return view('back.shop.create',$data);
+        return view('back.shop.create', $data);
     }
 
     public function store(Request $request)
@@ -57,21 +56,20 @@ class ShopController extends Controller
             return redirect()->route('shop.create')->with('error', 'Gagal menambahkan toko baru')->withInput()->withErrors($validator);
         }
 
-        $logo = $request->file('logo');
-        $filename = now(). $logo->getClientOriginalName();
-        $path = 'images/shop/' . $filename;
 
-        Storage::disk('public')->put($path, file_get_contents($logo));
+        $image = $request->file('logo');
+        $fileName = time() . '_' . $image->getClientOriginalName();
+        $filePath = $image->storeAs('images/shop/', $fileName, 'public');
 
         $shop = new shop();
         $shop->name = $request->input('name');
-        $shop->slug = Str::slug($request->input('name'));
+        $shop->slug = Str::slug($request->input('name')). '-' . rand(1, 1000);
         $shop->email = $request->input('email');
         $shop->phone = $request->input('phone');
         $shop->address = $request->input('address');
         $shop->latitude = $request->input('latitude');
         $shop->longitude = $request->input('longitude');
-        $shop->logo = $filename;
+        $shop->logo = $fileName;
         $shop->description = $request->input('description');
         $shop->facebook = $request->input('facebook');
         $shop->instagram = $request->input('instagram');
@@ -106,7 +104,7 @@ class ShopController extends Controller
         return view('back.shop.edit', $data);
     }
 
-    public function update(Request $request )
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -134,7 +132,7 @@ class ShopController extends Controller
 
         $shop = shop::where('user_id', auth()->user()->id)->first();
         $shop->name = $request->input('name');
-        $shop->slug = Str::slug($request->input('name'));
+        $shop->slug = Str::slug($request->input('name')). '-' . $shop->id;
         $shop->email = $request->input('email');
         $shop->phone = $request->input('phone');
         $shop->address = $request->input('address');
@@ -152,28 +150,29 @@ class ShopController extends Controller
         $shop->city_id = $request->input('city_id');
         $shop->user_id = Auth::user()->id;
         if ($request->hasFile('logo')) {
-            $logo = $request->file('logo');
-            $filename = now(). $logo->getClientOriginalName();
-            $path = 'logo-toko/' . $filename;
 
-            Storage::disk('public')->put($path, file_get_contents($logo));
-            $shop->logo = $filename;
+            $image = $request->file('logo');
+        $fileName = time() . '_' . $image->getClientOriginalName();
+        $filePath = $image->storeAs('images/shop/', $fileName, 'public');
+            $shop->logo = $fileName;
         }
         $shop->save();
-        return redirect()->route('shop.detail')->with('success', 'Berhasil mengubah data toko');
-
+        return redirect()->route('shop.detail')->with('success', 'Berhasil mengubah data toko anda');
     }
 
     public function destroy()
     {
         $shop = shop::where('user_id', auth()->user()->id)->first();
         $shop->delete();
-        return redirect()->route('admin.toko.index')->with('success', 'Berhasil menghapus data toko');
+        return redirect()->route('home')->with('success', 'Berhasil menghapus toko anda');
     }
 
     public function detail()
     {
         $shop = shop::with(['user', 'city'])->where('user_id', auth()->user()->id)->first();
+        if (!$shop) {
+            return redirect()->route('shop.create')->with('error', 'Anda belum memiliki toko');
+        }
         $data = [
             'menu_title' => 'Manajemen Toko',
             'submenu_title' => 'Toko',
@@ -188,19 +187,22 @@ class ShopController extends Controller
     {
         $search = $request->input('q');
         $shop = shop::with(['user', 'city'])->where('user_id', auth()->user()->id)->first();
+        if (!$shop) {
+            return redirect()->route('shop.create')->with('error', 'Anda belum memiliki toko');
+        }
         $data = [
             'menu_title' => 'Manajemen Toko',
             'submenu_title' => 'Toko',
             'title' => 'Detail Produk Toko',
             'shop' => $shop,
             'product' => $shop->product()
-            ->where(function ($query) use ($search) {
-                $query->where('products.name', 'LIKE', '%' . $search . '%');
-            })
-            ->leftJoin('product_categories', 'products.product_categories_id', '=', 'product_categories.id')
-            ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
-            ->select('products.*', 'product_categories.name as category_name', 'parent.name as category_parent_name',)
-            ->paginate(10),
+                ->where(function ($query) use ($search) {
+                    $query->where('products.name', 'LIKE', '%' . $search . '%');
+                })
+                ->leftJoin('product_categories', 'products.product_categories_id', '=', 'product_categories.id')
+                ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
+                ->select('products.*', 'product_categories.name as category_name', 'parent.name as category_parent_name',)
+                ->paginate(10),
         ];
         // return response()->json($data);
         return view('back.shop.detail_product', $data);
@@ -209,6 +211,9 @@ class ShopController extends Controller
     public function detailFollower()
     {
         $shop = shop::with(['ShopFollows.user'])->where('user_id', auth()->user()->id)->first();
+        if (!$shop) {
+            return redirect()->route('shop.create')->with('error', 'Anda belum memiliki toko');
+        }
         $data = [
             'menu_title' => 'Manajemen Toko',
             'submenu_title' => 'Toko',

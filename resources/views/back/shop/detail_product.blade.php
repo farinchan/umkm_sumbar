@@ -25,10 +25,16 @@
                                         @endif
                                     </div>
                                     <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-500">
-                                        {{ $shop->description }}</div>
+                                        {{ strip_tags(Str::limit($shop->description, 300, '...')) }}
+                                    </div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="#" class="btn btn-sm btn-primary me-3">Edit Toko</a>
+                                    <a href="@if (request()->segment(3) == 'toko')
+                                        {{ route('admin.toko.edit', $shop->id) }}
+                                         @else
+                                        {{ route('shop.edit') }}
+                                        
+                                    @endif" class="btn btn-sm btn-primary me-3">Edit Toko</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -63,16 +69,32 @@
                     <div class="separator"></div>
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.toko.detail', $shop->id) }}">Overview</a>
+                            <a class="nav-link text-active-primary py-5 me-6" href="
+                            @if (request()->segment(2) == 'admin')
+                                {{ route('admin.toko.detail', $shop->id) }}
+                            @else
+                                {{ route('shop.detail') }}
+                            @endif
+                            ">Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 active"
-                                href="{{ route('admin.toko.detail-product', $shop->id) }}">Produk</a>
+                            <a class="nav-link text-active-primary py-5 me-6 active" href="
+                            @if (request()->segment(2) == 'admin')
+                                {{ route('admin.toko.detail-product', $shop->id) }}
+                            @else
+                                {{ route('shop.detail-product') }}
+                            @endif
+                            ">Produk</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.toko.detail-follower', $shop->id) }}">Pengikut</a>
+                                href="
+                            @if (request()->segment(2) == 'admin')
+                                {{ route('admin.toko.detail-follower', $shop->id) }}
+                            @else
+                                {{ route('shop.detail-follower') }}
+                            @endif
+                                ">Pengikut</a>
                         </li>
                     </ul>
                 </div>

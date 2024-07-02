@@ -33,39 +33,13 @@
                 <!--end::Menu wrapper-->
             </div>
             <!--end::Quick links-->
-            <!--begin::Activities-->
-            <div class="d-flex align-items-center mb-3">
-                <!--begin::Drawer toggle-->
-                <div class="btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light"
-                    data-kt-menu-trigger="click" data-kt-menu-overflow="true" data-kt-menu-placement="top-start"
-                    data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Activity Logs"
-                    id="kt_activities_toggle">
-                    <i class="ki-duotone ki-chart-simple fs-2 fs-lg-1"><span class="path1"></span><span
-                            class="path2"></span><span class="path3"></span><span class="path4"></span></i>
-                </div>
-                <!--end::drawer toggle-->
-            </div>
-            <!--end::Activities-->
-            <!--begin::Notifications-->
-            <div class="d-flex align-items-center mb-2">
-                <!--begin::Menu wrapper-->
-                <div class="btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light"
-                    data-kt-menu-trigger="click" data-kt-menu-overflow="true" data-kt-menu-placement="top-start"
-                    data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" title="Notifications">
-                    <i class="ki-duotone ki-element-11 fs-2 fs-lg-1"><span class="path1"></span><span
-                            class="path2"></span><span class="path3"></span><span class="path4"></span></i>
-                </div>
-                @include('back/partials/menus/_notifications-menu')
-                <!--end::Menu wrapper-->
-            </div>
-            <!--end::Notifications-->
             <!--begin::User-->
             <div class="d-flex align-items-center mb-10" id="kt_header_user_menu_toggle">
                 <!--begin::Menu wrapper-->
                 <div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click" data-kt-menu-overflow="true"
                     data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right"
                     data-bs-dismiss="click" title="User profile">
-                    <img src="assets/media/avatars/300-1.jpg" alt="image" />
+                    <img src="@if (Auth::user()->photo) {{ Storage::url(Auth::user()->photo) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ Auth::user()->name }} @endif" alt="image" />
                 </div>
                 @include('back/partials/menus/_user-account-menu')
                 <!--end::Menu wrapper-->

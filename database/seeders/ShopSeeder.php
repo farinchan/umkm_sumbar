@@ -30,7 +30,7 @@ class ShopSeeder extends Seeder
             'telegram' => 'https://t.me/toko-a',
             'linkedin' => 'https://linkedin.com/toko-a',
             'meta_description' => 'Toko A adalah toko yang menjual berbagai macam produk',
-            'meta_keyword' => 'toko, produk, jual, beli',
+            'meta_keyword' => '[{"value":"murah"},{"value":"meriah"},{"value":"muntah"}]',
             'city_id' => 1,
             'user_id' => 2,
         ]);
@@ -52,7 +52,7 @@ class ShopSeeder extends Seeder
             'telegram' => 'https://t.me/toko-b',
             'linkedin' => 'https://linkedin.com/toko-b',
             'meta_description' => 'Toko B adalah toko yang menjual berbagai macam produk',
-            'meta_keyword' => 'toko, produk, jual, beli',
+            'meta_keyword' => '[{"value":"murah"},{"value":"meriah"},{"value":"muntah"}]',
             'city_id' => 2,
             'user_id' => 3,
         ]);

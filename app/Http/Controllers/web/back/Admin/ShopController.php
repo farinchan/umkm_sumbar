@@ -38,7 +38,7 @@ class ShopController extends Controller
             'city' => City::all(),
             'user' => User::Role('user')->get(),
         ];
-        return view('back.shop.create',$data);
+        return view('back.shop.create', $data);
     }
 
     public function store(Request $request)
@@ -68,11 +68,9 @@ class ShopController extends Controller
             return redirect()->route('admin.toko.create')->with('error', 'Gagal menambahkan toko baru')->withInput()->withErrors($validator);
         }
 
-        $logo = $request->file('logo');
-        $filename = now(). $logo->getClientOriginalName();
-        $path = 'logo-toko/' . $filename;
-
-        Storage::disk('public')->put($path, file_get_contents($logo));
+        $image = $request->file('logo');
+        $fileName = time() . '_' . $image->getClientOriginalName();
+        $filePath = $image->storeAs('images/news/', $fileName, 'public');
 
         $shop = new shop();
         $shop->name = $request->input('name');
@@ -82,7 +80,7 @@ class ShopController extends Controller
         $shop->address = $request->input('address');
         $shop->latitude = $request->input('latitude');
         $shop->longitude = $request->input('longitude');
-        $shop->logo = $filename;
+        $shop->logo = $fileName;
         $shop->description = $request->input('description');
         $shop->facebook = $request->input('facebook');
         $shop->instagram = $request->input('instagram');
@@ -96,22 +94,6 @@ class ShopController extends Controller
         $shop->user_id = $request->input('user_id');
         $shop->save();
         return redirect()->route('admin.toko.create')->with('success', 'Berhasil menambahkan toko baru');
-    }
-
-    public function show($id)
-    {
-        $shop = shop::leftJoin('users', 'shops.user_id', '=', 'users.id')
-            ->leftJoin('cities', 'shops.city_id', '=', 'cities.id')
-            ->select('shops.*', 'users.name as user_name', 'cities.name as city_name')
-            ->where('shops.id', $id)
-            ->first();
-        $data = [
-            'menu_title' => 'Manajemen Toko',
-            'submenu_title' => 'Toko',
-            'title' => 'Detail Toko',
-            'shop' => $shop,
-        ];
-        return view('back.shop.show', $data);
     }
 
     public function edit($id)
@@ -134,6 +116,7 @@ class ShopController extends Controller
 
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -178,16 +161,14 @@ class ShopController extends Controller
         $shop->city_id = $request->input('city_id');
         $shop->user_id = $request->input('user_id');
         if ($request->hasFile('logo')) {
-            $logo = $request->file('logo');
-            $filename = now(). $logo->getClientOriginalName();
-            $path = 'logo-toko/' . $filename;
+            $image = $request->file('image');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $filePath = $image->storeAs('images/news/', $fileName, 'public');
 
-            Storage::disk('public')->put($path, file_get_contents($logo));
-            $shop->logo = $filename;
+            $shop->logo = $fileName;
         }
         $shop->save();
         return redirect()->route('admin.toko.edit', $id)->with('success', 'Berhasil mengubah data toko');
-
     }
 
     public function destroy($id)
@@ -210,7 +191,7 @@ class ShopController extends Controller
         return view('back.shop.detail', $data);
     }
 
-    public function detailProduct(Request $request ,$id)
+    public function detailProduct(Request $request, $id)
     {
         $search = $request->input('q');
         $shop = shop::find($id);
@@ -220,13 +201,13 @@ class ShopController extends Controller
             'title' => 'Detail Produk Toko',
             'shop' => $shop,
             'product' => $shop->product()
-            ->where(function ($query) use ($search) {
-                $query->where('products.name', 'LIKE', '%' . $search . '%');
-            })
-            ->leftJoin('product_categories', 'products.product_categories_id', '=', 'product_categories.id')
-            ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
-            ->select('products.*', 'product_categories.name as category_name', 'parent.name as category_parent_name',)
-            ->paginate(10),
+                ->where(function ($query) use ($search) {
+                    $query->where('products.name', 'LIKE', '%' . $search . '%');
+                })
+                ->leftJoin('product_categories', 'products.product_categories_id', '=', 'product_categories.id')
+                ->leftJoin('product_categories as parent', 'product_categories.parent_id', '=', 'parent.id')
+                ->select('products.*', 'product_categories.name as category_name', 'parent.name as category_parent_name',)
+                ->paginate(10),
         ];
         // return response()->json($data);
         return view('back.shop.detail_product', $data);

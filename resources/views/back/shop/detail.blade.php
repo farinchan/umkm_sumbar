@@ -30,10 +30,15 @@
                                         @endif
                                     </div>
                                     <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-500">
-                                        {{ Str::limit($shop->description, 300, '...') }}</div>
+                                        {{ strip_tags(Str::limit($shop->description, 300, '...')) }}</div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="#" class="btn btn-sm btn-primary me-3">Edit Toko</a>
+                                    <a href="@if (request()->segment(3) == 'toko')
+                                        {{ route('admin.toko.edit', $shop->id) }}
+                                         @else
+                                        {{ route('shop.edit') }}
+                                        
+                                    @endif" class="btn btn-sm btn-primary me-3">Edit Toko</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -68,16 +73,32 @@
                     <div class="separator"></div>
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 active"
-                                href="{{ route('admin.toko.detail', $shop->id) }}">Overview</a>
+                            <a class="nav-link text-active-primary py-5 me-6 active" href="
+                            @if (request()->segment(2) == 'admin')
+                                {{ route('admin.toko.detail', $shop->id) }}
+                            @else
+                                {{ route('shop.detail') }}
+                            @endif
+                            ">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary py-5 me-6" href="
+                            @if (request()->segment(2) == 'admin')
+                                {{ route('admin.toko.detail-product', $shop->id) }}
+                            @else
+                                {{ route('shop.detail-product') }}
+                            @endif
+                            ">Produk</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.toko.detail-product', $shop->id) }}">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.toko.detail-follower', $shop->id) }}">Pengikut</a>
+                                href="
+                            @if (request()->segment(2) == 'admin')
+                                {{ route('admin.toko.detail-follower', $shop->id) }}
+                            @else
+                                {{ route('shop.detail-follower') }}
+                            @endif
+                                ">Pengikut</a>
                         </li>
                     </ul>
                 </div>
@@ -132,7 +153,7 @@
                         <!--end::Col-->
                         <!--begin::Col-->
                         <div class="col-xl-9 fv-row">
-                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $shop->description }}</div>
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{!! $shop->description !!}</div>
 
                         </div>
                     </div>
@@ -173,7 +194,7 @@
                             <div id="map" style=" height: 400px;"></div>
                             <input id="latitude" type="hidden" value="{{ $shop->latitude }}">
                             <input id="longitude" type="hidden" value="{{ $shop->longitude }}">
-                            <input id="name" type="hidden" value="{{ $shop->name }}">  
+                            <input id="name" type="hidden" value="{{ $shop->name }}">
                         </div>
                     </div>
                     <!--end::Row-->
@@ -201,6 +222,27 @@
                                         class="fab fa-youtube fs-4"></i></a>
                                 <a href="{{ $shop->linkedin }}" class="btn btn-icon btn-light-linkedin me-5 "><i
                                         class="fab fa-linkedin fs-4"></i></a>
+                            </div>
+                        </div>
+                        <!--begin::Col-->
+                    </div>
+                    <!--end::Row-->
+                    <!--begin::Row-->
+                    <div class="row mb-8">
+                        <!--begin::Col-->
+                        <div class="col-xl-3">
+                            <div class="fs-6 fw-semibold mt-2 mb-3">Link Toko</div>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-xl-9 fv-row">
+                            <div class="d-flex">
+                                <input id="kt_share_earn_link_input" type="text"
+                                    class="form-control form-control-solid me-3 flex-grow-1" name="search"
+                                    value="{{ url('/') . '/' . 'shop/' . $shop->slug }}" readonly />
+
+                                <button id="kt_share_earn_link_copy_button" class="btn btn-light fw-bold flex-shrink-0"
+                                    data-clipboard-target="#kt_share_earn_link_input">Copy Link</button>
                             </div>
                         </div>
                         <!--begin::Col-->
@@ -312,6 +354,36 @@
         // On document ready
         KTUtil.onDOMContentLoaded(function() {
             KTProjectOverview.init();
+        });
+    </script>
+
+    <script>
+        var button = document.querySelector('#kt_share_earn_link_copy_button');
+        var input = document.querySelector('#kt_share_earn_link_input');
+        var clipboard = new ClipboardJS(button);
+
+        if (!clipboard) {
+            return;
+        }
+
+        //  Copy text to clipboard. For more info check the plugin's documentation: https://clipboardjs.com/
+        clipboard.on('success', function(e) {
+            var buttonCaption = button.innerHTML;
+            //Add bgcolor
+            input.classList.add('bg-success');
+            input.classList.add('text-inverse-success');
+
+            button.innerHTML = 'Copied!';
+
+            setTimeout(function() {
+                button.innerHTML = buttonCaption;
+
+                // Remove bgcolor
+                input.classList.remove('bg-success');
+                input.classList.remove('text-inverse-success');
+            }, 3000); // 3seconds
+
+            e.clearSelection();
         });
     </script>
 

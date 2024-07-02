@@ -3,8 +3,8 @@
     <div class=" container-xxl " id="kt_content_container">
         <form id="kt_ecommerce_add_category_form"
             class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
-            action="{{ request()->is('/back/admin/toko/create') ? route('admin.toko.store') : route('shop.store') }}"
-            enctype="multipart/form-data">
+            action="{{ request()->is("back/shop/edit") ? route('shop.update') : route("admin.toko.update", $shop->id) }}" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 <div class="card card-flush py-4">
@@ -15,8 +15,8 @@
                     </div>
                     <div class="card-body text-center pt-0">
                         <div class="image-input image-input-empty" data-kt-image-input="true">
-                            <div class="image-input-wrapper w-200px h-150px"
-                                style="background-image: url('{{ asset('back/media/svg/files/blank-image.svg') }}')">
+                            <div class="image-input-wrapper w-190px h-140px"
+                                style="background-image: url('{{ Storage::url('images/shop/' . $shop->logo) }}')">
                             </div>
                             <label
                                 class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -24,7 +24,7 @@
                                 title="Change thumbnail">
                                 <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span
                                         class="path2"></span></i>
-                                <input type="file" name="logo" accept=".png, .jpg, .jpeg" required />
+                                <input type="file" name="logo" accept=".png, .jpg, .jpeg" />
                                 <input type="hidden" name="avatar_remove" />
                             </label>
                             <span
@@ -60,17 +60,20 @@
                     <div class="card-body pt-0">
 
                         <div class="mb-10 fv-row fv-plugins-icon-container">
-                            @if (request()->is('back/shop/create'))
-                                <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
-                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                            @if (request()->is('back/shop/edit'))
+
+                                <input type="text"  class="form-control" value="{{ auth()->user()->name }}" readonly>
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" >
                             @else
                                 <select class="form-select form-select-solid form-select-lg" name="user_id" id="select2"
                                     required>
                                     @foreach ($user as $ui)
-                                        <option value="{{ $ui->id }}">{{ $ui->name }}</option>
+                                        <option @if ($shop->user_id == $ui->id) selected @endif value="{{ $ui->id }}">{{ $ui->name }}</option>
+                                            
                                     @endforeach
                                 </select>
                             @endif
+
 
                             @error('user_id')
                                 <div class="invalid-feedback">
@@ -91,9 +94,8 @@
                     <div class="card-body pt-0">
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nama Toko</label>
-                            <input type="text" name="name"
-                                class="form-control mb-2 @error('name') is-invalid @enderror" placeholder="Toko Saya"
-                                value="{{ old('name') }}" required>
+                            <input type="text" name="name" class="form-control mb-2" placeholder="Toko Saya"
+                            value="{{ $shop->name }}" required>
                             <div class="text-muted fs-7">Kami Menyarankan Untuk Membuat nama toko sesuai dengan toko
                                 fisik.
                             </div>
@@ -105,9 +107,8 @@
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Email Toko</label>
-                            <input type="email" name="email"
-                                class="form-control mb-2 @error('email') is-invalid @enderror"
-                                placeholder="tokosaya@email.com" value="{{ old('email') }}" required>
+                            <input type="email" name="email" class="form-control mb-2" placeholder="tokosaya@email.com"
+                            value="{{ $shop->email }}" required>
                             @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -116,9 +117,8 @@
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nomor Telephone toko</label>
-                            <input type="number" name="phone" class="form-control mb-2 @error('phone') is-invalid @enderror"
-                             placeholder="08xxxxxxxxxxx"
-                                value="{{ old('phone') }}" required>
+                            <input type="number" name="phone" class="form-control mb-2" placeholder="08xxxxxxxxxxx"
+                            value="{{ $shop->phone }}" required>
                             <div class="text-muted fs-7">Kami Menyarankan Nomor telepon toko Diintegrasi dengan
                                 whatsapp.
                             </div>
@@ -130,11 +130,10 @@
                         </div>
                         <div>
                             <label class="form-label required">Deskripsi Toko</label>
-                            <div id="editor" class="min-h-150px mb-2">{{ old('description') }}
-                                <p></p>
+                            <div id="editor" class="min-h-150px mb-2">
+                                {!! $shop->description !!}
                             </div>
-                            <input class="@error('description') is-invalid @enderror" value="{{ old('description') }}"
-                             type="hidden" id="description_quill" name="description">
+                            <input type="hidden" id="description_quill" name="description">
                             @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -152,8 +151,7 @@
                     <div class="card-body pt-0">
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Alamat</label>
-                            <textarea name="address" class="form-control mb-2 @error('address') is-invalid @enderror"
-                             placeholder="Alamat Lengkap Toko" required>{{ old('address') }}</textarea>
+                            <textarea name="address" class="form-control mb-2" placeholder="Alamat Lengkap Toko" required>{{ $shop->address }}</textarea>
                             @error('address')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -162,11 +160,10 @@
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Kota/Kabupaten</label>
-                            <select class="form-select mb-2 select2-hidden-accessible @error('city_id') is-invalid @enderror"
-                             id="select2p2" name="city_id"
+                            <select class="form-select mb-2 select2-hidden-accessible" id="select2p2" name="city_id"
                                 required>
                                 @foreach ($city as $ci)
-                                    <option @if (old('city_id') == $ci->id) selected @endif value="{{ $ci->id }}">
+                                    <option @if ( $shop->city->id  == $ci->id) selected @endif value="{{ $ci->id }}">
                                         {{ $ci->name }}</option>
                                 @endforeach
                             </select>
@@ -181,9 +178,9 @@
                             <label class="form-label">Longitude & Latitude</label>
                             <div class="d-flex gap-3">
                                 <input type="number" name="longitude" class="form-control mb-2" placeholder="longitude"
-                                    value="{{ old('longitude') }}">
+                                value="{{ $shop->longitude }}">
                                 <input type="number" name="latitude" class="form-control mb-2" placeholder="latitude"
-                                    value="{{ old('latitude') }}">
+                                value="{{ $shop->latitude }}">
                             </div>
                             <div class="text-muted fs-7">Silahkan Lihat Google Map Jika ingin mengetahui longitude dan
                                 latitude toko anda</div>
@@ -210,8 +207,8 @@
                         <div class="d-flex flex-wrap gap-5">
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Link Facebook</label>
-                                <input type="text" name="facebook" class="form-control mb-2 @error('facebook') is-invalid @enderror"
-                                    placeholder="https://facebook.com/username" value="{{ old('facebook') }}">
+                                <input type="text" name="facebook" class="form-control mb-2"
+                                value="{{ $shop->facebook }}">
                                 @error('facebook')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -220,8 +217,8 @@
                             </div>
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Link Instagram</label>
-                                <input type="text" name="instagram" class="form-control mb-2 @error('instagram') is-invalid @enderror"
-                                    placeholder="https://instagram.com/username" value="{{ old('instagram') }}">
+                                <input type="text" name="instagram" class="form-control mb-2"
+                                value="{{ $shop->instagram }}">
                                 @error('instagram')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -234,8 +231,8 @@
                         <div class="d-flex flex-wrap gap-5">
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Link Twitter/X</label>
-                                <input type="text" name="twitter" class="form-control mb-2 @error('twitter') is-invalid @enderror"
-                                    placeholder="https://twitter.com/username" value="{{ old('twitter') }}">
+                                <input type="text" name="twitter" class="form-control mb-2"
+                                value="{{ $shop->twitter }}">
                                 @error('twitter')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -245,8 +242,8 @@
                             </div>
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Link Youtube</label>
-                                <input type="text" name="youtube" class="form-control mb-2 @error('youtube') is-invalid @enderror"
-                                    placeholder="https://youtube.com/channel/username" value="{{ old('youtube') }}">
+                                <input type="text" name="youtube" class="form-control mb-2"
+                                value="{{ $shop->youtube }}">
                                 @error('youtube')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -259,8 +256,8 @@
                         <div class="d-flex flex-wrap gap-5">
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Link Linkedin</label>
-                                <input type="text" name="linkedin" class="form-control mb-2 @error('linkedin') is-invalid @enderror"
-                                    placeholder="https://linkedin.com/in/username" value="{{ old('linkedin') }}">
+                                <input type="text" name="linkedin" class="form-control mb-2"
+                                value="{{ $shop->linkedin }}">
                                 @error('linkedin')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -270,8 +267,8 @@
                             </div>
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Telegram</label>
-                                <input type="text" name="telegram" class="form-control mb-2 @error('telegram') is-invalid @enderror"
-                                    placeholder="https://t.me/username" value="{{ old('telegram') }}">
+                                <input type="text" name="telegram" class="form-control mb-2"
+                                value="{{ $shop->telegram }}">
                                 @error('telegram')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -293,12 +290,9 @@
                         <div class="mb-10">
                             <label class="form-label">Meta Tag Description</label>
                             <div id="editor2" class="min-h-150px mb-2">
-                                -
-                                {{ old('meta_description') }}
+                                {!!  $shop->meta_description  !!}
                             </div>
-                            <input type="hidden" id="meta_description_quill" class="@error('meta_description') is-invalid @enderror"
-                             value="{{ old('meta_description') }}"
-                            name="meta_description">
+                            <input type="hidden" id="meta_description_quill" name="meta_description">
                             <div class="text-muted fs-7">Set a meta tag description to the shop for increased
                                 SEO
                                 ranking.</div>
@@ -328,7 +322,7 @@
 
                     <button type="submit" id="kt_ecommerce_add_category_submit" class="btn btn-primary">
                         <span class="indicator-label">
-                            Buat Toko Sekarang
+                            Edit Toko
                         </span>
                         <span class="indicator-progress">
                             Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
@@ -349,6 +343,7 @@
         });
 
         var quillEditor = document.getElementById('description_quill');
+        quillEditor.value = quill.root.innerHTML;
         quill.on('text-change', function() {
             quillEditor.value = quill.root.innerHTML;
         });
@@ -358,6 +353,7 @@
         });
 
         var quillEditor2 = document.getElementById('meta_description_quill');
+        quillEditor2.value = quill2.root.innerHTML;
         quill2.on('text-change', function() {
             quillEditor2.value = quill2.root.innerHTML;
         });
