@@ -85,9 +85,8 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
 
             Route::prefix('setting')->name('setting.')->group(function () {
                 Route::get('/banner', [SettingController::class, 'banner'])->name('banner');
-                Route::post('/banner/store', [SettingController::class, 'bannerStore'])->name('banner.store');
-                Route::delete('/banner/destroy', [SettingController::class, 'bannerDestroy'])->name('banner.destroy');
-
+                Route::put('/banner/{id}/update', [SettingController::class, 'bannerUpdate'])->name('banner-update');
+                
                 Route::get('/website', [SettingController::class, 'website'])->name('website');
             });
         });

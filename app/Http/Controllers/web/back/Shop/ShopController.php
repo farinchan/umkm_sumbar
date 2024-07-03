@@ -63,7 +63,7 @@ class ShopController extends Controller
 
         $shop = new shop();
         $shop->name = $request->input('name');
-        $shop->slug = Str::slug($request->input('name')). '-' . rand(1, 1000);
+        $shop->slug = Str::slug($request->input('name')) . '-' . rand(1, 1000);
         $shop->email = $request->input('email');
         $shop->phone = $request->input('phone');
         $shop->address = $request->input('address');
@@ -132,7 +132,7 @@ class ShopController extends Controller
 
         $shop = shop::where('user_id', auth()->user()->id)->first();
         $shop->name = $request->input('name');
-        $shop->slug = Str::slug($request->input('name')). '-' . $shop->id;
+        $shop->slug = Str::slug($request->input('name')) . '-' . $shop->id;
         $shop->email = $request->input('email');
         $shop->phone = $request->input('phone');
         $shop->address = $request->input('address');
@@ -152,8 +152,8 @@ class ShopController extends Controller
         if ($request->hasFile('logo')) {
 
             $image = $request->file('logo');
-        $fileName = time() . '_' . $image->getClientOriginalName();
-        $filePath = $image->storeAs('images/shop/', $fileName, 'public');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $filePath = $image->storeAs('images/shop/', $fileName, 'public');
             $shop->logo = $fileName;
         }
         $shop->save();

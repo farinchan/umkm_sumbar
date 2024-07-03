@@ -73,17 +73,19 @@ class SettingController extends Controller
 
     public function bannerUpdate (Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'url' => 'required|string',
+            'status' => 'required|in:1,0',
         ]);
 
         $banner = SettingBanner::find($id);
         $banner->title = $request->title;
         $banner->subtitle = $request->subtitle;
         $banner->url = $request->url;
+        $banner->status = $request->status;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

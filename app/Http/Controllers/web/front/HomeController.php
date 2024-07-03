@@ -7,6 +7,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\SettingBanner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,9 @@ class HomeController extends Controller
             'keywords' => 'Home page keywords',
             'latest_products' => $latest_products->take(10)->get(),
             'latest_news' => $latest_news->take(4)->get(),
+            'banner1' => SettingBanner::find(1),
+            'banner2' => SettingBanner::find(2),
+            'banner3' => SettingBanner::find(3),
         ];
         // return response()->json($data);
         return view('front.home.index', $data);
