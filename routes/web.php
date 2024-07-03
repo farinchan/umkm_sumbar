@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Auth\AuthController;
+use App\Http\Controllers\Web\Back\Account\AccountController;
 use App\Http\Controllers\Web\Back\Admin\CityController;
 use App\Http\Controllers\Web\Back\Admin\DashboardController;
 use App\Http\Controllers\Web\Back\Admin\FileManagerController;
@@ -166,6 +167,13 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::post('/{id}/image/store', [backProductController::class, 'detailImageStore'])->name('image.store');
             Route::delete('/{id}/image/destroy', [backProductController::class, 'detailImageDestroy'])->name('image.destroy');
         });
+    });
+
+    Route::prefix('account')->name('account.')->group(function () {
+        Route::get('/profile', [AccountController::class, 'profile'])->name('profile');
+        Route::put('/profile/update', [AccountController::class, 'profileUpdate'])->name('profile.update');
+        Route::put('/profile/password', [AccountController::class, 'changePassword'])->name('profile.changePassword');
+        Route::delete('/profile/delete', [AccountController::class, 'deleteAccount'])->name('profile.delete');
     });
 
 });

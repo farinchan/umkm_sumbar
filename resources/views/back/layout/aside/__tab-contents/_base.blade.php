@@ -9,8 +9,6 @@
             <div class="tab-pane fade active show" id="kt_aside_nav_tab_projects" role="tabpanel">
                 @include('back/layout/aside/__tab-contents/__projects')
             </div>
-            <!--end::Tab pane-->
-            <!--begin::Tab pane-->
             <div class="tab-pane fade " id="kt_aside_nav_tab_menu" role="tabpanel">
                 @include('back/layout/aside/__tab-contents/__menu_admin')
             </div>
@@ -21,12 +19,12 @@
                     @include('back/layout/aside/__tab-contents/__menu_shop')                    
                 @endif
             </div>
-            <!--end::Tab pane-->
-            <!--begin::Tab pane-->
-            <div class="tab-pane fade" id="kt_aside_nav_tab_subscription" role="tabpanel">
-                @include('back/layout/aside/__tab-contents/__subscription')
+            <div class="tab-pane fade" id="kt_aside_nav_tab_transaction" role="tabpanel">
+                @include('back/layout/aside/__tab-contents/__transaction')
             </div>
-            <!--end::Tab pane-->
+            <div class="tab-pane fade" id="kt_aside_nav_tab_account" role="tabpanel">
+                @include('back/layout/aside/__tab-contents/__account')
+            </div>
         </div>
         <!--end::Tab content-->
     </div>

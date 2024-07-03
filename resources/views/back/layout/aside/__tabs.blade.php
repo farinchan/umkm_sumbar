@@ -19,19 +19,18 @@
         <!--end::Nav item-->
         <!--begin::Nav menu admin-->
         @role('admin|superadmin')
-
-        <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
-            data-bs-dismiss="click" title="Menu">
-            <!--begin::Nav link-->
-            <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
-                data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_menu">
-                <i class="ki-duotone ki-shield-tick fs-2x">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                </i>
-            </a>
-            <!--end::Nav link-->
-        </li>
+            <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
+                data-bs-dismiss="click" title="Menu">
+                <!--begin::Nav link-->
+                <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
+                    data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_menu">
+                    <i class="ki-duotone ki-shield-tick fs-2x">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </a>
+                <!--end::Nav link-->
+            </li>
         @endrole
         <!--end::Nav menu admin-->
         <!--begin::Nav menu admin-->
@@ -53,12 +52,32 @@
         <!--end::Nav menu admin-->
         <!--begin::Nav item-->
         <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
-            data-bs-dismiss="click" title="Subscription">
+            data-bs-dismiss="click" title="Pesanan Saya">
             <!--begin::Nav link-->
             <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light "
-                data-bs-toggle="tab" href="#kt_aside_nav_tab_subscription">
-                <i class="ki-duotone ki-chart-simple fs-2x"><span class="path1"></span><span
-                        class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                data-bs-toggle="tab" href="#kt_aside_nav_tab_transaction">
+                <i class="ki-duotone ki-cheque fs-2x">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                    <span class="path4"></span>
+                    <span class="path5"></span>
+                    <span class="path6"></span>
+                    <span class="path7"></span>
+                </i>
+            </a>
+            <!--end::Nav link-->
+        </li>
+        <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
+            data-bs-dismiss="click" title="Akun Saya">
+            <!--begin::Nav link-->
+            <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light "
+                data-bs-toggle="tab" href="#kt_aside_nav_tab_account">
+                <i class="ki-duotone ki-user-square fs-2x">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                    <span class="path3"></span>
+                </i>
             </a>
             <!--end::Nav link-->
         </li>
