@@ -172,7 +172,8 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
     Route::prefix('account')->name('account.')->group(function () {
         Route::get('/profile', [AccountController::class, 'profile'])->name('profile');
         Route::put('/profile/update', [AccountController::class, 'profileUpdate'])->name('profile.update');
-        Route::put('/profile/password', [AccountController::class, 'changePassword'])->name('profile.changePassword');
+        Route::put('/profile/change-email', [AccountController::class, 'changeEmail'])->name('profile.changeEmail');
+        Route::put('/profile/change-password', [AccountController::class, 'changePassword'])->name('profile.changePassword');
         Route::delete('/profile/delete', [AccountController::class, 'deleteAccount'])->name('profile.delete');
     });
 

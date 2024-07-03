@@ -72,7 +72,7 @@
             data-bs-dismiss="click" title="Akun Saya">
             <!--begin::Nav link-->
             <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light "
-                data-bs-toggle="tab" href="#kt_aside_nav_tab_account">
+                data-bs-toggle="tab" href="#kt_aside_nav_tab_account" id="menu_account">
                 <i class="ki-duotone ki-user-square fs-2x">
                     <span class="path1"></span>
                     <span class="path2"></span>

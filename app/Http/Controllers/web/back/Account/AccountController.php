@@ -15,7 +15,7 @@ class AccountController extends Controller
         $data = [
             'menu_title' => 'Akun',
             'submenu_title' => 'Profil',
-            'title' => 'Profil',
+            'title' => 'Detail Profile',
             'user' => $user,
         ];
         return view('back.account.profile', $data);
@@ -25,16 +25,42 @@ class AccountController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
             'phone' => 'required',
+            'gender' => 'required',
         ]);
-
         $user = User::find(auth()->user()->id);
+
+        if ($request->hasFile('photo')) {
+            $request->validate([
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $image = $request->file('photo');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $filePath = $image->storeAs('images/user/', $fileName, 'public');
+            $user->photo = $fileName;
+        }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->save();
         return redirect()->back()->with('success', 'Profil berhasil diubah');
+    }
+
+    public function changeEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::find(auth()->user()->id);
+        if (password_verify($request->password, $user->password)) {
+            $user->email = $request->email;
+            $user->save();
+            return redirect()->back()->with('success', 'Email berhasil diubah');
+        } else {
+            return redirect()->back()->with('error', 'Password salah');
+        }
     }
 
     public function changePassword(Request $request)

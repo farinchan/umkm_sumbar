@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\web\back\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SettingBanner;
+use App\Models\SettingWebsite;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -12,7 +14,8 @@ class SettingController extends Controller
         $data = [
             'menu_title' => 'Pengaturan',
             'submenu_title' => 'Website',
-            'title' => 'Pengaturan Website'
+            'title' => 'Pengaturan Website',
+            'setting' => SettingWebsite::find(1) ?? ''
         ];
         return view('back.setting.website', $data);
     }
@@ -35,7 +38,7 @@ class SettingController extends Controller
             'meta_keyword' => 'required|string',
         ]);
 
-        $setting = Setting::find(1);
+        $setting = SettingWebsite::find(1);
         $setting->name = $request->name;
         $setting->tagline = $request->tagline;
         $setting->email = $request->email;
@@ -52,5 +55,44 @@ class SettingController extends Controller
         $setting->save();
 
         return redirect()->route('admin.setting.website')->with('success', 'Pengaturan Website berhasil diubah');
+    }
+
+    public function banner ()
+    {
+        $data = [
+            'menu_title' => 'Pengaturan',
+            'submenu_title' => 'Banner',
+            'title' => 'Pengaturan Banner',
+            'banner1' => SettingBanner::find(1) ?? '',
+            'banner2' => SettingBanner::find(2) ?? '',
+            'banner3' => SettingBanner::find(3) ?? '',
+
+        ];
+        return view('back.setting.banner', $data);
+    }
+
+    public function bannerUpdate (Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'subtitle' => 'nullable|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url' => 'required|string',
+        ]);
+
+        $banner = SettingBanner::find($id);
+        $banner->title = $request->title;
+        $banner->subtitle = $request->subtitle;
+        $banner->url = $request->url;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $filePath = $image->storeAs('images/banner/', $fileName, 'public');
+            $banner->image = $fileName;
+        }
+
+        $banner->save();
+        return redirect()->route('admin.setting.banner')->with('success', 'Pengaturan Banner berhasil diubah');
     }
 }

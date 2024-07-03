@@ -120,11 +120,14 @@ http://?page=index" />
     <!--end::Custom Javascript-->
     @yield('scripts')
     <script>
-        if (window.location.href.includes('admin')) {
+        if (window.location.href.includes('back/admin')) {
             document.getElementById('menu_admin').click();
         }
         if (window.location.href.includes('back/shop')) {
             document.getElementById('menu_shop').click();
+        }
+        if (window.location.href.includes('back/account')) {
+            document.getElementById('menu_account').click();
         }
     </script>
     <!--end::Javascript-->

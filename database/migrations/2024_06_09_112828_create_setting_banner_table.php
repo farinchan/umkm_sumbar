@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('setting_banner', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('subtitle')->nullable();
             $table->string('image');
             $table->string('url');
             $table->boolean('status')->default(1);
