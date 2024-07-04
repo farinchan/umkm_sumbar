@@ -28,15 +28,14 @@ return new class extends Migration
             $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
             $table->string('linkedin')->nullable();
-            $table->text('about');
-            $table->text('privacy_policy');
-            $table->text('terms_and_conditions');
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->string('meta_keyword')->nullable();
-            $table->string('meta_image')->nullable();
-
-
+            $table->text('about')->nullable();
+            $table->text('privacy_policy')->nullable();
+            $table->text('terms_and_conditions')->nullable();
+            $table->text('return_policy')->nullable();
+            $table->text('refund_policy')->nullable();
+            $table->text('shipping_policy')->nullable();
+            $table->text('payment_policy')->nullable();
+            $table->text('cancellation_policy')->nullable();
             $table->timestamps();
         });
     }

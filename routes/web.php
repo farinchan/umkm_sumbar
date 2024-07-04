@@ -88,6 +88,8 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
                 Route::put('/banner/{id}/update', [SettingController::class, 'bannerUpdate'])->name('banner-update');
                 
                 Route::get('/website', [SettingController::class, 'website'])->name('website');
+                Route::put('/website/update', [SettingController::class, 'websiteUpdate'])->name('website-update');
+                Route::put('/website/information-update', [SettingController::class, 'informationUpdate'])->name('information-update');
             });
         });
 

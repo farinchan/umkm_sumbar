@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(NewsSeeder::class);
 
-        $this->call(BannerSeeder::class);
+        $this->call(SettingSeeder::class);
 
 
 

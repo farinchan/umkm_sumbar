@@ -6,7 +6,7 @@
             <div class="row small-gutters">
                 <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                     <div id="logo">
-                        <a href="{{ route('home') }}"><img src="{{ Storage::url('images/setting/logo.png') }}"
+                        <a href="{{ route('home') }}"><img src="{{ Storage::url('images/setting/' . $website->logo) }}"
                                 alt="" width="200"></a>
                     </div>
                 </div>
@@ -114,8 +114,9 @@
                     <!--/main-menu -->
                 </nav>
                 <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
-                    <a class="phone_top" href="tel://9438843343"><strong><span>Need Help?</span>+94
-                            423-23-221</strong></a>
+                    <a class="phone_top" href="{{ $website->whatsapp }}"><strong><span>Butuh bantuan?</span>
+                    Whatsapp : {{ $website->phone }}
+                    </strong></a>
                 </div>
             </div>
             <!-- /row -->
