@@ -1,7 +1,7 @@
 <!--begin::Notifications-->
 <div class="mx-5">
     <!--begin::Header-->
-    <h3 class="fw-bold text-gray-900 mb-10 mx-0">Notifications</h3>
+    <h3 class="fw-bold text-gray-900 mb-10 mx-0">Akun Saya</h3>
     <!--end::Header-->
     <!--begin::Body-->
     <div class="mb-12">

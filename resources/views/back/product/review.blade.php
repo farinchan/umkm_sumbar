@@ -73,7 +73,12 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="{{ route("admin.product.detail-review", $review->product->id) }}" class="fs-6 text-gray-800 text-hover-primary">{{ $review->product->name }}</a>
+                                            <a href="@if (request()->is('back/shop/product/review'))
+                                                {{ route('shop.product.detail', $review->product->id) }}
+                                            @else
+                                                {{ route('admin.product.detail', $review->product->id) }}                        
+                                            @endif"
+                                                class="fs-6 text-gray-800 text-hover-primary">{{ $review->product->name }}</a>
                                             
                                         </td>
                                         <td>

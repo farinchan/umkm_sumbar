@@ -21,7 +21,7 @@
         <!--begin::Footer-->
         <div class="aside-footer d-flex flex-column align-items-center flex-column-auto" id="kt_aside_footer">
             <!--begin::Quick links-->
-            <div class="d-flex align-items-center mb-2">
+            {{-- <div class="d-flex align-items-center mb-2">
                 <!--begin::Menu wrapper-->
                 <div class="btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light"
                     data-kt-menu-trigger="click" data-kt-menu-overflow="true" data-kt-menu-placement="top-start"
@@ -31,7 +31,7 @@
                 </div>
                 @include('back/partials/menus/_quick-links-menu')
                 <!--end::Menu wrapper-->
-            </div>
+            </div> --}}
             <!--end::Quick links-->
             <!--begin::User-->
             <div class="d-flex align-items-center mb-10" id="kt_header_user_menu_toggle">

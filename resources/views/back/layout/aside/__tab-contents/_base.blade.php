@@ -31,7 +31,7 @@
     <!--end::Wrapper-->
     <!--begin::Footer-->
     <div class="flex-column-auto pt-10 px-5" id="kt_aside_secondary_footer">
-        <a href="https://preview.keenthemes.com/html/metronic/docs"
+        <a href="{{ route('home') }}"
             class="btn btn-bg-light btn-color-gray-600 btn-flex btn-active-color-primary flex-center w-100"
             data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-trigger="hover" data-bs-offset="0,5"
             data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">

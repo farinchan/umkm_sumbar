@@ -211,6 +211,96 @@
                                                 <!--end::Stats-->
                                             </div>
                                             <!--end::Info-->
+                                            @role('user')
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="{{ route('shop.product.detail', $item->id) }}"
+                                                            class="btn btn-sm btn-light-primary btn-flex btn-center">
+                                                            <i class="ki-duotone ki-pin fs-3">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </i>
+                                                            <span class="indicator-label">Detail</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a href="{{ route('shop.product.edit', $item->id) }}"
+                                                            class="btn btn-sm btn-light-warning btn-flex btn-center">
+                                                            <i class="ki-duotone ki-pencil fs-3">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </i>
+                                                            <span class="indicator-label">Edit</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a class="btn btn-sm btn-light-danger btn-flex btn-center"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#delete{{ $item->id }}">
+                                                            <i class="ki-duotone ki-trash fs-3">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                                <span class="path3"></span>
+                                                                <span class="path4"></span>
+                                                                <span class="path5"></span>
+                                                            </i>
+                                                            <span class="indicator-label">Hapus</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1"
+                                                    aria-hidden="true">
+                                                    <!--begin::Modal dialog-->
+                                                    <div class="modal-dialog modal-dialog-centered mw-650px">
+                                                        <!--begin::Modal content-->
+                                                        <div class="modal-content">
+                                                            <!--begin::Modal header-->
+                                                            <div class="modal-header" id="kt_modal_add_user_header">
+                                                                <!--begin::Modal title-->
+                                                                <h2 class="fw-bolder">Hapus Produk</h2>
+                                                                <!--end::Modal title-->
+
+                                                            </div>
+                                                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                                                <form method="POST"
+                                                                    action="{{ route('shop.product.destroy', $item->id) }}"
+                                                                    class="form">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <div class="d-flex flex-column scroll-y me-n7 pe-7"
+                                                                        id="kt_modal_add_user_scroll" data-kt-scroll="true"
+                                                                        data-kt-scroll-activate="{default: false, lg: true}"
+                                                                        data-kt-scroll-max-height="auto"
+                                                                        data-kt-scroll-dependencies="#kt_modal_add_user_header"
+                                                                        data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
+                                                                        data-kt-scroll-offset="300px">
+
+                                                                        <label class="fw-bold fs-6 mb-2">
+                                                                            Anda Yakinkah Ingin Menghapus produk
+                                                                            <b>{{ $item->name }}</b> ?
+                                                                        </label>
+
+                                                                    </div>
+                                                                    <div class="text-center pt-15">
+                                                                        <button type="reset" class="btn btn-light me-3"
+                                                                            data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-danger"
+                                                                            data-kt-users-modal-action="submit">
+                                                                            <span class="indicator-label">Hapus</span>
+                                                                            <span class="indicator-progress">Please wait...
+                                                                                <span
+                                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endrole
+
                                         </div>
                                         <!--end::Card body-->
                                     </div>

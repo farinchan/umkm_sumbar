@@ -3,7 +3,8 @@
     <div class=" container-xxl " id="kt_content_container">
         <form id="kt_ecommerce_add_category_form"
             class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
-            action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+            action="{{ request()->is('back/shop/product/create') ? route('shop.product.store') : route('admin.product.store') }}" 
+            enctype="multipart/form-data">
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 <div class="card card-flush py-4">
@@ -48,31 +49,34 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card card-flush py-4">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2 class="">Toko</h2>
+
+                @role('superadmin|admin')
+                    <div class="card card-flush py-4">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <h2 class="">Toko</h2>
+                            </div>
+                            <div class="card-toolbar">
+                            </div>
                         </div>
-                        <div class="card-toolbar">
+                        <div class="card-body py-0">
+                            <div class="mb-10 fv-row fv-plugins-icon-container">
+                                <select class="form-select mb-2" name="shop_id" id="select2" required>
+                                    @foreach ($shop as $itemShop)
+                                        <option @if (old('shop_id') == $itemShop->id) selected @endif value="{{ $itemShop->id }}">
+                                            {{ $itemShop->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('user_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body py-0">
-                        <div class="mb-10 fv-row fv-plugins-icon-container">
-                            <select class="form-select mb-2" name="shop_id" id="select2" required>
-                                @foreach ($shop as $itemShop)
-                                    <option @if (old('shop_id') == $itemShop->id) selected @endif value="{{ $itemShop->id }}">
-                                        {{ $itemShop->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('user_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
+                @endrole
+
                 <div class="card card-flush py-4">
                     <div class="card-header">
                         <div class="card-title">
@@ -83,7 +87,8 @@
                         </div>
                     </div>
                     <div class="card-body pt-0">
-                        <select name="status" class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select" required>
+                        <select name="status" class="form-select mb-2" data-control="select2" data-hide-search="true"
+                            data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select" required>
                             <option></option>
                             <option value="0" selected="selected">Publish</option>
                             <option value="1">Draft</option>
@@ -112,7 +117,8 @@
                             </a>
                         @endrole
                         <label class="form-label d-block required">Tags</label>
-                        <input id="kt_ecommerce_add_product_tags" name="tags" class="form-control mb-2 @error('tags') is-invalid @enderror" value="" required />
+                        <input id="kt_ecommerce_add_product_tags" name="tags"
+                            class="form-control mb-2 @error('tags') is-invalid @enderror" value="" required />
                         <div class="text-muted fs-7">Tambahkan tags yang merepresentasikan produk anda <br>(,) Koma untuk
                             mengakhiri tag</div>
                     </div>
@@ -136,7 +142,8 @@
                     <div class="card-body pt-0">
                         <div class="fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nama Produk</label>
-                            <input type="text" name="name" class="form-control mb-2 @error('name') is-invalid @enderror" placeholder="produk Saya"
+                            <input type="text" name="name"
+                                class="form-control mb-2 @error('name') is-invalid @enderror" placeholder="produk Saya"
                                 value="{{ old('name') }}" required>
                         </div>
                         @error('name')
@@ -148,7 +155,9 @@
                     <div class="card-body pt-0">
                         <div class="fv-row fv-plugins-icon-container">
                             <label class="form-label required">Deskripsi Singkat Produk</label>
-                            <textarea name="short_description" rows="4" class="form-control mb-2 @error('short_description') is-invalid @enderror" placeholder="Deskripsi produk" required>{{ old('short_description') }}</textarea>
+                            <textarea name="short_description" rows="4"
+                                class="form-control mb-2 @error('short_description') is-invalid @enderror" placeholder="Deskripsi produk"
+                                required>{{ old('short_description') }}</textarea>
                         </div>
                         @error('short_description')
                             <div class="invalid-feedback">
@@ -162,7 +171,8 @@
                             <div id="editor" class="min-h-250px mb-2">{{ old('description') }}
                                 <p></p>
                             </div>
-                            <input class="@error('description') is-invalid @enderror" type="hidden" id="description_quill" name="description">
+                            <input class="@error('description') is-invalid @enderror" type="hidden"
+                                id="description_quill" name="description">
                         </div>
                         @error('description')
                             <div class="invalid-feedback">
@@ -183,7 +193,8 @@
                                 <label class="required form-label">Harga (RP.)</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                    <input type="number" name="price" class="form-control mb-2 @error('price') is-invalid @enderror"
+                                    <input type="number" name="price"
+                                        class="form-control mb-2 @error('price') is-invalid @enderror"
                                         value="{{ old('price') }}" required>
                                 </div>
                                 @error('price')
@@ -195,7 +206,8 @@
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Diskon (%)</label>
                                 <div class="input-group mb-3">
-                                    <input type="number" name="discount" class="form-control mb-2 @error('discount') is-invalid @enderror"
+                                    <input type="number" name="discount"
+                                        class="form-control mb-2 @error('discount') is-invalid @enderror"
                                         value="{{ old('discount') }}">
                                     <span class="input-group-text" id="basic-addon1">%</span>
                                 </div>
@@ -207,7 +219,8 @@
                             </div>
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label required">stok</label>
-                                <input type="number" name="stock" class="form-control mb-2 @error('stock') is-invalid @enderror"
+                                <input type="number" name="stock"
+                                    class="form-control mb-2 @error('stock') is-invalid @enderror"
                                     value="{{ old('stock') }}" required>
                                 @error('stock')
                                     <div class="invalid-feedback">
@@ -217,8 +230,9 @@
                             </div>
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
-                            <label class="required form-label">Berat</label>
-                            <input type="number" name="weight" class="form-control mb-2 @error('weight') is-invalid @enderror" placeholder="Berat Produk"
+                            <label class="required form-label">Berat (Gram)</label>
+                            <input type="number" name="weight"
+                                class="form-control mb-2 @error('weight') is-invalid @enderror" placeholder="Berat Produk"
                                 value="{{ old('weight') }}" required>
                             @error('weight')
                                 <div class="invalid-feedback">
@@ -226,7 +240,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                        {{-- <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="form-label">ukuran</label>
                             <div class="mb-5 mt-5">
                                 <div class="form-check form-check-inline">
@@ -260,10 +274,22 @@
                                     </div>
                                 @endfor
                             </div>
+                        </div> --}}
+                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                            <label class="form-label">Ukuran</label>
+                            <input type="text" name="size"
+                                class="form-control mb-2 @error('size') is-invalid @enderror" placeholder="Brand Produk"
+                                value="{{ old('size') }}">
+                            @error('size')
+                                <div class="invalid-feedback">
+                                    {{ $size }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nama Merk</label>
-                            <input type="text" name="brand" class="form-control mb-2 @error('brand') is-invalid @enderror" placeholder="Brand Produk"
+                            <input type="text" name="brand"
+                                class="form-control mb-2 @error('brand') is-invalid @enderror" placeholder="Brand Produk"
                                 value="{{ old('brand') }}" required>
                             @error('brand')
                                 <div class="invalid-feedback">

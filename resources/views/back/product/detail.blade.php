@@ -29,7 +29,8 @@
                                         {{ $product->short_description }}</div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="{{ route("admin.product.edit", $product->id) }}" class="btn btn-sm btn-primary me-3">Edit Produk</a>
+                                    <a href="{{ route('admin.product.edit', $product->id) }}"
+                                        class="btn btn-sm btn-primary me-3">Edit Produk</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -64,24 +65,45 @@
                         </div>
                     </div>
                     <div class="separator"></div>
-                    <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 active"
-                                href="{{ route('admin.product.detail', $product->id) }}">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.product.detail-image', $product->id) }}">Galeri</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.product.detail-review', $product->id) }}">Penilaian</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6"
-                                href="{{ route('admin.product.detail-viewer', $product->id) }}">Pengunjung</a>
-                        </li>
-                    </ul>
+                    @role('superadmin|admin')
+                        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6 active"
+                                    href="{{ route('admin.product.detail', $product->id) }}">Overview</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6"
+                                    href="{{ route('admin.product.detail-image', $product->id) }}">Galeri</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6"
+                                    href="{{ route('admin.product.detail-review', $product->id) }}">Penilaian</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6"
+                                    href="{{ route('admin.product.detail-viewer', $product->id) }}">Pengunjung</a>
+                            </li>
+                        </ul>
+                    @else
+                        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6 active"
+                                    href="{{ route('shop.product.detail', $product->id) }}">Overview</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6"
+                                    href="{{ route('shop.product.image', $product->id) }}">Galeri</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6"
+                                    href="{{ route('shop.product.review', $product->id) }}">Penilaian</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary py-5 me-6"
+                                    href="{{ route('shop.product.viewer', $product->id) }}">Pengunjung</a>
+                            </li>
+                        </ul>
+                    @endrole
                 </div>
             </div>
             <div class="card">

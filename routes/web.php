@@ -173,6 +173,9 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::get('/{id}/image', [backProductController::class, 'detailImage'])->name('image');
             Route::post('/{id}/image/store', [backProductController::class, 'detailImageStore'])->name('image.store');
             Route::delete('/{id}/image/destroy', [backProductController::class, 'detailImageDestroy'])->name('image.destroy');
+
+            Route::get('/review', [backProductController::class, 'review'])->name('review-all');
+            Route::get('/viewer', [backProductController::class, 'viewer'])->name('viewer-all');
         });
     });
 

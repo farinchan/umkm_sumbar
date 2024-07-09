@@ -7,7 +7,7 @@
     <ul class="nav flex-column w-100" id="kt_aside_nav_tabs">
         <!--begin::Nav item-->
         <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
-            data-bs-dismiss="click" title="Projects">
+            data-bs-dismiss="click" title="Informasi">
             <!--begin::Nav link-->
             <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light active"
                 data-bs-toggle="tab" href="#kt_aside_nav_tab_projects">

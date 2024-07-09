@@ -3,7 +3,7 @@
     <div class=" container-xxl " id="kt_content_container">
         <form id="kt_ecommerce_add_category_form"
             class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
-            action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
+            action="{{ request()->is('back/shop/product/'.$product->id.'/edit') ? route('shop.product.update', $product->id) : route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -31,6 +31,7 @@
                     </div>
                 </div>
 
+                @role('superadmin|admin')
                 <div class="card card-flush py-4">
                     <div class="card-header">
                         <div class="card-title">
@@ -55,6 +56,8 @@
                         </div>
                     </div>
                 </div>
+                @endrole
+
                 <div class="card card-flush py-4">
                     <div class="card-header">
                         <div class="card-title">
@@ -218,6 +221,17 @@
                             @enderror
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
+                            <label class="form-label">Ukuran</label>
+                            <input type="text" name="size"
+                                class="form-control mb-2 @error('size') is-invalid @enderror" placeholder="Brand Produk"
+                                value="{{ $product->size }}">
+                            @error('size')
+                                <div class="invalid-feedback">
+                                    {{ $size }}
+                                </div>
+                            @enderror
+                        </div>
+                        {{-- <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="form-label">ukuran</label>
                             <div class="mb-5 mt-5">
                                 <div class="form-check form-check-inline">
@@ -251,7 +265,7 @@
                                     </div>
                                 @endfor
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nama Merk</label>
                             <input type="text" name="brand"

@@ -49,7 +49,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'image' => 'required|mimes:jpg,jpeg,png|max:2048', // 'required|mimes:jpg,jpeg,png|max:2048
             'name' => 'required',
@@ -291,7 +291,7 @@ class ProductController extends Controller
             'menu_title' => 'Manajemen Produk',
             'submenu_title' => 'Produk',
             'title' => 'Review Produk',
-            'product_review' => ProductReview::with('product', 'user')->get(),
+            'product_review' => ProductReview::with('product', 'user')->latest()->get(),
         ];
         return view('back.product.review', $data);
     }

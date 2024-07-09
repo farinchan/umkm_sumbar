@@ -124,6 +124,9 @@ http://?page=index" />
     <!--end::Custom Javascript-->
     @yield('scripts')
     <script>
+        if (window.location.href.includes('back/information')) {
+            document.getElementById('menu_admin').click();
+        }
         if (window.location.href.includes('back/admin')) {
             document.getElementById('menu_admin').click();
         }
