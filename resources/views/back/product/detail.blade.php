@@ -29,7 +29,7 @@
                                         {{ $product->short_description }}</div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="#" class="btn btn-sm btn-primary me-3">Edit Toko</a>
+                                    <a href="{{ route("admin.product.edit", $product->id) }}" class="btn btn-sm btn-primary me-3">Edit Produk</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -129,7 +129,7 @@
                             <div class="fs-6 fw-semibold mt-2 mb-3">Deskripsi Produk</div>
                         </div>
                         <div class="col-xl-9 fv-row">
-                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $product->description }}</div>
+                            <div class="fs-6 fw-semibold mt-2 mb-3">{!! $product->description !!}</div>
                         </div>
                     </div>
                     <div class="row mb-8">

@@ -2,6 +2,10 @@
 <html lang="en">
 <!--begin::Head-->
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 <head>
     <base href="" />
     <title>Metronic - The World's #1 Selling Bootstrap Admin Template by KeenThemes</title>

@@ -14,16 +14,18 @@ return new class extends Migration
         Schema::create('product_viewers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->ipAddress('ip_address');
-            $table->string('device');
-            $table->string('browser');
-            $table->string('platform');
-            $table->string('country');
-            $table->string('city');
-            $table->string('state');
-            $table->string('postal_code');
-
-            
+            $table->string('ip')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('region')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('timezone')->nullable();
+            $table->string('user_agent')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('device')->nullable();
             $table->timestamps();
         });
     }

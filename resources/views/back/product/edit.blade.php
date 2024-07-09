@@ -3,7 +3,8 @@
     <div class=" container-xxl " id="kt_content_container">
         <form id="kt_ecommerce_add_category_form"
             class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
-            action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+            action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                 <div class="card card-flush py-4">
@@ -15,40 +16,21 @@
                     <div class="card-body text-center pt-0">
                         <div class="image-input image-input-empty" data-kt-image-input="true">
                             <div class="image-input-wrapper w-200px h-150px"
-                                style="background-image: url('{{ asset('back/media/svg/files/blank-image.svg') }}')">
+                                style="background-image: url('{{ Storage::url('images/product/' . $product->productImage[0]->image) }}')">
                             </div>
-                            <label
-                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                title="Change thumbnail">
-                                <i class="bi bi-pencil"><span class="path1"></span><span class="path2"></span></i>
-                                <input type="file" name="image" accept=".png, .jpg, .jpeg" required />
-                                <input type="hidden" name="avatar_remove" />
-                            </label>
-                            <span
-                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                title="Cancel thumbnail">
-                                <i class="bi bi-x fs-3"></i>
-                            </span>
-                            <span
-                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                title="Remove thumbnail">
-                                <i class="bi bi-x fs-3"></i>
-                            </span>
+
                         </div>
                         @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
-                        <div class="text-muted fs-7 pt-3">File yang diizinkan: *.png, *.jpg, *.jpeg <br>Maksimal 2mb
-                            <br>Dengan rasio 1:1 - 400x400
+                        <div class="text-muted fs-7 pt-3"> Untuk Mengganti Foto Produk <a
+                                href="{{ route('admin.product.detail-image', $product->id) }}">Klik disini</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card card-flush py-4">
                     <div class="card-header">
                         <div class="card-title">
@@ -61,7 +43,7 @@
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <select class="form-select mb-2" name="shop_id" id="select2" required>
                                 @foreach ($shop as $itemShop)
-                                    <option @if (old('shop_id') == $itemShop->id) selected @endif value="{{ $itemShop->id }}">
+                                    <option @if ($product->id == $itemShop->id) selected @endif value="{{ $itemShop->id }}">
                                         {{ $itemShop->name }}</option>
                                 @endforeach
                             </select>
@@ -83,10 +65,11 @@
                         </div>
                     </div>
                     <div class="card-body pt-0">
-                        <select name="status" class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select" required>
+                        <select name="status" class="form-select mb-2" data-control="select2" data-hide-search="true"
+                            data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select" required>
                             <option></option>
-                            <option value="0" selected="selected">Publish</option>
-                            <option value="1">Draft</option>
+                            <option value="1" @if ($product->status == 1) selected @endif>Publish</option>
+                            <option value="0" @if($product->status == 0) selected @endif>Draft</option>
                         </select>
                         <div class="text-muted fs-7">Atur status produk anda.</div>
                     </div>
@@ -101,7 +84,7 @@
                         <label class="form-label required">kategori</label>
                         <select class="form-select mb-2" name="product_categories_id" data-control="select2" required>
                             @foreach ($product_categories as $cat)
-                                <option @if (old('product_categories_id') == $cat->id) selected @endif value="{{ $cat->id }}">
+                                <option @if ($product->product_categories_id == $cat->id) selected @endif value="{{ $cat->id }}">
                                     {{ $cat->name }}</option>
                             @endforeach
                         </select>
@@ -112,7 +95,8 @@
                             </a>
                         @endrole
                         <label class="form-label d-block required">Tags</label>
-                        <input id="kt_ecommerce_add_product_tags" name="tags" class="form-control mb-2 @error('tags') is-invalid @enderror" value="" required />
+                        <input id="kt_ecommerce_add_product_tags" name="tags"
+                            class="form-control mb-2 @error('tags') is-invalid @enderror" value="{{ $product->tags }}" required />
                         <div class="text-muted fs-7">Tambahkan tags yang merepresentasikan produk anda <br>(,) Koma untuk
                             mengakhiri tag</div>
                     </div>
@@ -136,8 +120,9 @@
                     <div class="card-body pt-0">
                         <div class="fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nama Produk</label>
-                            <input type="text" name="name" class="form-control mb-2 @error('name') is-invalid @enderror" placeholder="produk Saya"
-                                value="{{ old('name') }}" required>
+                            <input type="text" name="name"
+                                class="form-control mb-2 @error('name') is-invalid @enderror" placeholder="produk Saya"
+                                value="{{ $product->name }}" required>
                         </div>
                         @error('name')
                             <div class="invalid-feedback">
@@ -148,7 +133,8 @@
                     <div class="card-body pt-0">
                         <div class="fv-row fv-plugins-icon-container">
                             <label class="form-label required">Deskripsi Singkat Produk</label>
-                            <textarea name="short_description" rows="4" class="form-control mb-2 @error('short_description') is-invalid @enderror" placeholder="Deskripsi produk" required>{{ old('short_description') }}</textarea>
+                            <textarea name="short_description" rows="4"
+                                class="form-control mb-2 @error('short_description') is-invalid @enderror" placeholder="Deskripsi produk" required>{{ $product->short_description }}</textarea>
                         </div>
                         @error('short_description')
                             <div class="invalid-feedback">
@@ -159,10 +145,11 @@
                     <div class="card-body pt-0">
                         <div class="fv-row fv-plugins-icon-container">
                             <label class="form-label required">Deskripsi Produk</label>
-                            <div id="editor" class="min-h-250px mb-2">{{ old('description') }}
+                            <div id="editor" class="min-h-250px mb-2">{!! $product->description !!}
                                 <p></p>
                             </div>
-                            <input class="@error('description') is-invalid @enderror" type="hidden" id="description_quill" name="description">
+                            <input class="@error('description') is-invalid @enderror" type="hidden"
+                                id="description_quill" name="description">
                         </div>
                         @error('description')
                             <div class="invalid-feedback">
@@ -183,8 +170,9 @@
                                 <label class="required form-label">Harga (RP.)</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                    <input type="number" name="price" class="form-control mb-2 @error('price') is-invalid @enderror"
-                                        value="{{ old('price') }}" required>
+                                    <input type="number" name="price"
+                                        class="form-control mb-2 @error('price') is-invalid @enderror"
+                                        value="{{ $product->price }}" required>
                                 </div>
                                 @error('price')
                                     <div class="invalid-feedback">
@@ -195,8 +183,9 @@
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label">Diskon (%)</label>
                                 <div class="input-group mb-3">
-                                    <input type="number" name="discount" class="form-control mb-2 @error('discount') is-invalid @enderror"
-                                        value="{{ old('discount') }}">
+                                    <input type="number" name="discount"
+                                        class="form-control mb-2 @error('discount') is-invalid @enderror"
+                                        value="{{ $product->discount }}">
                                     <span class="input-group-text" id="basic-addon1">%</span>
                                 </div>
                                 @error('discount')
@@ -207,8 +196,9 @@
                             </div>
                             <div class="fv-row w-100 flex-md-root">
                                 <label class="form-label required">stok</label>
-                                <input type="number" name="stock" class="form-control mb-2 @error('stock') is-invalid @enderror"
-                                    value="{{ old('stock') }}" required>
+                                <input type="number" name="stock"
+                                    class="form-control mb-2 @error('stock') is-invalid @enderror"
+                                    value="{{ $product->stock }}" required>
                                 @error('stock')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -218,8 +208,9 @@
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Berat</label>
-                            <input type="number" name="weight" class="form-control mb-2 @error('weight') is-invalid @enderror" placeholder="Berat Produk"
-                                value="{{ old('weight') }}" required>
+                            <input type="number" name="weight"
+                                class="form-control mb-2 @error('weight') is-invalid @enderror"
+                                placeholder="Berat Produk" value="{{ $product->weight }}" required>
                             @error('weight')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -263,8 +254,9 @@
                         </div>
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="required form-label">Nama Merk</label>
-                            <input type="text" name="brand" class="form-control mb-2 @error('brand') is-invalid @enderror" placeholder="Brand Produk"
-                                value="{{ old('brand') }}" required>
+                            <input type="text" name="brand"
+                                class="form-control mb-2 @error('brand') is-invalid @enderror" placeholder="Brand Produk"
+                                value="{{ $product->brand }}" required>
                             @error('brand')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -338,9 +330,11 @@
             theme: 'snow'
         });
         var quillEditor = document.getElementById('description_quill');
+        quillEditor.value = quill.root.innerHTML;
         quill.on('text-change', function() {
             quillEditor.value = quill.root.innerHTML;
         });
+
         const quill2 = new Quill('#editor2', {
             theme: 'snow'
         });

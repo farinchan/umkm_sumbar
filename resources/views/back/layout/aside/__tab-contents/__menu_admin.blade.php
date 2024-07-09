@@ -179,7 +179,7 @@
                 </div>
 
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                    <a class="menu-link @if (request()->is('back/admin/product/review')) active @endif" href="{{ route("admin.product.review") }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -187,7 +187,7 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo7/dist/account/security.html">
+                    <a class="menu-link @if (request()->is('back/admin/product/viewer')) active @endif" href="{{ route("admin.product.viewer") }}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>

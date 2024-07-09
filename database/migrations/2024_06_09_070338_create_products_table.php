@@ -27,8 +27,9 @@ return new class extends Migration
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->string('brand')->nullable();
+            $table->string('tags')->nullable();
             $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
+            $table->text('meta_description')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->timestamps();
         });

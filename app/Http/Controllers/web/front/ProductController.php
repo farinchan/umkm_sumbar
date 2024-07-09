@@ -5,7 +5,10 @@ namespace App\Http\Controllers\web\front;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductViewer;
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Facades\Agent;
+use Stevebauman\Location\Facades\Location;
 
 class ProductController extends Controller
 {
@@ -38,6 +41,26 @@ class ProductController extends Controller
             ->product()
             ->where('products.status', 1)
             ->inRandomOrder();
+            
+        $currentUserInfo = Location::get(request()->ip());
+        $productViewer = new ProductViewer();
+        $productViewer->product_id = $products->id;
+        $productViewer->ip = request()->ip();
+        if ($currentUserInfo) {
+            $productViewer->country = $currentUserInfo->countryName;
+            $productViewer->city = $currentUserInfo->cityName;
+            $productViewer->region = $currentUserInfo->regionName;
+            $productViewer->postal_code = $currentUserInfo->postalCode;
+            $productViewer->latitude = $currentUserInfo->latitude;
+            $productViewer->longitude = $currentUserInfo->longitude;
+            $productViewer->timezone = $currentUserInfo->timezone;
+        }
+        $productViewer->user_agent = Agent::getUserAgent();
+        $productViewer->platform = Agent::platform();
+        $productViewer->browser = Agent::browser();
+        $productViewer->device = Agent::device();
+        $productViewer->save();
+        
         $data = [
             'title' => 'Home',
             'description' => 'Home page description',

@@ -22,15 +22,21 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         City::create([
-            'name' => 'Padang',
-            'slug' => 'padang',
-            'postal_code' => '25111',
-        ]);
-
-        City::create([
             'name' => 'Bukittinggi',
             'slug' => 'bukittinggi',
             'postal_code' => '26111',
+        ]);
+
+        City::create([
+            'name' => 'Sijunjung',
+            'slug' => 'sijunjung',
+            'postal_code' => '27111',
+        ]);
+
+        City::create([
+            'name' => 'Padang',
+            'slug' => 'padang',
+            'postal_code' => '25111',
         ]);
 
         City::create([

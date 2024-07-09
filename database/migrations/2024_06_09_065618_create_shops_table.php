@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->boolean('verified')->default(0);
             $table->boolean('status')->default(1);
-            $table->string('meta_description')->nullable();
+            $table->text('meta_description')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

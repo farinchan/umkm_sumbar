@@ -46,6 +46,7 @@
         /* Style untuk pop-up chat bot */
         .chat-popup {
             display: none;
+            z-index: -100;
             position: fixed;
             bottom: 98px;
             right: 20px;

@@ -29,7 +29,7 @@
                                         {{ $product->short_description }}</div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="#" class="btn btn-sm btn-primary me-3">Edit Toko</a>
+                                    <a href="{{ route("admin.product.edit", $product->id) }}" class="btn btn-sm btn-primary me-3">Edit Produk</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -94,7 +94,9 @@
                                 <div class="image-input-wrapper w-125px h-125px"
                                     style="background-image: url('{{ Storage::url('images/product/' . $image->image) }}')">
                                 </div>
-                                <form action="{{ route('admin.product.detail-image-destroy', $image->id) }}" method="post">
+                                @if ($product_image->count() > 1)
+                                <form action="{{ route('admin.product.detail-image-destroy', $image->id) }}"
+                                    method="post">
                                     @method('delete')
                                     @csrf
                                     <button type="submit"
@@ -110,6 +112,8 @@
                                         </span>
                                     </button>
                                 </form>
+                                @endif
+                                
                             </div>
                         </div>
                     @endforeach

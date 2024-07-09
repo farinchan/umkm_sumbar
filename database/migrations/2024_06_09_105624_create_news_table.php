@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('news_categories_id')->constrained('news_categories')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
+            $table->text('meta_description')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->timestamps();
         });

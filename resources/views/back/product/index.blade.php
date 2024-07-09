@@ -37,7 +37,7 @@
                             <!--end::Select2-->
                         </div>
                         <!--begin::Add product-->
-                        <a href="apps/ecommerce/catalog/add-product.html" class="btn btn-primary">Add Product</a>
+                        <a href="{{ route("admin.product.create") }}" class="btn btn-primary">Tambah Produk</a>
                         <!--end::Add product-->
                     </div>
                     <!--end::Card toolbar-->
@@ -78,12 +78,12 @@
                                             <!--begin::Thumbnail-->
                                             <a href="#" class="symbol symbol-50px">
                                                 <span class="symbol-label"
-                                                    style="background-image:url(@if ($product_image->isNotEmpty()) {{ Storage::url('images/product/' . $product_image[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif);"></span>
+                                                    style="background-image:url(@if ($item->productImage[0]->image) {{ Storage::url('images/product/' . $item->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $item->name }} @endif);"></span>
                                             </a>
                                             <!--end::Thumbnail-->
                                             <div class="ms-5">
                                                 <!--begin::Title-->
-                                                <a href="#"
+                                                <a target="_blank" href="{{ route("product", $item->slug) }}"
                                                     class="text-gray-800 text-hover-primary fs-5 fw-bold"
                                                     data-kt-ecommerce-product-filter="product_name">{{ $item->name }}</a>
                                                 <a class="text-muted text-hover-primary fs-7 fw-bold" href="#">
@@ -99,7 +99,7 @@
                                     </td>
                                     <td class="text-end pe-0">
                                         <a class="text-muted text-hover-primary fw-bold" href="#">
-                                            <span class="fw-bold">{{ $item->shop_name }}</span>
+                                            <span class="fw-bold">{{ $item->shop->name }}</span>
                                         </a>
                                     </td>
                                     <td class="text-end pe-0">
@@ -120,7 +120,7 @@
                                                 <i class="ki-duotone ki-star fs-6"></i>
                                             </div>
                                             <div class="rating-label checked">
-                                                <span class="fw-bold ms-3">4.7</span>
+                                                <span class="fw-bold ms-3">{{ round($item->productReview->avg("rating")) }}</span>
                                             </div>
                                         </div>
                                     </td>
@@ -155,7 +155,7 @@
                                                     class="menu-link px-3">Pengunjung</a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#"
+                                                <a href="{{ route("admin.product.edit", $item->id) }}"
                                                     class="menu-link px-3">Edit</a>
                                             </div>
                                             <!--end::Menu item-->

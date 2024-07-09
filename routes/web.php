@@ -39,6 +39,9 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware(['auth'])->prefix("/back")->group(function () {
 
+    Route::get('/information', [DashboardController::class, 'information'])->name('information');
+
+
     Route::prefix('/admin')->name('admin.')->group(function () {
 
         Route::middleware(['role:superadmin'])->group(function () {
@@ -123,6 +126,9 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
                 Route::get('/{id}/detail/image', [ProductController::class, 'detailImage'])->name('detail-image');
                 Route::post('/{id}/detail/image/store', [ProductController::class, 'detailImageStore'])->name('detail-image-store');
                 Route::delete('/{id}/detail/image/destroy', [ProductController::class, 'detailImageDestroy'])->name('detail-image-destroy');
+
+                Route::get('/review', [ProductController::class, 'review'])->name('review');
+                Route::get('/viewer', [ProductController::class, 'viewer'])->name('viewer');
             });
 
             Route::prefix('/news')->name('news.')->group(function () {
