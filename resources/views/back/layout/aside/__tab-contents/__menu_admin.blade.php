@@ -352,7 +352,7 @@
             </div>
         </div>
         <div class="menu-item">
-            <a class="menu-link" href="#">
+            <a class="menu-link" href="https://github.com/farinchan/umkm_sumbar">
                 <span class="menu-icon">
                     <i class="ki-duotone ki-code fs-2">
                         <span class="path1"></span>
