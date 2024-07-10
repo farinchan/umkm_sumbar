@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductReview;
 use App\Models\ProductViewer;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Facades\Agent;
@@ -134,4 +135,29 @@ class ProductController extends Controller
         ];
         return view('front.product.category', $data);
     }
+
+    public function postReview(Request $request)
+    {
+        $request->validate([
+            'rating' => 'required',
+            'comment' => 'required',
+            'product_id' => 'required',
+        ]);
+
+        $product = Product::find($request->product_id);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
+        $productReview = new ProductReview();
+        $productReview->product_id = $request->product_id;
+        $productReview->user_id = auth()->user()->id;
+        $productReview->rating = $request->rating;
+        $productReview->comment = $request->comment;
+        $productReview->save();
+
+        return redirect()->back()->with('success', 'Review has been added');
+    }
+
+
 }

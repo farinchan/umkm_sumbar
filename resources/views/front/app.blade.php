@@ -15,8 +15,8 @@
     @yield('seo')
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ Storage::url("images/setting/" . $website->favicon) }}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="{{ Storage::url("images/setting/" . $website->favicon) }}">
+    <link rel="shortcut icon" href="{{ Storage::url('images/setting/' . $website->favicon) }}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{ Storage::url('images/setting/' . $website->favicon) }}">
 
     <!-- GOOGLE WEB FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,6 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 
     <style>
-
         /* Style untuk pop-up chat bot */
         .chat-popup {
             display: none;
@@ -53,7 +52,8 @@
             border: 1px solid #ddd;
             border-radius: 10px;
             width: 350px;
-            height: 400px; /* Tinggi tetap */
+            height: 400px;
+            /* Tinggi tetap */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             background-color: white;
             display: flex;
@@ -117,7 +117,7 @@
             text-align: left;
             background-color: #f1f1f1;
             margin-right: 30px;
-            
+
         }
     </style>
 
@@ -157,7 +157,44 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ asset('front/js/chatbot.js') }}"></script>
+    @if (request()->routeIs('product'))
+        <div class="top_panel">
+            <div class="container header_panel">
+                <a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
+                <label>1 produk Sudah Ditambah ke Keranjang</label>
+            </div>
+            <!-- /header_panel -->
+            <div class="item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="item_panel">
+                                <figure>
+                                    <img src="img/products/product_placeholder_square_small.jpg"
+                                        data-src="{{ Storage::url('images/product/' . $product->productImage[0]->image) }}" class="lazy" alt="">
+                                </figure>
+                                <h4>{{ $product->name }}</h4>
+                                <div class="price_panel"><span class="new_price">@money($product->price - ($product->price * $product->discount) / 100)</span>
+                                    @if ($product->discount > 0)
+                                        <span class="percentage">-{{ $product->discount }}%</span> <span
+                                            class="old_price">{{ $product->price }}</span>
+                                    @endif
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 btn_panel">
+                            <a href="cart.html" class="btn_1 outline">View cart</a> <a href="checkout.html"
+                                class="btn_1">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /item -->
+        </div>
+    @endif
+
+
+
 
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('front/js/common_scripts.min.js') }}"></script>
@@ -165,46 +202,46 @@
 
     @yield('scripts')
 
-<script>
-     $("#chatBot").addClass('visible');
+    <script>
+        $("#chatBot").addClass('visible');
 
 
-$('#chatBot').on('click', function () {
-    var chatPopup = document.getElementById('chatPopup');
-    if (chatPopup.style.display === 'none' || chatPopup.style.display === '') {
-        chatPopup.style.display = 'block';
-        chatPopup.style.zIndex = '9999';
-    } else {
-        chatPopup.style.display = 'none';
-        chatPopup.style.zIndex = '0';
-    }
+        $('#chatBot').on('click', function() {
+            var chatPopup = document.getElementById('chatPopup');
+            if (chatPopup.style.display === 'none' || chatPopup.style.display === '') {
+                chatPopup.style.display = 'block';
+                chatPopup.style.zIndex = '9999';
+            } else {
+                chatPopup.style.display = 'none';
+                chatPopup.style.zIndex = '0';
+            }
 
 
-    $('#sendButton').on('click', function () {
-        var userInput = document.getElementById('userInput');
-        var message = userInput.value;
-        if (message.trim() === '') return;
+            $('#sendButton').on('click', function() {
+                var userInput = document.getElementById('userInput');
+                var message = userInput.value;
+                if (message.trim() === '') return;
 
-        appendMessage('user', message);
-        userInput.value = '';
+                appendMessage('user', message);
+                userInput.value = '';
 
-        // Simulasikan balasan bot
-        setTimeout(function () {
-            var botResponse = 'Ini adalah balasan dari bot';
-            appendMessage('bot', botResponse);
-        }, 1000);
-    });
+                // Simulasikan balasan bot
+                setTimeout(function() {
+                    var botResponse = 'Ini adalah balasan dari bot';
+                    appendMessage('bot', botResponse);
+                }, 1000);
+            });
 
-    function appendMessage(sender, message) {
-        var chatBody = document.getElementById('chatBody');
-        var messageDiv = document.createElement('div');
-        messageDiv.className = 'message ' + (sender === 'user' ? 'user-message' : 'bot-message');
-        messageDiv.innerText = message;
-        chatBody.appendChild(messageDiv);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-});
-</script>
+            function appendMessage(sender, message) {
+                var chatBody = document.getElementById('chatBody');
+                var messageDiv = document.createElement('div');
+                messageDiv.className = 'message ' + (sender === 'user' ? 'user-message' : 'bot-message');
+                messageDiv.innerText = message;
+                chatBody.appendChild(messageDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        });
+    </script>
 
 
 </body>

@@ -63,7 +63,7 @@
                         @endfor
                         <em>{{ $product->productReview->count() }} reviews</em>
                     </span>
-                    
+
                     <p>{{ $product->short_description }}</p>
                     <div class="prod_options">
                         @if ($product->size)
@@ -198,6 +198,29 @@
                     </div>
                     <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
                         <div class="card-body">
+                            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
                             <div class="row justify-content-between">
                                 @foreach ($product->productReview as $review)
                                     <div class="col-lg-6">
@@ -243,12 +266,13 @@
                 <div class="item">
                     <div class="grid_item">
                         @if ($releated->discount > 0)
-                        <span class="ribbon off">-{{ $releated->discount }}%</span>
+                            <span class="ribbon off">-{{ $releated->discount }}%</span>
                         @endif
                         <figure>
-                            <a href="{{ route("product", $releated->slug) }}">
+                            <a href="{{ route('product', $releated->slug) }}">
                                 <img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg"
-                                    data-src="@if ($releated->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $releated->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $releated->name }} @endif" alt="">
+                                    data-src="@if ($releated->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $releated->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $releated->name }} @endif"
+                                    alt="">
                             </a>
                         </figure>
                         <div class="rating">
@@ -260,7 +284,7 @@
                                 <i class="icon-star"></i>
                             @endfor
                         </div>
-                        <a href="{{ route("product", $releated->slug) }}">
+                        <a href="{{ route('product', $releated->slug) }}">
                             <h3>{{ $releated->name }}</h3>
                         </a>
                         <div class="price_box">
@@ -273,7 +297,7 @@
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
                             </li>
-                            
+
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         </ul>
@@ -325,4 +349,29 @@
 @section('scripts')
     <!-- SPECIFIC SCRIPTS -->
     <script src="{{ asset('front/js/carousel_with_thumbs.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn_add_to_cart').on('click', function() {
+                var quantity = $('#quantity_1').val();
+                var product_id = '{{ $product->id }}';
+                $.ajax({
+                    url: "{{ route('cart.store') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        product_id: product_id,
+                        quantity: quantity
+                    },
+                    success: function(response) {
+                        if (response.status) {
+                            $('.top_panel').addClass('visible');
+                            $('.top_panel label').text(response.message);
+                        }
+                    }
+                });
+            });
+        });
+
 @endsection
