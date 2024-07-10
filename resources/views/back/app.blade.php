@@ -125,7 +125,7 @@ http://?page=index" />
     @yield('scripts')
     <script>
         if (window.location.href.includes('back/information')) {
-            document.getElementById('menu_admin').click();
+            document.getElementById('menu_information').click();
         }
         if (window.location.href.includes('back/admin')) {
             document.getElementById('menu_admin').click();

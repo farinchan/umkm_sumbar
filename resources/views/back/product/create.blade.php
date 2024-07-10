@@ -278,7 +278,7 @@
                         <div class="mb-10 fv-row fv-plugins-icon-container">
                             <label class="form-label">Ukuran</label>
                             <input type="text" name="size"
-                                class="form-control mb-2 @error('size') is-invalid @enderror" placeholder="Brand Produk"
+                                class="form-control mb-2 @error('size') is-invalid @enderror" placeholder="Ukuran Produk"
                                 value="{{ old('size') }}">
                             @error('size')
                                 <div class="invalid-feedback">

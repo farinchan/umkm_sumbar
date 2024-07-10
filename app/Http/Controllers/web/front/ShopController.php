@@ -48,7 +48,7 @@ class ShopController extends Controller
             'title' => 'Shop',
             'shop' => $shop,
             'reviews' => $review,
-            'products' => $shop->product()->paginate(12),
+            'products' => $shop->product()->where('status', 1)->paginate(12),
         ];
         return view('front.shop.shop', $data);
     }

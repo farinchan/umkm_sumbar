@@ -241,30 +241,44 @@
                     <div class="grid_item">
                         @if ($product->discount > 0)
                             <span class="ribbon off">-{{ $product->discount }}%</span>
-                        @elseif ($product->created_at->diffInDays() < 10)
+                        @elseif ($product->created_at->diffInDays() < 7)
                             <span class="ribbon new">New</span>
                         @endif
                         <figure>
-                            <a href="product-detail-1.html">
+                            <a href="{{ route('product', $product->slug) }}">
                                 <img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg"
-                                    data-src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif" alt="">
+                                    data-src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
+                                    alt="">
                             </a>
                             {{-- <div data-countdown="2019/05/10" class="countdown"></div> --}}
                         </figure>
-                        <a href="product-detail-1.html">
+                        <div class="rating">
+
+                            @for ($i = 0; $i < round($product->productReview->average('rating')); $i++)
+                                <i class="icon-star voted"></i>
+                            @endfor
+                            @for ($i = 0; $i < 5 - round($product->productReview->average('rating')); $i++)
+                                <i class="icon-star"></i>
+                            @endfor
+                            <br>
+                            {{ round($product->productReview->average('rating')) }} / 5
+                            ({{ $product->productReview->count() }} Penilaian)
+                        </div>
+                        <a href="{{ route('product', $product->slug) }}">
                             <h3>{{ $product->name }}</h3>
                         </a>
                         <div class="price_box">
                             @if ($product->discount > 0)
-                                <span class="new_price">${{ $product->price - ($product->price * $product->discount / 100) }}</span>
-                                <span class="old_price">${{ $product->price }}</span>
-                            @else 
-                                <span class="new_price">${{ $product->price }}</span>
+                                <span class="new_price">@money($product->price - ($product->price * $product->discount) / 100)</span>
+                                <span class="old_price">@money($product->price) </span>
+                            @else
+                                <span class="new_price">@money($product->price)</span>
                             @endif
                         </div>
                         <ul>
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>                       
+                                    title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
+                            </li>
                             <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
                                     title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         </ul>

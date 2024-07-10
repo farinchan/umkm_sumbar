@@ -10,7 +10,7 @@
             data-bs-dismiss="click" title="Informasi">
             <!--begin::Nav link-->
             <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-500 btn-active-light active"
-                data-bs-toggle="tab" href="#kt_aside_nav_tab_projects">
+                data-bs-toggle="tab" href="#kt_aside_nav_tab_projects" id="menu_information">
                 <i class="ki-duotone ki-element-11 fs-2x"><span class="path1"></span><span class="path2"></span><span
                         class="path3"></span><span class="path4"></span></i>
             </a>
@@ -20,7 +20,7 @@
         <!--begin::Nav menu admin-->
         @role('admin|superadmin')
             <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right"
-                data-bs-dismiss="click" title="Menu">
+                data-bs-dismiss="click" title="Menu Admin">
                 <!--begin::Nav link-->
                 <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light"
                     data-bs-toggle="tab" id="menu_admin" href="#kt_aside_nav_tab_menu">
