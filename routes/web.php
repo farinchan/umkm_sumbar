@@ -1,16 +1,16 @@
 <?php
 
 use App\Http\Controllers\web\Auth\AuthController;
-use App\Http\Controllers\Web\Back\Account\AccountController;
-use App\Http\Controllers\Web\Back\Admin\CityController;
-use App\Http\Controllers\Web\Back\Admin\DashboardController;
-use App\Http\Controllers\Web\Back\Admin\FileManagerController;
+use App\Http\Controllers\web\Back\Account\AccountController;
+use App\Http\Controllers\web\Back\Admin\CityController;
+use App\Http\Controllers\web\Back\Admin\DashboardController;
+use App\Http\Controllers\web\Back\Admin\FileManagerController;
 use App\Http\Controllers\web\back\admin\NewsController;
-use App\Http\Controllers\Web\Back\Admin\ProductCategoryController;
-use App\Http\Controllers\Web\Back\Admin\ProductController;
+use App\Http\Controllers\web\Back\Admin\ProductCategoryController;
+use App\Http\Controllers\web\Back\Admin\ProductController;
 use App\Http\Controllers\web\back\admin\SettingController;
-use App\Http\Controllers\Web\Back\Admin\ShopController;
-use App\Http\Controllers\Web\Back\Admin\UserController;
+use App\Http\Controllers\web\Back\Admin\ShopController;
+use App\Http\Controllers\web\Back\Admin\UserController;
 use App\Http\Controllers\Web\Back\shop\ShopController as backShopController;
 use App\Http\Controllers\Web\Back\shop\ProductController as backProductController;
 use App\Http\Controllers\Web\Front\CartController;
