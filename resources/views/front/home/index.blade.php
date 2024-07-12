@@ -82,17 +82,15 @@
     </div>
     <!--/carousel-->
 
-
+    @if ($recomended1 != [])
     <div class="container margin_60_35">
         <div class="main_title">
             <h2>Direkomendasikan untuk anda</h2>
             <span>Products</span>
             @if ($recomended1['filter'] == 'content')
-                <p>Kami Persembahkan Produk UMKM Sumatera Barat Yang Kami Rekomendasikan Untuk Anda Berdasarkan Produk Yang
-                    Anda Lihat Sebelumnya</p>
+                <p>Kami persembahkan produk umkm sumatera barat yang kami rekomendasikan untuk anda berdasarkan produk yang anda lihat sebelumnya</p>
             @else
-                <p>Kami Persembahkan Produk UMKM Sumatera Barat Yang Kami Rekomendasikan Untuk Anda Berdasarkan Produk Yang
-                    Populer</p>
+                <p>Kami persembahkan produk umkm sumatera barat yang kami rekomendasikan untuk anda berdasarkan produk yang populer</p>
             @endif
         </div>
         <div class="row small-gutters">
@@ -150,6 +148,16 @@
         </div>
         <!-- /row -->
     </div>
+    @else
+        <div class="container margin_60_35">
+            <div class="main_title">
+                <h2>Produk Rekomendasi</h2>
+                <p>Terjadi Kesalahan saat mengambil data produk rekomendasi</p>
+            </div>
+        </div>
+    @endif
+
+   
     <!-- /container -->
 
     <div class="featured lazy" data-bg="url(img/featured_home.jpg)">
@@ -178,8 +186,7 @@
             <div class="main_title">
                 <h2>Direkomendasikan untuk anda</h2>
                 <span>Products</span>
-                <p>Kami Persembahkan Produk UMKM Sumatera Barat Yang Kami Rekomendasikan Untuk Anda Berdasarkan Produk Yang
-                    Anda Sudah Anda Nilai</p>
+                <p>Kami persembahkan produk UMKM Sumatera Barat yang kami rekomendasikan untuk anda berdasarkan produk yang anda sudah anda nilai</p>
             </div>
             <div class="owl-carousel owl-theme products_carousel">
 
