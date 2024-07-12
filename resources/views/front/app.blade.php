@@ -41,6 +41,9 @@
     <!-- Include stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <style>
         /* Style untuk pop-up chat bot */
         .chat-popup {
@@ -141,9 +144,8 @@
     </div>
     <!-- page -->
 
-    <div id="chatBot"></div><!-- Back to top button -->
-    <!-- Pop-up Chat Bot -->
-    <!-- Pop-up Chat Bot -->
+    <div id="chatBot" data-bs-toggle="tooltip" data-bs-placement="left"
+        data-bs-title="Ayo tanya produk apa yang ingin anda cari?"></div>
     <div class="chat-popup" id="chatPopup">
         <div class="chat-popup-header">
             Chat Bot
@@ -158,54 +160,125 @@
     </div>
 
     @if (request()->routeIs('product'))
-        <div class="top_panel">
-            <div class="container header_panel">
-                <a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
-                <label>1 produk Sudah Ditambah ke Keranjang</label>
-            </div>
-            <!-- /header_panel -->
-            <div class="item">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="item_panel">
-                                <figure>
-                                    <img src="img/products/product_placeholder_square_small.jpg"
-                                        data-src="{{ Storage::url('images/product/' . $product->productImage[0]->image) }}" class="lazy" alt="">
-                                </figure>
-                                <h4>{{ $product->name }}</h4>
-                                <div class="price_panel"><span class="new_price">@money($product->price - ($product->price * $product->discount) / 100)</span>
-                                    @if ($product->discount > 0)
-                                        <span class="percentage">-{{ $product->discount }}%</span> <span
-                                            class="old_price">{{ $product->price }}</span>
-                                    @endif
+        @auth
+            <div class="top_panel">
+                <div class="container header_panel">
+                    <a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
+                    <label>1 produk Sudah Ditambah ke Keranjang</label>
+                </div>
+                <!-- /header_panel -->
+                <div class="item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="item_panel">
+                                    <figure>
+                                        <img src="img/products/product_placeholder_square_small.jpg"
+                                            data-src="{{ Storage::url('images/product/' . $product->productImage[0]->image) }}"
+                                            class="lazy" alt="">
+                                    </figure>
+                                    <h4>{{ $product->name }}</h4>
+                                    <div class="price_panel"><span class="new_price">@money($product->price - ($product->price * $product->discount) / 100)</span>
+                                        @if ($product->discount > 0)
+                                            <span class="percentage">-{{ $product->discount }}%</span> <span
+                                                class="old_price">{{ $product->price }}</span>
+                                        @endif
                                     </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-5 btn_panel">
-                            <a href="cart.html" class="btn_1 outline">View cart</a> <a href="checkout.html"
-                                class="btn_1">Checkout</a>
+                            <div class="col-md-5 btn_panel">
+                                <a href="cart.html" class="btn_1 outline">View cart</a> <a href="checkout.html"
+                                    class="btn_1">Checkout</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- /item -->
             </div>
-            <!-- /item -->
-        </div>
+        @endauth
+
+        @include('front.partials.modal_product_review')
     @endif
-
-
 
 
     <!-- COMMON SCRIPTS -->
     <script src="{{ asset('front/js/common_scripts.min.js') }}"></script>
     <script src="{{ asset('front/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     @yield('scripts')
 
+    @auth
+        <script>
+            function cart() {
+                $.ajax({
+                    url: "{{ route('cart-api') }}",
+                    type: 'GET',
+                    success: function(response) {
+                        // console.log(response);
+                        $('#cartCount').html(`<strong>${response.userCartCount}</strong>`);
+                        $('#listCart').html('');
+                        response.userCart.forEach(element => {
+                            $('#listCart').append(
+                                `
+                                    <li>
+                                        <a href="{{ url('/') }}/product/${element.product.slug}">
+                                            <figure>
+                                                <img src="{{ Storage::url('images/product/') }}/${element.product.image}"
+                                                    data-src="img/products/shoes/thumb/1.jpg" alt=""
+                                                    width="50" height="50" class="lazy">
+                                            </figure>
+                                            <strong>
+                                                <span>${element.product.name}</span>${element.quantity} x Rp.${element.product.price}
+                                            </strong>
+                                        </a>
+                                        <a href="#" onClick="deleteCart(${element.id});" class="action"><i class="ti-trash"></i></a>
+                                    </li>
+                                `
+                            );
+                        });
+                        $('#totalCart').html(`Rp.${response.userCartTotalPrice}`);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    },
+                    complete: function() {
+                        console.log('complete');
+                    }
+                });
+            }
+            $(document).ready(function() {
+                setInterval(() => {
+                    cart();
+                }, 1000);
+
+
+            });
+
+            function deleteCart(id) {
+                $.ajax({
+                    url: `{{ url('/') }}/cart/${id}/remove`,
+                    type: 'DELETE',
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        cart();
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    },
+                });
+            }
+        </script>
+    @endauth
+
+
+
     <script>
         $("#chatBot").addClass('visible');
-
-
         $('#chatBot').on('click', function() {
             var chatPopup = document.getElementById('chatPopup');
             if (chatPopup.style.display === 'none' || chatPopup.style.display === '') {
@@ -215,8 +288,6 @@
                 chatPopup.style.display = 'none';
                 chatPopup.style.zIndex = '0';
             }
-
-
             $('#sendButton').on('click', function() {
                 var userInput = document.getElementById('userInput');
                 var message = userInput.value;
@@ -241,6 +312,16 @@
                 chatBody.scrollTop = chatBody.scrollHeight;
             }
         });
+    </script>
+
+    <script>
+        function developmentMessage() {
+            Swal.fire({
+                icon: 'info',
+                title: 'Under Development',
+                text: 'Fitur ini sedang dalam pengembangan, mohon tunggu informasi selanjutnya. Terima kasih 👍',
+            });
+        }
     </script>
 
 

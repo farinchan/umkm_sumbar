@@ -6,6 +6,7 @@
 @section('styles')
     <!-- SPECIFIC CSS -->
     <link href="{{ asset('front/css/product_page.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/leave_review.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -101,20 +102,43 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
-                            <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
+                            <div id="addCart" class="btn_add_to_cart"><a href="#0" class="btn_1">Tambah
+                                    kekeranjang</a></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6">
+                        </div>
+                        <div class="col-lg-4 col-md-6 text-center mt-2">
+                            <a href="https://wa.me/{{ $product->shop->phone }}?text=Halo toko {{ $product->shop->name }}"
+                                class="btn btn-outline-success"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                    width="25" height="25" viewBox="0 0 48 48">
+                                    <path fill="#fff"
+                                        d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24	c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z">
+                                    </path>
+                                    <path fill="#fff"
+                                        d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6	C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3	L5,43.8C5,43.8,4.9,43.8,4.9,43.8z">
+                                    </path>
+                                    <path fill="#cfd8dc"
+                                        d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3	l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24	c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2	c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z">
+                                    </path>
+                                    <path fill="#40c351"
+                                        d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8l6-1.6l0.6,0.3	c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z">
+                                    </path>
+                                    <path fill="#fff" fill-rule="evenodd"
+                                        d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4	s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6	s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4	c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8	C20.6,19.3,19.7,17,19.3,16z"
+                                        clip-rule="evenodd"></path>
+                                </svg></a>
+                            <a href="mailto:{{ $product->shop->email }}?subject=Halo toko {{ $product->shop->name }}"
+                                class="btn btn-outline-secondary"><i class="ti-email"></i></a>
+                            <a href="tel:{{ $product->shop->phone }}" class="btn btn-outline-secondary"><i
+                                    class="ti-headphone-alt"></i></a>
                         </div>
                     </div>
                 </div>
                 <!-- /prod_info -->
                 <div class="product_actions">
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ti-control-shuffle"></i><span>Add to Compare</span></a>
-                        </li>
-                    </ul>
+                    {{-- {{ $product->short_description }} --}}
                 </div>
                 <!-- /product_actions -->
             </div>
@@ -181,6 +205,50 @@
                                         </table>
                                     </div>
                                     <!-- /table-responsive -->
+                                    <div class="card mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="{{ Storage::url('images/shop/' . $product->shop->logo) }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body ms-5">
+                                                    <h5 class="card-title">{{ $product->shop->name }}</h5>
+                                                    @if ($product->shop->verified == 1)
+                                                        <span data-bs-toggle="tooltip" data-bs-placement="right"
+                                                            data-bs-title="UMKM ini sudah diverfikasi oleh badan"
+                                                            class="badge rounded-pill bg-success px-2">
+                                                            <i class="ti-check me-2"></i>
+                                                            diverifikasi
+                                                        </span>
+                                                    @else
+                                                        <span data-bs-toggle="tooltip" data-bs-placement="right"
+                                                            data-bs-title="UMKM ini belum diverfikasi oleh badan"
+                                                            class="badge rounded-pill bg-warning py=x-2">
+                                                            <i class="ti-close me-2"></i>
+                                                            belum diverifikasi
+                                                        </span>
+                                                    @endif
+                                                    <div>
+                                                        <i class="ti-location-pin me-2"></i>
+                                                        {{ $product->shop->city->name }}
+                                                    </div>
+                                                    <div>
+                                                        <i class="ti-email me-2"></i>
+                                                        {{ $product->shop->email }}
+                                                    </div>
+                                                    <div>
+                                                        <i class="ti-headphone-alt me-2"></i>
+                                                        {{ $product->shop->phone }}
+                                                    </div>
+                                                    <a href="{{ route('shop-detail', $product->shop->slug) }}"
+                                                        class="btn_1">Kunjungi ></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /table-responsive -->
                                 </div>
                             </div>
                         </div>
@@ -197,30 +265,9 @@
                         </h5>
                     </div>
                     <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
+                        <!-- Button trigger modal -->
+
                         <div class="card-body">
-                            <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
                             <div class="row justify-content-between">
                                 @foreach ($product->productReview as $review)
                                     <div class="col-lg-6">
@@ -243,8 +290,26 @@
                                     </div>
                                 @endforeach
                             </div>
+
                         </div>
-                        <!-- /card-body -->
+                        @auth
+
+                            <div class="card-body text-center">
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addReview">
+                                    <i class="ti-plus"></i>
+                                    Buat Review Saya
+                                </button>
+                            </div>
+                        @endauth
+                        @guest
+                            <div class="card-body text-center">
+                                <a href="{{ route('login') }}" class="btn btn-outline-secondary">
+                                    <i class="ti-user"></i>
+                                    Login untuk membuat review
+                                </a>
+                            </div>
+                        @endguest
                     </div>
                 </div>
                 <!-- /tab B -->
@@ -349,29 +414,57 @@
 @section('scripts')
     <!-- SPECIFIC SCRIPTS -->
     <script src="{{ asset('front/js/carousel_with_thumbs.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.btn_add_to_cart').on('click', function() {
-                var quantity = $('#quantity_1').val();
-                var product_id = '{{ $product->id }}';
-                $.ajax({
-                    url: "{{ route('cart.store') }}",
-                    type: "POST",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        product_id: product_id,
-                        quantity: quantity
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            $('.top_panel').addClass('visible');
-                            $('.top_panel label').text(response.message);
+    @auth
+        <script>
+            $(document).ready(function() {
+                $('#addCart').click(function() {
+                    var quantity = $('#quantity_1').val();
+                    var productId = '{{ $product->id }}';
+                    $.ajax({
+                        url: "{{ route('cart-add') }}",
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            product_id: productId,
+                            quantity: quantity
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response.success) {
+                                $('.top_panel').addClass('show');
+                                $('.top_panel label').text(response.message);
+                            }
+                        },
+                        error: function(xhr) {
+                            console.log(xhr);
                         }
-                    }
+                    });
+
+
+
                 });
             });
-        });
-
+        </script>
+    @else
+        <script>
+            $(document).ready(function() {
+                $('#addCart').click(function() {
+                    Swal.fire({
+                        title: 'Anda belum login',
+                        text: 'Silahkan login terlebih dahulu untuk menambahkan produk ke keranjang',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Login',
+                        cancelButtonText: 'Batal',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{{ route('login') }}";
+                        }
+                    });
+                });
+            });
+        </script>
+    @endauth
 @endsection

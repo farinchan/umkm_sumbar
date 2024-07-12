@@ -5686,7 +5686,7 @@ input.qty2:focus {
 }
 #chatBot:after {
   font-family: 'themify';
-  content: "🙋🏽";
+  content: "🤖";
   position: relative;
   display: block;
   top: 50%;

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductReview;
 use App\Models\ProductViewer;
+use App\Models\UserCart;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Facades\Agent;
 use Stevebauman\Location\Facades\Location;
@@ -136,28 +137,51 @@ class ProductController extends Controller
         return view('front.product.category', $data);
     }
 
-    public function postReview(Request $request)
+    public function postReview(Request $request, $slug)
     {
         $request->validate([
             'rating' => 'required',
-            'comment' => 'required',
-            'product_id' => 'required',
+            'review' => 'required',
         ]);
 
-        $product = Product::find($request->product_id);
+        $product = Product::where('slug', $slug)->first();
         if (!$product) {
             return redirect()->back()->with('error', 'Product not found');
         }
 
         $productReview = new ProductReview();
-        $productReview->product_id = $request->product_id;
-        $productReview->user_id = auth()->user()->id;
+        $productReview->review = $request->review;
         $productReview->rating = $request->rating;
-        $productReview->comment = $request->comment;
+        $productReview->product_id = $product->id;
+        $productReview->user_id = auth()->user()->id;
         $productReview->save();
 
         return redirect()->back()->with('success', 'Review has been added');
     }
+    public function updateReview(Request $request, $slug)
+    {
+        $request->validate([
+            'rating' => 'required',
+            'review' => 'required',
+        ]);
 
+        $product = Product::where('slug', $slug)->first();
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
+        $productReview = ProductReview::where('product_id', $product->id)->where('user_id', auth()->user()->id)->first();
+        if (!$productReview) {
+            return redirect()->back()->with('error', 'Review not found');
+        }
+
+        $productReview->review = $request->review;
+        $productReview->rating = $request->rating;
+        $productReview->save();
+
+        return redirect()->back()->with('success', 'Review has been updated');
+    }
+
+    
 
 }

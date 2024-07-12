@@ -13,6 +13,7 @@ use App\Http\Controllers\Web\Back\Admin\ShopController;
 use App\Http\Controllers\Web\Back\Admin\UserController;
 use App\Http\Controllers\Web\Back\shop\ShopController as backShopController;
 use App\Http\Controllers\Web\Back\shop\ProductController as backProductController;
+use App\Http\Controllers\Web\Front\CartController;
 use App\Http\Controllers\web\front\HomeController;
 use App\Http\Controllers\web\front\ProductController as frontProductController;
 use App\Http\Controllers\web\front\NewsController as frontNewsController;
@@ -22,7 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "index"])->name('home');
 Route::get('/product', [frontProductController::class, "index"])->name('product-all');
 Route::get('/product/{slug}', [frontProductController::class, "product"])->name('product');
+Route::post('/product/{slug}/review', [frontProductController::class, "postReview"])->name('product-review');
+Route::put('/product/{slug}/review', [frontProductController::class, "updateReview"])->name('product-review-update');
 Route::get('/product/category/{slug}', [frontProductController::class, "category"])->name('product-category');
+
+Route::get('/cart', [CartController::class, "cart"])->name('cart');
+Route::get('/cart/api', [CartController::class, "cartApi"])->name('cart-api');
+Route::delete('/cart/{id}/remove', [CartController::class, "removeCart"])->name('cart-remove');
+Route::post('/cart/add', [CartController::class, "addToCart"])->name('cart-add');
+
 Route::get('/news', [frontNewsController::class, "index"])->name('news');
 Route::get('/news/{slug}', [frontNewsController::class, "show"])->name('news-show');
 Route::get('/about', [HomeController::class, "about"])->name('about');
