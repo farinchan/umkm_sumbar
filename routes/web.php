@@ -11,8 +11,8 @@ use App\Http\Controllers\web\back\Admin\ProductController;
 use App\Http\Controllers\web\back\admin\SettingController;
 use App\Http\Controllers\web\back\Admin\ShopController;
 use App\Http\Controllers\web\back\Admin\UserController;
-use App\Http\Controllers\web\Back\shop\ShopController as backShopController;
-use App\Http\Controllers\web\Back\shop\ProductController as backProductController;
+use App\Http\Controllers\web\Back\Shop\ShopController as backShopController;
+use App\Http\Controllers\web\Back\Shop\ProductController as backProductController;
 use App\Http\Controllers\web\front\CartController;
 use App\Http\Controllers\web\front\HomeController;
 use App\Http\Controllers\web\front\ProductController as frontProductController;
@@ -27,7 +27,7 @@ Route::post('/product/{slug}/review', [frontProductController::class, "postRevie
 Route::put('/product/{slug}/review', [frontProductController::class, "updateReview"])->name('product-review-update');
 Route::get('/product/category/{slug}', [frontProductController::class, "category"])->name('product-category');
 
-Route::get('/cart', [CartController::class, "cart"])->name('cart');
+Route::get('/cart', [CartController::class, "cart"])->name('cart')->middleware('auth');
 Route::get('/cart/api', [CartController::class, "cartApi"])->name('cart-api');
 Route::delete('/cart/{id}/remove', [CartController::class, "removeCart"])->name('cart-remove');
 Route::post('/cart/add', [CartController::class, "addToCart"])->name('cart-add');
