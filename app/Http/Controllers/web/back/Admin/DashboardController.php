@@ -17,7 +17,7 @@ class DashboardController extends Controller
             'menu_title' => 'Manajemen Admin',
             'title' => 'Dashboard',
         ];
-        return view('back.dashboard.index');
+        return view('back.dashboard.index', $data);
     }
 
     public function information(Request $request)
