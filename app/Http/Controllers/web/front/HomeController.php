@@ -26,7 +26,7 @@ class HomeController extends Controller
         try {
             $product_history = session('product_history');
             if ($product_history) {
-                $recomended1 = Http::get('http://127.0.0.1:5000/recomender/content', [
+                $recomended1 = Http::get('https://ml-smart-umkm.gariskode.com/recomender/content', [
                     'product_id' => $product_history
                 ])["recommendations"];
 
@@ -42,7 +42,7 @@ class HomeController extends Controller
                     "recommendations" => $recomended1
                 ];
             } else {
-                $recomended1 = Http::get('http://127.0.0.1:5000/recomender/ranking')["recommendations"];
+                $recomended1 = Http::get('https://ml-smart-umkm.gariskode.com/recomender/ranking')["recommendations"];
                 foreach ($recomended1 as $key => $value) {
                     $recomended1[$key] = Product::where('id', $value)->where('status', 1)->with(['productCategory', 'productImage', 'productReview', 'productViewer', 'shop'])->first();
                     if (!$recomended1[$key]) {
@@ -61,7 +61,7 @@ class HomeController extends Controller
 
         try {
             if (Auth::check()) {
-                $recomended2 = Http::get('http://127.0.0.1:5000/recomender/item', [
+                $recomended2 = Http::get('https://ml-smart-umkm.gariskode.com/recomender/item', [
                     'user_id' => auth()->user()->id
                 ])["recommendations"];
     

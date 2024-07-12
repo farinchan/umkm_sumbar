@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Web\Auth\AuthController;
+use App\Http\Controllers\web\auth\AuthController;
 use App\Http\Controllers\Web\Back\Account\AccountController;
 use App\Http\Controllers\Web\Back\Admin\CityController;
 use App\Http\Controllers\Web\Back\Admin\DashboardController;
