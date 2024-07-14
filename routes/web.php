@@ -8,7 +8,7 @@ use App\Http\Controllers\web\back\Admin\FileManagerController;
 use App\Http\Controllers\web\back\admin\NewsController;
 use App\Http\Controllers\web\back\Admin\ProductCategoryController;
 use App\Http\Controllers\web\back\Admin\ProductController;
-use App\Http\Controllers\web\back\admin\SettingController;
+use App\Http\Controllers\web\back\Admin\SettingController;
 use App\Http\Controllers\web\back\Admin\ShopController;
 use App\Http\Controllers\web\back\Admin\UserController;
 use App\Http\Controllers\web\back\Shop\ShopController as backShopController;
