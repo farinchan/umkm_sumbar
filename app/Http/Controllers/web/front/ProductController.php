@@ -92,9 +92,6 @@ class ProductController extends Controller
         $productViewer->save();
 
         $data = [
-            'title' => 'Home',
-            'description' => 'Home page description',
-            'keywords' => 'Home page keywords',
             'product' => $products,
             'categoryProduct' => $products->productCategory->slug,
             'releatedProduct' => $releatedProduct->take(8)->get(),

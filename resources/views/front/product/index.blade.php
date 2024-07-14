@@ -1,6 +1,15 @@
 @extends('front.app')
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 @section('seo')
+    <title>{{ $website->name }} | Produk</title>
+    <meta name="description" content="{{ strip_tags($website->about) }}">
+    <meta name="keywords"
+        content="smart umkm, umkm sumatera barat, umkm padang, umkm padang panjang, umkm payakumbuh, umkm pariaman, umkm sawahlunto, umkm solok, umkm kota bukittinggi, umkm kota padang, umkm kota padang panjang, umkm kota payakumbuh, umkm kota pariaman, umkm kota sawahlunto, umkm kota solok">
+    <meta name="author" content="Smart UMKM">
 @endsection
 
 @section('styles')
@@ -51,7 +60,6 @@
                 <form method="get">
                     @if (request()->has('search'))
                         <input type="hidden" name="search" value="{{ request('search') }}">
-                        
                     @endif
                     <div class="row small-gutters filters_listing_1">
                         <div class="col-lg-3 col-md-6 col-sm-6">
@@ -84,14 +92,14 @@
                                     <div class="filter_type">
                                         <ul>
                                             <li>
-                                                <label class="container_check">⭐⭐⭐⭐⭐ 
+                                                <label class="container_check">⭐⭐⭐⭐⭐
                                                     <input type="radio" name="review_filter" value="5"
                                                         @if (request('review_filter') == '5') checked @endif>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="container_check">>= ⭐⭐⭐⭐ 
+                                                <label class="container_check">>= ⭐⭐⭐⭐
                                                     <input type="radio" name="review_filter" value="4"
                                                         @if (request('review_filter') == '4') checked @endif>
                                                     <span class="checkmark"></span>
@@ -131,13 +139,14 @@
                                     <div class="filter_type">
                                         <ul>
                                             @foreach ($city_list as $city)
-                                            <li>
-                                                <label class="container_check">{{ $city->name }}
-                                                    <input type="radio" name="city_filter" value="{{ $city->id }}"
-                                                        @if (request('city_filter') == $city->id ) checked @endif>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
+                                                <li>
+                                                    <label class="container_check">{{ $city->name }}
+                                                        <input type="radio" name="city_filter"
+                                                            value="{{ $city->id }}"
+                                                            @if (request('city_filter') == $city->id) checked @endif>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div>

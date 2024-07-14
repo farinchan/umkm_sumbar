@@ -1,6 +1,14 @@
 @extends('front.app')
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 @section('seo')
+    <title>{{ $news->meta_title }} | {{ $website->name }}</title>
+    <meta name="description" content="{{ $news->meta_description }}">
+    <meta name="keywords" content="{{ $news->meta_keyword }}">
+    <meta name="author" content="{{ $news->user->name }}">
 @endsection
 
 @section('styles')
@@ -89,9 +97,8 @@
                                 </div>
                                 <div class="comment_right clearfix">
                                     <div class="comment_info">
-                                        By <a
-                                            href="#">{{ Auth()->user()->name }}</a><a
-                                            href="#"><i class="icon-reply"></i></a>
+                                        By <a href="#">{{ Auth()->user()->name }}</a><a href="#"><i
+                                                class="icon-reply"></i></a>
                                     </div>
                                     <div class="form-group">
                                         <textarea class="form-control" name="comment" id="comments2" rows="6" placeholder="Comment"></textarea>

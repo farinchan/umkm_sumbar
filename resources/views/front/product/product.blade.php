@@ -1,6 +1,15 @@
 @extends('front.app')
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 @section('seo')
+    <title>{{ $product->meta_title }} | {{ $website->name }}</title>
+    <meta name="description" content="{{ $product->meta_description }}">
+    <meta name="keywords"
+        content="{{ $product->meta_keyword }}">
+    <meta name="author" content="{{ $product->shop->name }}">
 @endsection
 
 @section('styles')

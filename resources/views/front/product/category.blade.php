@@ -1,6 +1,15 @@
 @extends('front.app')
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 @section('seo')
+    <title>{{ $website->name }} | {{ $getCategory->name }}</title>
+    <meta name="description" content="{{ strip_tags($website->about) }}">
+    <meta name="keywords"
+        content="smart umkm, umkm sumatera barat, umkm padang, umkm padang panjang, umkm payakumbuh, umkm pariaman, umkm sawahlunto, umkm solok, umkm kota bukittinggi, umkm kota padang, umkm kota padang panjang, umkm kota payakumbuh, umkm kota pariaman, umkm kota sawahlunto, umkm kota solok">
+    <meta name="author" content="Smart UMKM">
 @endsection
 
 @section('styles')
@@ -137,7 +146,8 @@
                                 @endif
                                 <figure>
                                     <a href="{{ route('product', $product->slug) }}">
-                                        <img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg"
+                                        <img class="img-fluid lazy"
+                                            src="img/products/product_placeholder_square_medium.jpg"
                                             data-src="@if ($product->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $product->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $product->name }} @endif"
                                             alt="">
                                     </a>

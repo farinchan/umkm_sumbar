@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@php
-    $website = \App\Models\SettingWebsite::first();
-@endphp
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ $website->name }} | {{ $title ?? '' }}</title>
 
 
     @yield('seo')
@@ -54,8 +50,8 @@
             right: 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
-            width: 350px;
-            height: 400px;
+            width: 400px;
+            height: 520px;
             /* Tinggi tetap */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             background-color: white;
@@ -74,7 +70,7 @@
 
         .chat-popup-body {
             padding: 10px;
-            height: 300px;
+            height: 400px;
             flex: 1;
         }
 
@@ -148,7 +144,9 @@
         data-bs-title="Ayo tanya produk apa yang ingin anda cari?"></div>
     <div class="chat-popup" id="chatPopup">
         <div class="chat-popup-header">
-            Chat Bot
+            Chatbot - SMART UMKM
+            <br>
+            <small id="status_bot">Online</small>
         </div>
         <div class="chat-popup-body overflow-auto" id="chatBody">
             <div class="message bot-message">Halo! Ada yang bisa saya bantu?</div>
@@ -307,6 +305,7 @@
             const audio = new Audio("{{ asset('audio/notif_audio.mp3') }}")
             audio.volume = 0.9;
             function chatbotApi(message) {
+                $('#status_bot').html('Mengetik...');
                 $.ajax({
                     url: `http://chatbot-smat-umkm.gariskode.com/chatbot`,
                     type: 'GET',
@@ -323,6 +322,9 @@
                         audio.play();
                         appendMessage('bot', 'Maaf, terjadi kesalahan');
                     },
+                    complete: function() {
+                        $('#status_bot').html('Online');
+                    }
                 });
             }
 

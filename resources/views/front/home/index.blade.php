@@ -1,6 +1,15 @@
 @extends('front.app')
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 @section('seo')
+    <title>{{ $website->name }} | Home</title>
+    <meta name="description" content="{{ strip_tags($website->about) }}">
+    <meta name="keywords"
+        content="smart umkm, umkm sumatera barat, umkm padang, umkm padang panjang, umkm payakumbuh, umkm pariaman, umkm sawahlunto, umkm solok, umkm kota bukittinggi, umkm kota padang, umkm kota padang panjang, umkm kota payakumbuh, umkm kota pariaman, umkm kota sawahlunto, umkm kota solok">
+    <meta name="author" content="Smart UMKM">
 @endsection
 
 @section('styles')
@@ -83,71 +92,73 @@
     <!--/carousel-->
 
     @if ($recomended1 != [])
-    <div class="container margin_60_35">
-        <div class="main_title">
-            <h2>Direkomendasikan untuk anda</h2>
-            <span>Products</span>
-            @if ($recomended1['filter'] == 'content')
-                <p>Kami persembahkan produk umkm sumatera barat yang kami rekomendasikan untuk anda berdasarkan produk yang anda lihat sebelumnya</p>
-            @else
-                <p>Kami persembahkan produk umkm sumatera barat yang kami rekomendasikan untuk anda berdasarkan produk yang populer</p>
-            @endif
-        </div>
-        <div class="row small-gutters">
-            @foreach ($recomended1['recommendations'] as $recomended1)
-                <div id="recomended1" class="col-6 col-md-4 col-xl-3">
-                    <div class="grid_item">
-                        @if ($recomended1->discount > 0)
-                            <span class="ribbon off">-{{ $recomended1->discount }}%</span>
-                        @elseif ($recomended1->created_at->diffInDays() < 7)
-                            <span class="ribbon new">New</span>
-                        @endif
-                        <figure>
-                            <a href="{{ route('product', $recomended1->slug) }}">
-                                <img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg"
-                                    data-src="@if ($recomended1->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $recomended1->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $recomended1->name }} @endif"
-                                    alt="">
-                            </a>
-                            {{-- <div data-countdown="2019/05/10" class="countdown"></div> --}}
-                        </figure>
-                        <div class="rating">
-
-                            @for ($i = 0; $i < round($recomended1->productReview->average('rating')); $i++)
-                                <i class="icon-star voted"></i>
-                            @endfor
-                            @for ($i = 0; $i < 5 - round($recomended1->productReview->average('rating')); $i++)
-                                <i class="icon-star"></i>
-                            @endfor
-                            <br>
-                            {{ round($recomended1->productReview->average('rating')) }} / 5
-                            ({{ $recomended1->productReview->count() }} Penilaian)
-                        </div>
-                        <a href="{{ route('product', $recomended1->slug) }}">
-                            <h3>{{ $recomended1->name }}</h3>
-                        </a>
-                        <div class="price_box">
+        <div class="container margin_60_35">
+            <div class="main_title">
+                <h2>Direkomendasikan untuk anda</h2>
+                <span>Products</span>
+                @if ($recomended1['filter'] == 'content')
+                    <p>Kami persembahkan produk umkm sumatera barat yang kami rekomendasikan untuk anda berdasarkan produk
+                        yang anda lihat sebelumnya</p>
+                @else
+                    <p>Kami persembahkan produk umkm sumatera barat yang kami rekomendasikan untuk anda berdasarkan produk
+                        yang populer</p>
+                @endif
+            </div>
+            <div class="row small-gutters">
+                @foreach ($recomended1['recommendations'] as $recomended1)
+                    <div id="recomended1" class="col-6 col-md-4 col-xl-3">
+                        <div class="grid_item">
                             @if ($recomended1->discount > 0)
-                                <span class="new_price">@money($recomended1->price - ($recomended1->price * $recomended1->discount) / 100)</span>
-                                <span class="old_price">@money($recomended1->price) </span>
-                            @else
-                                <span class="new_price">@money($recomended1->price)</span>
+                                <span class="ribbon off">-{{ $recomended1->discount }}%</span>
+                            @elseif ($recomended1->created_at->diffInDays() < 7)
+                                <span class="ribbon new">New</span>
                             @endif
+                            <figure>
+                                <a href="{{ route('product', $recomended1->slug) }}">
+                                    <img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg"
+                                        data-src="@if ($recomended1->productImage->isNotEmpty()) {{ Storage::url('images/product/' . $recomended1->productImage[0]->image) }} @else https://ui-avatars.com/api/?background=000C32&color=fff&name={{ $recomended1->name }} @endif"
+                                        alt="">
+                                </a>
+                                {{-- <div data-countdown="2019/05/10" class="countdown"></div> --}}
+                            </figure>
+                            <div class="rating">
+
+                                @for ($i = 0; $i < round($recomended1->productReview->average('rating')); $i++)
+                                    <i class="icon-star voted"></i>
+                                @endfor
+                                @for ($i = 0; $i < 5 - round($recomended1->productReview->average('rating')); $i++)
+                                    <i class="icon-star"></i>
+                                @endfor
+                                <br>
+                                {{ round($recomended1->productReview->average('rating')) }} / 5
+                                ({{ $recomended1->productReview->count() }} Penilaian)
+                            </div>
+                            <a href="{{ route('product', $recomended1->slug) }}">
+                                <h3>{{ $recomended1->name }}</h3>
+                            </a>
+                            <div class="price_box">
+                                @if ($recomended1->discount > 0)
+                                    <span class="new_price">@money($recomended1->price - ($recomended1->price * $recomended1->discount) / 100)</span>
+                                    <span class="old_price">@money($recomended1->price) </span>
+                                @else
+                                    <span class="new_price">@money($recomended1->price)</span>
+                                @endif
+                            </div>
+                            <ul>
+                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                        title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
+                                </li>
+                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
+                                        title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>
+                                </li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a>
-                            </li>
-                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>
-                            </li>
-                        </ul>
+                        <!-- /grid_item -->
                     </div>
-                    <!-- /grid_item -->
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <!-- /row -->
         </div>
-        <!-- /row -->
-    </div>
     @else
         <div class="container margin_60_35">
             <div class="main_title">
@@ -157,7 +168,7 @@
         </div>
     @endif
 
-   
+
     <!-- /container -->
 
     <div class="featured lazy" data-bg="url(img/featured_home.jpg)">
@@ -181,12 +192,13 @@
     </div>
     <!-- /featured -->
 
-    @if ($recomended2 != [] )
+    @if ($recomended2 != [])
         <div class="container margin_60_35">
             <div class="main_title">
                 <h2>Direkomendasikan untuk anda</h2>
                 <span>Products</span>
-                <p>Kami persembahkan produk UMKM Sumatera Barat yang kami rekomendasikan untuk anda berdasarkan produk yang anda sudah anda nilai</p>
+                <p>Kami persembahkan produk UMKM Sumatera Barat yang kami rekomendasikan untuk anda berdasarkan produk yang
+                    anda sudah anda nilai</p>
             </div>
             <div class="owl-carousel owl-theme products_carousel">
 
