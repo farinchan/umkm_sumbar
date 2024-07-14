@@ -296,14 +296,39 @@
                 appendMessage('user', message);
                 userInput.value = '';
 
-                // Simulasikan balasan bot
-                setTimeout(function() {
-                    var botResponse = 'Ini adalah balasan dari bot';
-                    appendMessage('bot', botResponse);
-                }, 1000);
+                // // Simulasikan balasan bot
+                // setTimeout(function() {
+                //     var botResponse = 'Ini adalah balasan dari bot';
+                //     appendMessage('bot', botResponse);
+                // }, 1000);
+                chatbotApi(message);
             });
 
+            const audio = new Audio("{{ asset('audio/notif_audio.mp3') }}")
+            audio.volume = 0.9;
+            function chatbotApi(message) {
+                $.ajax({
+                    url: `http://chatbot-smat-umkm.gariskode.com/chatbot`,
+                    type: 'GET',
+                    data: {
+                        query: message,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        audio.play();
+                        appendMessage('bot', response.response.result);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                        audio.play();
+                        appendMessage('bot', 'Maaf, terjadi kesalahan');
+                    },
+                });
+            }
+
             function appendMessage(sender, message) {
+
+
                 var chatBody = document.getElementById('chatBody');
                 var messageDiv = document.createElement('div');
                 messageDiv.className = 'message ' + (sender === 'user' ? 'user-message' : 'bot-message');
