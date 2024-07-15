@@ -82,6 +82,7 @@
                                     </div>
                                 </div>
                             @endif
+
                             <div class="form-group">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" id="email" value="{{ old('email') }}" placeholder="Email*">
@@ -140,7 +141,8 @@
 
 
                             <div class="form-group">
-                                <input type="text" class="form-control" name="name" placeholder="Nama*" value="{{ old("name") }}">
+                                <input type="text" class="form-control" name="name" placeholder="Nama*"
+                                    value="{{ old('name') }}">
                             </div>
                             @error('name')
                                 <div class="invalid-feedback text-red-1 mb-3">
@@ -150,7 +152,8 @@
 
                             <hr>
                             <div class="form-group">
-                                <label class="container_radio" style="display: inline-block; margin-right: 15px;">Laki-Laki
+                                <label class="container_radio"
+                                    style="display: inline-block; margin-right: 15px;">Laki-Laki
                                     <input type="radio" name="gender" checked value="laki-laki">
                                     <span class="checkmark"></span>
                                 </label>
@@ -165,7 +168,8 @@
                                 </div>
                             @enderror
                             <div class="form-group">
-                                <input type="number" class="form-control" name="phone" placeholder="nomor Telepon*" value="{{ old("phone") }}">
+                                <input type="number" class="form-control" name="phone" placeholder="nomor Telepon*"
+                                    value="{{ old('phone') }}">
                             </div>
                             @error('phone')
                                 <div class="invalid-feedback text-red-1 mb-3">
@@ -174,7 +178,7 @@
                             @enderror
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="email_2"
-                                    placeholder="Email*" value="{{ old("email") }}">
+                                    placeholder="Email*" value="{{ old('email') }}">
                             </div>
                             @error('email')
                                 <div class="invalid-feedback text-red-1 mb-3">
@@ -211,4 +215,35 @@
         </div>
         <!-- /row -->
     </div>
+@endsection
+
+@section('scripts')
+    @if (session()->has('warning'))
+        <style>
+            Swal.fire({
+                title: 'Failed',
+                text: '{{ session('warning') }}',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        </style>
+    @elseif (session()->has('error'))
+        <style>
+            Swal.fire({
+                title: 'Failed',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        </style>
+    @elseif (session()->has('success'))
+        <style>
+            Swal.fire({
+                title: 'Success',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK',
+            });
+        </style>
+    @endif
 @endsection

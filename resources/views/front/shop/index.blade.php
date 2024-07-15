@@ -1,6 +1,15 @@
 @extends('front.app')
 
+@php
+    $website = \App\Models\SettingWebsite::first();
+@endphp
+
 @section('seo')
+    <title>{{ $website->name }} | UMKM</title>
+    <meta name="description" content="{{ strip_tags($website->about) }}">
+    <meta name="keywords"
+        content="smart umkm, umkm sumatera barat, umkm padang, umkm padang panjang, umkm payakumbuh, umkm pariaman, umkm sawahlunto, umkm solok, umkm kota bukittinggi, umkm kota padang, umkm kota padang panjang, umkm kota payakumbuh, umkm kota pariaman, umkm kota sawahlunto, umkm kota solok">
+    <meta name="author" content="Smart UMKM">
 @endsection
 
 @section('styles')
@@ -48,7 +57,7 @@
             <div class="col-lg-9">
 
                 <div class="row">
-    
+
                     @foreach ($shop as $item)
                         <div class="col-lg-6 mb-3">
                             <div class="card">
@@ -60,12 +69,13 @@
                                                 <a href="product-detail-1.html">
                                                     <img class="img-fluid lazy"
                                                         src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                                        data-src="{{ Storage::url('images/shop/' . $item->logo) }}" alt="">
+                                                        data-src="{{ Storage::url('images/shop/' . $item->logo) }}"
+                                                        alt="">
                                                 </a>
                                             </figure>
                                         </div>
                                         <div class="col-sm-3"></div>
-        
+
                                     </div>
                                     <div class="row row_item">
                                         <div class="col-sm-12 text-center">
@@ -105,14 +115,15 @@
                                                 {{ $item->phone }}
                                             </div>
                                             <ul>
-                                                <li><a href="{{ route('shop-detail', $item->slug) }}" class="btn_1">Kunjungi</a>
+                                                <li><a href="{{ route('shop-detail', $item->slug) }}"
+                                                        class="btn_1">Kunjungi</a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-        
+
                         </div>
                     @endforeach
                     <!-- /col -->
