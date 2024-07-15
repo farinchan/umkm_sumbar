@@ -32,57 +32,6 @@
                         <form action="{{ route('login.post') }}" method="post">
                             @csrf
 
-                            @if (session()->has('warning'))
-                                <div
-                                    class="alert alert-dismissible bg-accent-1-05 d-flex align-items-center flex-column flex-sm-row p-4 rounded mb-4">
-                                    <div class="d-flex flex-column text-light pe-0">
-                                        <h6 class="mb-2 text-danger d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-exclamation-triangle-fill me-2"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                            </svg>
-                                            Failed
-                                        </h6>
-                                        <span class="fw-bold">{{ session('warning') }}</span>
-                                    </div>
-                                </div>
-                            @elseif (session()->has('error'))
-                                <div
-                                    class="alert alert-dismissible bg-accent-1-05 d-flex align-items-center flex-column flex-sm-row p-4 rounded mb-4">
-                                    <div class="d-flex flex-column text-light pe-0">
-                                        <h6 class="mb-2 text-light  d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-exclamation-triangle-fill me-2"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                            </svg>
-                                            Failed
-                                        </h6>
-                                        <span class="fw-bold">{{ session('error') }}</span>
-                                    </div>
-                                </div>
-                            @elseif (session()->has('success'))
-                                <div
-                                    class="alert alert-dismissible bg-accent-1-05 d-flex align-items-center flex-column flex-sm-row p-4 rounded mb-4">
-                                    <div class="d-flex flex-column text-light pe-0">
-                                        <h6 class="mb-2 text-light  d-flex align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check2-circle me-2" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0" />
-                                                <path
-                                                    d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                            </svg>
-                                            Success
-                                        </h6>
-                                        <span class="fw-bold">{{ session('success') }}</span>
-                                    </div>
-                                </div>
-                            @endif
-
                             <div class="form-group">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" id="email" value="{{ old('email') }}" placeholder="Email*">
@@ -218,32 +167,32 @@
 @endsection
 
 @section('scripts')
-    @if (session()->has('warning'))
-        <style>
-            Swal.fire({
-                title: 'Failed',
-                text: '{{ session('warning') }}',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        </style>
-    @elseif (session()->has('error'))
-        <style>
-            Swal.fire({
-                title: 'Failed',
-                text: '{{ session('error') }}',
-                icon: 'error',
-                confirmButtonText: 'OK',
-            });
-        </style>
-    @elseif (session()->has('success'))
-        <style>
-            Swal.fire({
-                title: 'Success',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'OK',
-            });
-        </style>
-    @endif
+<style>
+    function showAlert(icon) {
+       if (icon == 'warning') {
+           Swal.fire({
+               title: 'Warning',
+               text: '{{ session('warning') }}',
+               icon: 'warning',
+               confirmButtonText: 'OK',
+           });
+       } else if (icon == 'error') {
+           Swal.fire({
+               title: 'Failed',
+               text: '{{ session('error') }}',
+               icon: 'error',
+               confirmButtonText: 'OK',
+           });
+       } else if (icon == 'success') {
+           Swal.fire({
+               title: 'Success',
+               text: '{{ session('success') }}',
+               icon: 'success',
+               confirmButtonText: 'OK',
+           });
+       }
+    }
+</style>
+<script>
+    
 @endsection

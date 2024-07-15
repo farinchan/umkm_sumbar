@@ -252,6 +252,8 @@
                 }, 1000);
 
 
+
+
             });
 
             function deleteCart(id) {
@@ -304,6 +306,7 @@
 
             const audio = new Audio("{{ asset('audio/notif_audio.mp3') }}")
             audio.volume = 0.9;
+
             function chatbotApi(message) {
                 $('#status_bot').html('Mengetik...');
                 $.ajax({
@@ -342,6 +345,39 @@
     </script>
 
     <script>
+        if ('{{ session('warning') }}') {
+            showAlert('warning');
+        } else if ('{{ session('error') }}') {
+            showAlert('error');
+        } else if ('{{ session('success') }}') {
+            showAlert('success');
+        }
+
+        function showAlert(icon) {
+            if (icon == 'warning') {
+                Swal.fire({
+                    title: 'Warning',
+                    text: '{{ session('warning') }}',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                });
+            } else if (icon == 'error') {
+                Swal.fire({
+                    title: 'Failed',
+                    text: '{{ session('error') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                });
+            } else if (icon == 'success') {
+                Swal.fire({
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                });
+            }
+        }
+
         function developmentMessage() {
             Swal.fire({
                 icon: 'info',
