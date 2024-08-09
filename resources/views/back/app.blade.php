@@ -68,14 +68,14 @@
         <!--end::Page-->
     </div>
     <!--end::Root-->
-    @include('back/partials/_drawers')
+    {{-- @include('back/partials/_drawers') --}}
     <!--end::Main-->
     @include('back/partials/_scrolltop')
     <!--begin::Modals-->
-    @include('back/partials/modals/_upgrade-plan')
-    @include('back/partials/modals/_invite-friends')
-    @include('back/partials/modals/create-app/_main')
-    @include('back/partials/modals/users-search/_main')
+    {{-- @include('back/partials/modals/_upgrade-plan') --}}
+    {{-- @include('back/partials/modals/_invite-friends') --}}
+    {{-- @include('back/partials/modals/create-app/_main') --}}
+    {{-- @include('back/partials/modals/users-search/_main') --}}
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
@@ -86,7 +86,7 @@
     <script src="{{ asset('back/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="{{ asset('back/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+    {{-- <script src="{{ asset('back/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -97,17 +97,19 @@
     <script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script> --}}
     <script src="{{ asset('back/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{ asset('back/js/widgets.bundle.js') }}"></script>
     <script src="{{ asset('back/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('back/js/custom/apps/chat/chat.js') }}"></script>
+    {{-- <script src="{{ asset('back/js/custom/apps/chat/chat.js') }}"></script>
     <script src="{{ asset('back/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
     <script src="{{ asset('back/js/custom/utilities/modals/create-app.js') }}"></script>
-    <script src="{{ asset('back/js/custom/utilities/modals/users-search.js') }}"></script>
+    <script src="{{ asset('back/js/custom/utilities/modals/users-search.js') }}"></script> --}}
     <!--end::Custom Javascript-->
+    @include('sweetalert::alert')
+
     @yield('scripts')
     <script>
         if (window.location.href.includes('back/information')) {

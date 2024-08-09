@@ -71,6 +71,7 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
                 Route::post('/store', [UserController::class, 'userStore'])->name('store');
                 Route::put('/{id}/update', [UserController::class, 'userUpdate'])->name('update');
                 Route::delete('/{id}/destroy', [UserController::class, 'userDestroy'])->name('destroy');
+                Route::post('/import', [UserController::class, 'userImport'])->name('import');
 
                 Route::prefix('/super-admin')->name('superadmin.')->group(function () {
                     Route::get('/', [UserController::class, 'superadmin'])->name('index');

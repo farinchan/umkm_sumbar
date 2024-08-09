@@ -12,6 +12,8 @@
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "maatwebsite/excel": "^3.1",
+        "realrashid/sweet-alert": "^7.2",
         "spatie/laravel-permission": "^6.7",
         "stevebauman/location": "^7.3"
     },

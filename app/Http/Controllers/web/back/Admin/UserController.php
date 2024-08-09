@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Web\Back\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use App\Models\City;
 use App\Models\CityAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -88,6 +91,29 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('admin.pengguna.index')->with('success', 'Berhasil menghapus data pengguna');
+    }
+
+    public function userImport(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'excel' => 'required|mimes:xlsx,xls',
+        ], [
+            'required' => 'File excel tidak boleh kosong',
+            'mimes' => 'File excel harus berformat .xlsx atau .xls',
+        ]);
+        if ($validator->fails()) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat mengimport data pengguna : ' . $validator->errors()->all());
+            return redirect()->route('admin.pengguna.index');
+        }
+
+        try {
+            Excel::import(new UsersImport, $request->file('excel'));
+            Alert::success('Berhasil', 'Data pengguna berhasil diimport');
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat mengimport data pengguna : ' . $e->getMessage());
+        }
+
+        return redirect()->route('admin.pengguna.index');
     }
 
     //TODO: Implement Super Admin

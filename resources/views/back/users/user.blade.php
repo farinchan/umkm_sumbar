@@ -165,6 +165,56 @@
                                 </div>
                             </div>
                         </div>
+                        <button data-bs-toggle="modal" data-bs-target="#import"
+                            class="btn btn-info d-flex align-items-center ms-2">
+                            <i class="ki-duotone ki-up-square fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            Import
+                        </button>
+                        <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered ">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header" id="kt_modal_add_user_header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bolder">Tambah Pengguna</h2>
+                                        <!--end::Modal title-->
+                                        
+                                    </div>
+                                    <div class="modal-body ">
+                                        <form method="POST" action="{{ route('admin.pengguna.import') }}" class="form" enctype="multipart/form-data" >
+                                            @csrf
+                                                <div class="fv-row">
+                                                    <label class="required fw-bold fs-6 mb-2">Import Pengguna</label>
+                                                    <input type="file" name="excel" accept=".xlsx"
+                                                        class="form-control form-control-solid mb-3 mb-lg-0" />
+                                                    @error('excel')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            <div class="text-center pt-15">
+                                                <button type="reset" class="btn btn-light me-3"
+                                                    data-kt-users-modal-action="cancel">Batal</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    data-kt-users-modal-action="submit">
+                                                    <span class="indicator-label">Tambah</span>
+                                                    <span class="indicator-progress">Please wait...
+                                                        <span
+                                                            class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body pt-0">
