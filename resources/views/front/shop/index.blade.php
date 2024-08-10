@@ -85,7 +85,7 @@
                                                 </a>
                                                 @if ($item->verified == 1)
                                                     <small>
-                                                        <i class="fa-solid fa-circle-check text-success ps-1"
+                                                        <i class="fa-solid fa-badge-check text-success ps-1"
                                                             data-bs-toggle="tooltip" data-bs-placement="right"
                                                             data-bs-title="UMKM ini telah diverifikasi"></i>
                                                     </small>
@@ -147,18 +147,16 @@
                     <ul class="pagination">
                         @if ($shop->onFirstPage())
                             <li class="page-item previous">
-                                <a href="#" class="page-link"><i class="previous"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="prev" title="previous page">&#10094;</a>
+                                <a class="prev" title="previous page" href="#" class="page-link"><i class="previous"></i>
+                                    &#10094;
+                                </a>
                             </li>
                         @else
                             <li class="page-item previous">
-                                <a href="{{ route('shop', ['city' => request()->city, 'page' => $shop->currentPage() - 1]) }}"
-                                    class="page-link bg-light"><i class="previous"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="prev" title="previous page">&#10094;</a>
+                                <a class="prev" title="previous page" href="{{ route('shop', ['city' => request()->city, 'page' => $shop->currentPage() - 1]) }}"
+                                    class="page-link bg-light"><i class="previous"></i>
+                                    &#10094;
+                                </a>
                             </li>
                         @endif
 

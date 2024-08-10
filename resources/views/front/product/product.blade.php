@@ -224,7 +224,7 @@
                                                     <h5 class="card-title">{{ $product->shop->name }}
                                                         @if ($product->shop->verified == 1)
                                                         <small>
-                                                            <i class="fa-solid fa-circle-check text-success ps-1"
+                                                            <i class="fa-solid fa-badge-check text-success ps-1"
                                                                 data-bs-toggle="tooltip" data-bs-placement="right"
                                                                 data-bs-title="UMKM ini telah diverifikasi"></i>
                                                         </small>
