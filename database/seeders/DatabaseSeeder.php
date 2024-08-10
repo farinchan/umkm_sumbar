@@ -34,6 +34,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         City::create([
+            'name' => 'Payakumbuh',
+            'slug' => 'payakumbuh',
+            'postal_code' => '28111',
+        ]);
+
+        City::create([
             'name' => 'Padang',
             'slug' => 'padang',
             'postal_code' => '25111',
@@ -45,11 +51,7 @@ class DatabaseSeeder extends Seeder
             'postal_code' => '27111',
         ]);
 
-        City::create([
-            'name' => 'Payakumbuh',
-            'slug' => 'payakumbuh',
-            'postal_code' => '28111',
-        ]);
+        
 
         City::create([
             'name' => 'Sawahlunto',

@@ -6,15 +6,19 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithProgressBar;
+use Maatwebsite\Excel\Concerns\Importable;
 
-class UsersImport implements ToModel, WithHeadingRow, WithValidation
+
+class UsersImport implements ToModel, WithHeadingRow, WithValidation, WithProgressBar
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    use Importable;
     
     public function model(array $row)
     {
@@ -52,6 +56,18 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation
             'photo' => 'nullable',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
+        ];
+    }
+
+    public function customValidationMessages()
+    {
+        return [
+            'name.required' => 'Nama harus diisi',
+            'gender.in' => 'Jenis kelamin harus diisi laki-laki atau perempuan',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email harus valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password harus diisi',
         ];
     }
 
