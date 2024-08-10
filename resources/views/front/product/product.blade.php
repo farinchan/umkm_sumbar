@@ -7,8 +7,7 @@
 @section('seo')
     <title>{{ $product->meta_title }} | {{ $website->name }}</title>
     <meta name="description" content="{{ $product->meta_description }}">
-    <meta name="keywords"
-        content="{{ $product->meta_keyword }}">
+    <meta name="keywords" content="{{ $product->meta_keyword }}">
     <meta name="author" content="{{ $product->shop->name }}">
 @endsection
 
@@ -222,22 +221,16 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body ms-5">
-                                                    <h5 class="card-title">{{ $product->shop->name }}</h5>
-                                                    @if ($product->shop->verified == 1)
-                                                        <span data-bs-toggle="tooltip" data-bs-placement="right"
-                                                            data-bs-title="UMKM ini sudah diverfikasi oleh badan"
-                                                            class="badge rounded-pill bg-success px-2">
-                                                            <i class="ti-check me-2"></i>
-                                                            diverifikasi
-                                                        </span>
-                                                    @else
-                                                        <span data-bs-toggle="tooltip" data-bs-placement="right"
-                                                            data-bs-title="UMKM ini belum diverfikasi oleh badan"
-                                                            class="badge rounded-pill bg-warning py=x-2">
-                                                            <i class="ti-close me-2"></i>
-                                                            belum diverifikasi
-                                                        </span>
+                                                    <h5 class="card-title">{{ $product->shop->name }}
+                                                        @if ($product->shop->verified == 1)
+                                                        <small>
+                                                            <i class="fa-solid fa-circle-check text-success ps-1"
+                                                                data-bs-toggle="tooltip" data-bs-placement="right"
+                                                                data-bs-title="UMKM ini telah diverifikasi"></i>
+                                                        </small>
                                                     @endif
+                                                    </h5>
+                                                    
                                                     <div>
                                                         <i class="ti-location-pin me-2"></i>
                                                         {{ $product->shop->city->name }}
@@ -251,7 +244,7 @@
                                                         {{ $product->shop->phone }}
                                                     </div>
                                                     <a href="{{ route('shop-detail', $product->shop->slug) }}"
-                                                        class="btn_1">Kunjungi ></a>
+                                                        class="btn_1 mt-2">Kunjungi ></a>
 
                                                 </div>
                                             </div>

@@ -45,14 +45,14 @@
                             <div class="col-xl-5 col-lg-5 col-md-6 col-6 ">
                                 @if ($shop->verified == 1)
                                     <span data-bs-toggle="tooltip" data-bs-placement="right"
-                                        data-bs-title="UMKM ini sudah diverfikasi oleh badan"
+                                        data-bs-title="UMKM ini sudah diverfikasi oleh Dinas Perindustrian dan Perdagangan Provinsi Sumatera Barat"
                                         class="badge rounded-pill bg-success p-2 ">
                                         <i class="ti-check me-2"></i>
                                         Diverifikasi
                                     </span>
                                 @else
                                     <span data-bs-toggle="tooltip" data-bs-placement="right"
-                                        data-bs-title="UMKM ini belum diverfikasi oleh badan"
+                                        data-bs-title="UMKM ini belum diverfikasi oleh Dinas Perindustrian dan Perdagangan Provinsi Sumatera Barat"
                                         class="badge rounded-pill bg-warning p-2 ">
                                         <i class="ti-close me-2"></i>
                                         Belum Diverifikasi
