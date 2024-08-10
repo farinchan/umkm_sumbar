@@ -59,74 +59,154 @@
                 <div class="row">
 
                     @foreach ($shop as $item)
-                        <div class="col-lg-6 mb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row ">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-6">
-                                            <figure>
-                                                <a href="product-detail-1.html">
-                                                    <img class="img-fluid lazy"
-                                                        src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
-                                                        data-src="{{ Storage::url('images/shop/' . $item->logo) }}"
-                                                        alt="">
-                                                </a>
-                                            </figure>
-                                        </div>
-                                        <div class="col-sm-3"></div>
-
-                                    </div>
-                                    <div class="row row_item">
-                                        <div class="col-sm-12 text-center">
-                                            @if ($item->verified == 1)
-                                                <span data-bs-toggle="tooltip" data-bs-placement="right"
-                                                    data-bs-title="UMKM ini sudah diverfikasi oleh badan"
-                                                    class="badge rounded-pill bg-success p-2 m-3">
-                                                    <i class="ti-check me-2"></i>
-                                                    diverifikasi
-                                                </span>
-                                            @else
-                                                <span data-bs-toggle="tooltip" data-bs-placement="right"
-                                                    data-bs-title="UMKM ini belum diverfikasi oleh badan"
-                                                    class="badge rounded-pill bg-warning p-2 m-3">
-                                                    <i class="ti-close me-2"></i>
-                                                    belum diverifikasi
-                                                </span>
-                                            @endif
-                                            <a href="product-detail-1.html">
-                                                <h3>{{ $item->name }}</h3>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm mb-3 px-2" id="card">
+                                <div class="row g-0">
+                                    <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                        <figure class="text-center m-0">
+                                            <a href="">
+                                                <img class="img-fluid lazy"
+                                                    src="{{ asset('front/img/products/product_placeholder_square_medium.jpg') }}"
+                                                    data-src=" 
+                                                @if ($item->logo) {{ Storage::url('images/shop/' . $item->logo) }}
+                                                @else
+                                                    {{ Storage::url('images/setting/logo.png') }} @endif
+                                                "
+                                                    alt="">
                                             </a>
-                                            <p>{{ Str::limit($item->description, 100, '...') }}</p>
-                                            <div>
-                                                <i class="ti-location-pin"></i>
-                                                {{ $item->city->name }}
-                                            </div>
-                                            <div>
-                                                <i class="ti-location-arrow"></i>
-                                                {{ $item->address }}
-                                            </div>
-                                            <div>
-                                                <i class="ti-email"></i>
-                                                {{ $item->email }}
-                                            </div>
-                                            <div>
-                                                <i class="ti-headphone-alt"></i>
-                                                {{ $item->phone }}
-                                            </div>
-                                            <ul>
-                                                <li><a href="{{ route('shop-detail', $item->slug) }}"
-                                                        class="btn_1">Kunjungi</a>
-                                                </li>
-                                            </ul>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('shop-detail', $item->slug) }}">
+                                                    {{ $item->name }}
+
+                                                </a>
+                                                @if ($item->verified == 1)
+                                                    <small>
+                                                        <i class="fa-solid fa-circle-check text-success ps-1"
+                                                            data-bs-toggle="tooltip" data-bs-placement="right"
+                                                            data-bs-title="UMKM ini telah diverifikasi"></i>
+                                                    </small>
+                                                @endif
+                                            </h5>
+
+
+                                            {{-- <p>{{ Str::limit($item->description, 100, '...') }}</p> --}}
+                                            <table>
+                                                <tr>
+                                                    <td width="25px">
+                                                        <i class="ti-location-pin"></i>
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->city->name }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="ti-location-arrow"></i>
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->address }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="ti-email"></i>
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->email }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="ti-headphone-alt"></i>
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->phone }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            {{-- <ul>
+                                            <li><a href="{{ route('shop-detail', $item->slug) }}"
+                                                    class="btn_1">Kunjungi</a>
+                                            </li>
+                                        </ul> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     @endforeach
                     <!-- /col -->
+                </div>
+
+                <div class="pagination__wrapper no_border add_bottom_30">
+                    <ul class="pagination">
+                        @if ($shop->onFirstPage())
+                            <li class="page-item previous">
+                                <a href="#" class="page-link"><i class="previous"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="prev" title="previous page">&#10094;</a>
+                            </li>
+                        @else
+                            <li class="page-item previous">
+                                <a href="{{ route('shop', ['city' => request()->city, 'page' => $shop->currentPage() - 1]) }}"
+                                    class="page-link bg-light"><i class="previous"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="prev" title="previous page">&#10094;</a>
+                            </li>
+                        @endif
+
+
+                        @php
+                            // Menghitung halaman pertama dan terakhir yang akan ditampilkan
+                            $start = max($shop->currentPage() - 2, 1);
+                            $end = min($start + 4, $shop->lastPage());
+                        @endphp
+
+                        @if ($start > 1)
+                            <!-- Menampilkan tanda elipsis jika halaman pertama tidak termasuk dalam tampilan -->
+                            <li>
+                                <a>...</a>
+                            </li>
+                        @endif
+
+                        @foreach ($shop->getUrlRange($start, $end) as $page => $url)
+                            @if ($page == $shop->currentPage())
+                                <li>
+                                    <a
+                                        class="{{ $page == $shop->currentPage() ? ' active' : '' }}">{{ $page }}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="
+                                {{ route('shop', ['city' => request()->city, 'page' => $page]) }}
+                                "
+                                        class="{{ $page == $shop->currentPage() ? ' active' : '' }}">{{ $page }}</a>
+                                </li>
+                            @endif
+                        @endforeach
+
+                        @if ($end < $shop->lastPage())
+                            <!-- Menampilkan tanda elipsis jika halaman terakhir tidak termasuk dalam tampilan -->
+                            <li>
+                                <a>...</a>
+                            </li>
+                        @endif
+
+                        @if ($shop->hasMorePages())
+                            <li><a href="{{ route('shop', ['city' => request()->city, 'page' => $shop->currentPage() + 1]) }}"
+                                    class="next" title="next page">&#10095;</a>
+                            </li>
+                        @else
+                            <li><a href="#" class="next" title="next page">&#10095;</a></li>
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>

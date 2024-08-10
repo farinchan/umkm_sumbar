@@ -18,7 +18,7 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation, WithProgre
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
-    use Importable;
+        use Importable;
     
     public function model(array $row)
     {
