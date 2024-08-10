@@ -240,7 +240,7 @@
                                                         {{ $product->shop->email }}
                                                     </div>
                                                     <div>
-                                                        <i class="ti-headphone-alt me-2"></i>
+                                                        <i class="fa-regular fa-phone me-2"></i>
                                                         {{ $product->shop->phone }}
                                                     </div>
                                                     <a href="{{ route('shop-detail', $product->shop->slug) }}"

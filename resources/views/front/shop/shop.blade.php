@@ -139,8 +139,7 @@
                                     class="btn btn-success">Hubungi Via whatsapp</a>
                                 <a href="mailto:{{ $shop->email }}?subject=Halo toko {{ $shop->name }}"
                                     class="btn btn-outline-secondary"><i class="ti-email"></i></a>
-                                <a href="tel:{{ $shop->phone }}" class="btn btn-outline-secondary"><i
-                                        class="ti-headphone-alt"></i></a>
+                                <a href="tel:{{ $shop->phone }}" class="btn btn-outline-secondary"><i class="fa-regular fa-phone"></i> </a>
                             </div>
                         </div>
                     </div>

@@ -121,8 +121,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <i class="ti-headphone-alt"></i>
-                                                    </td>
+                                                        <i class="fa-regular fa-phone"></i>                                                 </td>
                                                     <td>
                                                         {{ $item->phone }}
                                                     </td>
