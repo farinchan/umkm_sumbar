@@ -405,13 +405,13 @@
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: "https://ml-smart-umkm.gariskode.com//recomender/ranking",
+                url: "https://128.199.228.36:4000/recomender/ranking",
                 type: "GET",
                 success: function(data, status, xhr) {
                     console.log(data.recommendations);
                     data.recommendations.forEach(element => {
                         $.ajax({
-                            url: "https://ml-smart-umkm.gariskode.com//product/" +
+                            url: "https://128.199.228.36:4000/product/" +
                                 element,
                             type: "GET",
                             success: function(data, status, xhr) {
@@ -431,7 +431,7 @@
                                             <div data-countdown="2019/05/15" class="countdown"></div>
                                         </figure>
                                         <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                                class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div> 
+                                                class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                                         <a href="product-detail-1.html">
                                             <h3>${data.name}</h3>
                                         </a>
@@ -464,7 +464,7 @@
 
 
             $.ajax({
-                url: "https://ml-smart-umkm.gariskode.com//recomender/ranking",
+                url: "https://128.199.228.36:4000/recomender/ranking",
                 type: "GET",
                 success: function(data, status, xhr) {
                     console.log(data.recommendations);
