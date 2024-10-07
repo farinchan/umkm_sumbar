@@ -315,7 +315,7 @@
             function chatbotApi(message) {
                 $('#status_bot').html('Mengetik...');
                 $.ajax({
-                    url: `http://128.199.228.36:5000/chatbot`,
+                    url: `https://chatbot-smart-umkm.gariskode.me/chatbot`,
                     type: 'GET',
                     data: {
                         query: message,
