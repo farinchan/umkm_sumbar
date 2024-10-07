@@ -374,5 +374,5 @@
 @endsection
 
 @section('scripts')
-    </script>
+    
 @endsection

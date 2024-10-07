@@ -14,7 +14,7 @@ use App\Http\Controllers\web\back\Admin\UserController;
 use App\Http\Controllers\web\back\Shop\ShopController as backShopController;
 use App\Http\Controllers\web\back\Shop\ProductController as backProductController;
 use App\Http\Controllers\web\front\CartController;
-use App\Http\Controllers\web\front\HomeController;
+use App\Http\Controllers\Web\Front\HomeController;
 use App\Http\Controllers\web\front\ProductController as frontProductController;
 use App\Http\Controllers\web\front\NewsController as frontNewsController;
 use App\Http\Controllers\web\front\ShopController as frontShopController;
@@ -99,7 +99,7 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             Route::prefix('setting')->name('setting.')->group(function () {
                 Route::get('/banner', [SettingController::class, 'banner'])->name('banner');
                 Route::put('/banner/{id}/update', [SettingController::class, 'bannerUpdate'])->name('banner-update');
-                
+
                 Route::get('/website', [SettingController::class, 'website'])->name('website');
                 Route::put('/website/update', [SettingController::class, 'websiteUpdate'])->name('website-update');
                 Route::put('/website/information-update', [SettingController::class, 'informationUpdate'])->name('information-update');
