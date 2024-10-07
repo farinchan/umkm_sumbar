@@ -5,7 +5,7 @@ use App\Http\Controllers\Web\Back\Account\AccountController;
 use App\Http\Controllers\Web\Back\Admin\CityController;
 use App\Http\Controllers\Web\Back\Admin\DashboardController;
 use App\Http\Controllers\Web\Back\Admin\FileManagerController;
-use App\Http\Controllers\Web\Back\admin\NewsController;
+use App\Http\Controllers\Web\Back\Admin\NewsController;
 use App\Http\Controllers\Web\Back\Admin\ProductCategoryController;
 use App\Http\Controllers\Web\Back\Admin\ProductController;
 use App\Http\Controllers\Web\Back\Admin\SettingController;
