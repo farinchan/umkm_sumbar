@@ -411,7 +411,7 @@
                     console.log(data.recommendations);
                     data.recommendations.forEach(element => {
                         $.ajax({
-                            url: "https://128.199.228.36:4000/product/" +
+                            url: "http://128.199.228.36:4000/product/" +
                                 element,
                             type: "GET",
                             success: function(data, status, xhr) {
@@ -464,7 +464,7 @@
 
 
             $.ajax({
-                url: "https://128.199.228.36:4000/recomender/ranking",
+                url: "http://128.199.228.36:4000/recomender/ranking",
                 type: "GET",
                 success: function(data, status, xhr) {
                     console.log(data.recommendations);
