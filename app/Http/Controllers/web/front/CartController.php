@@ -32,7 +32,7 @@ class CartController extends Controller
             $item->product->price = number_format($item->product->price ,0,',','.');
             return $item;
         });
-        
+
         $userCartCount = UserCart::where('user_id', auth()->user()->id)->count();
         $userCartTotal = UserCart::where('user_id', auth()->user()->id)->sum('quantity');
         $userCartTotalPrice = UserCart::where('user_id', auth()->user()->id)->with('product')->get()->sum(function ($item) {
@@ -56,7 +56,7 @@ class CartController extends Controller
         $userCart->delete();
         return response()->json(['success' => 'Cart has been removed']);
     }
-    
+
 
     public function addToCart(Request $request)
     {
@@ -81,7 +81,7 @@ class CartController extends Controller
             $userCart->user_id = auth()->user()->id;
             $userCart->save();
         }
-        return response()->json(['success' => 'Product has been added to cart']);   
+        return response()->json(['success' => 'Product has been added to cart']);
     }
 
 }

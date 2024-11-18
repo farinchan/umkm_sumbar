@@ -96,7 +96,7 @@
                             <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                 <div class="numbers-row">
                                     <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
-                                </div>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                                                         </small>
                                                     @endif
                                                     </h5>
-                                                    
+
                                                     <div>
                                                         <i class="ti-location-pin me-2"></i>
                                                         {{ $product->shop->city->name }}

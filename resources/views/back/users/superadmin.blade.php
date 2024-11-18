@@ -245,9 +245,9 @@
                                                 <div class="badge badge-light-danger fw-bolder">
                                                     Tidak Aktif
                                                 </div>
-                                                
+
                                             @endif
-                                            
+
                                         </td>
                                         <td>{{ $item->created_at->diffForHumans() }}</td>
                                         <td class="text-end">
