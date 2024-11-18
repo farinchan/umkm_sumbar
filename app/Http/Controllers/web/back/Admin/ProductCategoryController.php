@@ -74,7 +74,7 @@ class ProductCategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $logo = $request->file('image');
-            $filename = now() . $logo->getClientOriginalName();
+            $filename = now() . "." . $logo->getClientOriginalExtension();
             $path = 'images/product_category/' . $filename;
             Storage::disk('public')->put($path, file_get_contents($logo));
 

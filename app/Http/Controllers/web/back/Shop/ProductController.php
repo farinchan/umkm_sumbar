@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -55,6 +56,7 @@ class ProductController extends Controller
 
         ]);
         if ($validator->fails()) {
+            Alert::error('Gagal', $validator->errors()->all());
             return redirect()->route('shop.product.create')->with('error', 'Gagal menambahkan produk baru')->withInput()->withErrors($validator);
         }
 
@@ -93,7 +95,7 @@ class ProductController extends Controller
         $productImage->product_id = $product->id;
 
         $image = $request->file('image');
-        $fileName = time() . '_' . $image->getClientOriginalName();
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
         $filePath = $image->storeAs('images/product/', $fileName, 'public');
 
         $productImage->image = $fileName;
@@ -286,7 +288,7 @@ class ProductController extends Controller
     }
 
     public function viewer(){
-        $data = [ 
+        $data = [
             'menu_title' => 'Manajemen Produk',
             'submenu_title' => 'Produk',
             'title' => 'Pengunjung Produk',
