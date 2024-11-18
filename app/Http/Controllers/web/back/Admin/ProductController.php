@@ -49,7 +49,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'image' => 'required|mimes:jpg,jpeg,png|max:2048', // 'required|mimes:jpg,jpeg,png|max:2048
             'name' => 'required',
@@ -297,7 +297,7 @@ class ProductController extends Controller
     }
 
     public function viewer(){
-        $data = [ 
+        $data = [
             'menu_title' => 'Manajemen Produk',
             'submenu_title' => 'Produk',
             'title' => 'Pengunjung Produk',
