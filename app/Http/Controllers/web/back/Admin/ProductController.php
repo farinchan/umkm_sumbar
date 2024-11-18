@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\str;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -67,8 +68,14 @@ class ProductController extends Controller
             'meta_description' => '',
             'meta_keyword' => '',
 
+        ], [
+            'required' => 'Kolom :attribute wajib diisi',
+            'mimes' => 'File harus berupa gambar',
+            'max' => 'Ukuran file maksimal 2MB',
         ]);
+
         if ($validator->fails()) {
+            Alert::error('Failed', $validator->errors()->all());
             return redirect()->route('admin.product.create')->with('error', 'Gagal menambahkan produk baru')->withInput()->withErrors($validator);
         }
 
@@ -107,7 +114,7 @@ class ProductController extends Controller
         $productImage->product_id = $product->id;
 
         $image = $request->file('image');
-        $fileName = time() . '_' . $image->getClientOriginalName();
+        $fileName = time() . '.' . $image->getClientOriginalExtension();
         $filePath = $image->storeAs('images/product/', $fileName, 'public');
 
         $productImage->image = $fileName;
@@ -149,6 +156,7 @@ class ProductController extends Controller
 
         ]);
         if ($validator->fails()) {
+            Alert::error('Failed', $validator->errors()->all());
             return redirect()->route('admin.product.create')->with('error', 'Gagal menambahkan produk baru')->withInput()->withErrors($validator);
         }
 
@@ -261,8 +269,13 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'image' => 'required|mimes:jpg,jpeg,png|max:2048', // 'required|mimes:jpg,jpeg,png|max:2048
+        ], [
+            'required' => 'Kolom :attribute wajib diisi',
+            'mimes' => 'File harus berupa gambar',
+            'max' => 'Ukuran file maksimal 2MB',
         ]);
         if ($validator->fails()) {
+            Alert::error('Failed', $validator->errors()->all());
             return redirect()->route('admin.product.detail-image', $id)->with('error', 'Gagal menambahkan gambar produk')->withInput()->withErrors($validator);
         }
 
@@ -270,7 +283,7 @@ class ProductController extends Controller
         $productImage->product_id = $id;
 
         $imageProduct = $request->file('image');
-        $fileName = time() . '_' . $imageProduct->getClientOriginalName();
+        $fileName = time() . '.' . $imageProduct->getClientOriginalExtension();
         $filePath = $imageProduct->storeAs('images/product/', $fileName, 'public');
 
         $productImage->image = $fileName;

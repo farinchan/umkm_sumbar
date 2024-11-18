@@ -106,7 +106,7 @@ Route::middleware(['auth'])->prefix("/back")->group(function () {
             });
         });
 
-        Route::middleware(['role:admin|superadmin'])->group(function () {
+        Route::middleware(['role:admin|superadmin|user'])->group(function () {
 
             Route::prefix('toko')->name('toko.')->group(function () {
                 Route::get('/', [ShopController::class, 'index'])->name('index');

@@ -55,6 +55,17 @@ class ProductCategoryController extends Controller
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',
+        ], [
+            'name.required' => 'Nama Kategori Produk wajib diisi',
+            'description.required' => 'Deskripsi Kategori Produk wajib diisi',
+            'image.image' => 'File harus berupa gambar',
+            'image.mimes' => 'File harus berupa gambar dengan format jpeg, png, jpg, gif, svg',
+            'image.max' => 'Ukuran file maksimal 2MB',
+            'parent_id.integer' => 'Parent ID harus berupa angka',
+            'meta_title.string' => 'Meta Title harus berupa teks',
+            'meta_title.max' => 'Meta Title maksimal 255 karakter',
+            'meta_description.string' => 'Meta Description harus berupa teks',
+            'meta_keywords.string' => 'Meta Keywords harus berupa teks',
         ]);
 
         if ($validator->fails()) {

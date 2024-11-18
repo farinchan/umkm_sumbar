@@ -29,7 +29,7 @@
                                         {{ $product->short_description }}</div>
                                 </div>
                                 <div class="d-flex mb-4">
-                                    <a href="{{ route("admin.product.edit", $product->id) }}" class="btn btn-sm btn-primary me-3">Edit Produk</a>
+                                    <a href="{{ route("shop.product.edit", $product->id) }}" class="btn btn-sm btn-primary me-3">Edit Produk</a>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap justify-content-start">
@@ -134,7 +134,7 @@
                                     </button>
                                 </form>
                                 @endif
-                                
+
                             </div>
                         </div>
                     @endforeach
