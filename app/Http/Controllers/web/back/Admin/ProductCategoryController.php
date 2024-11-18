@@ -82,6 +82,7 @@ class ProductCategoryController extends Controller
         }
         $productCategory->save();
 
+        Alert::success('Success', 'Kategori Produk berhasil ditambahkan');
         return redirect()->route('admin.product.category.index')->with('success', 'Product Category created successfully');
     }
 }
