@@ -256,7 +256,7 @@ class ProductController extends Controller
         $productImage->product_id = $id;
 
         $imageProduct = $request->file('image');
-        $fileName = time() . '_' . $imageProduct->getClientOriginalName();
+        $fileName = time() . '.' . $imageProduct->getClientOriginalExtension();
         $filePath = $imageProduct->storeAs('images/product/', $fileName, 'public');
 
         $productImage->image = $fileName;
