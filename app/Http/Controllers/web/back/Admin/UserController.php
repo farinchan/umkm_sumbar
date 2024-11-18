@@ -70,7 +70,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
         ]);
         if ($validator->fails()) {
-            dd($validator->errors());
+            // dd($validator->errors());
             return redirect()->route('admin.pengguna.index')->with('error', 'Gagal mengubah data pengguna')->withInput()->withErrors($validator);
         }
 
@@ -169,7 +169,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
         ]);
         if ($validator->fails()) {
-            dd($validator->errors());
+            // dd($validator->errors());
             return redirect()->route('admin.pengguna.superadmin.index')->with('error', 'Gagal mengubah data pengguna')->withInput()->withErrors($validator);
         }
 
@@ -213,8 +213,8 @@ class UserController extends Controller
             'user' => $data,
             'city' => $city
         ];
-        
-        // return response()->json($data); 
+
+        // return response()->json($data);
         return view('back.users.admin', $data);
     }
 
@@ -257,7 +257,7 @@ class UserController extends Controller
             'city_id' => 'required',
         ]);
         if ($validator->fails()) {
-            dd($validator->errors());
+            // dd($validator->errors());
             return redirect()->route('admin.pengguna.admin.index')->with('error', 'Gagal mengubah data pengguna')->withInput()->withErrors($validator);
         }
 

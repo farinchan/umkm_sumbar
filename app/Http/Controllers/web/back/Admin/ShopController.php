@@ -116,7 +116,7 @@ class ShopController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
