@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductCategoryController extends Controller
 {
@@ -44,9 +46,11 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'parent_id' => 'nullable|integer', // 'nullable|exists:product_categories,id
             'meta_title' => 'nullable|string|max:255',
@@ -54,7 +58,10 @@ class ProductCategoryController extends Controller
             'meta_keywords' => 'nullable|string',
         ]);
 
-
+        if ($validator->fails()) {
+            Alert::error('Failed', 'Gagal menambahkan Kategori Produk');
+            return redirect()->route('admin.product.category.create')->with('error', 'Failed to create Product Category')->withInput()->withErrors($validator);
+        }
 
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
