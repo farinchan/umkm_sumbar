@@ -77,7 +77,7 @@ class ProductCategoryController extends Controller
         $productCategory->name = $request->name;
         $productCategory->slug = Str::slug($request->name);
         $productCategory->description = $request->description;
-        $productCategory->parent_id = $request->parent_id;
+        $productCategory->parent_id = ($request->parent_id == 0) ? null : $request->parent_id;
         $productCategory->meta_title = $request->meta_title;
         $productCategory->meta_description = $request->meta_description;
         $productCategory->meta_keywords = $request->meta_keywords;

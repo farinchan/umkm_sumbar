@@ -92,7 +92,7 @@
                                 <label class=" form-label">Kategori Parent</label>
                                 <select class="form-select mb-2 select2-hidden-accessible" id="select2"
                                     name="parent_id">
-                                    <option value="">Tidak ada</option>
+                                    <option value="0">Tidak ada</option>
                                     @foreach ($productCategories as $cat)
                                         <option @if (old('parent_id') == $cat->id) selected @endif
                                             value="{{ $cat->id }}">
