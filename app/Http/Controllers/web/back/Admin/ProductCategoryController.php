@@ -47,7 +47,6 @@ class ProductCategoryController extends Controller
     {
         // dd($request->all());
 
-
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
@@ -59,7 +58,7 @@ class ProductCategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            Alert::error('Failed', 'Gagal menambahkan Kategori Produk');
+            Alert::error('Failed', $validator->errors()->all());
             return redirect()->route('admin.product.category.create')->with('error', 'Failed to create Product Category')->withInput()->withErrors($validator);
         }
 
