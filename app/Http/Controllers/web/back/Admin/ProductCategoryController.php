@@ -80,7 +80,7 @@ class ProductCategoryController extends Controller
         $productCategory->parent_id = ($request->parent_id == 0) ? null : $request->parent_id;
         $productCategory->meta_title = $request->meta_title;
         $productCategory->meta_description = $request->meta_description;
-        $productCategory->meta_keywords = $request->meta_keywords;
+        $productCategory->meta_keyword = $request->meta_keywords;
 
         if ($request->hasFile('image')) {
             $logo = $request->file('image');
