@@ -99,10 +99,14 @@
                                                     </a>
                                                 </div>
                                                 <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3"
-                                                        data-kt-ecommerce-category-filter="delete_row">
-                                                        Delete
-                                                    </a>
+                                                    <form action="{{ route("admin.product.category.destroy", $item->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="menu-link px-3">
+                                                            Delete
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>
